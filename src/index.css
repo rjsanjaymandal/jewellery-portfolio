@@ -1,30 +1,32 @@
 :root {
-  /* Color Palette */
-  --color-primary: #c9a87a;
-  --color-primary-light: #e5d5b5;
-  --color-primary-dark: #a88a5a;
-  --color-secondary: #2c3e50;
-  --color-text: #333333;
-  --color-text-light: #666666;
+  /* Color Palette - Ant Design inspired with improved contrast */
+  --color-primary: #8b4513; /* Darker brown for better contrast */
+  --color-primary-light: #d4b996;
+  --color-primary-dark: #5d2906; /* Even darker for hover states */
+  --color-secondary: #001529; /* Ant Design dark blue */
+  --color-text: #262626; /* Darker text for better readability */
+  --color-text-light: #4d4d4d; /* Darker gray for better contrast */
   --color-background: #ffffff;
-  --color-background-alt: #f9f7f3;
-  --color-accent: #8b0000;
-  
+  --color-background-alt: #f5f5f5; /* Slightly darker for better contrast */
+  --color-accent: #b8860b; /* Dark goldenrod for accents */
+
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Poppins', sans-serif;
-  
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 8rem;
-  
+  --font-heading: "Playfair Display", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* Ant Design font stack */
+
+  /* Spacing - Ant Design uses 8px as base unit */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 1rem; /* 16px */
+  --spacing-md: 1.5rem; /* 24px */
+  --spacing-lg: 2rem; /* 32px */
+  --spacing-xl: 3rem; /* 48px */
+
   /* Borders */
-  --border-radius: 4px;
+  --border-radius: 2px; /* Ant Design uses smaller border radius */
   --border-width: 1px;
-  --border-color: #e0e0e0;
+  --border-color: #f0f0f0; /* Ant Design border color */
 }
 
 * {
@@ -38,14 +40,25 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   background-color: var(--color-background);
+  font-size: 16px; /* Base font size */
+  font-weight: 400; /* Regular weight for better readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700; /* Bolder for better visibility */
   line-height: 1.3;
   margin-bottom: var(--spacing-sm);
   color: var(--color-secondary);
+  letter-spacing: -0.02em; /* Slight letter spacing adjustment for readability */
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Subtle text shadow for contrast */
 }
 
 h1 {
@@ -66,6 +79,10 @@ h4 {
 
 p {
   margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+  line-height: 1.7; /* Increased line height for better readability */
+  color: var(--color-text); /* Ensure paragraphs use the main text color */
+  max-width: 70ch; /* Limit line length for better readability */
 }
 
 a {
@@ -102,15 +119,15 @@ button {
   h1 {
     font-size: 2.5rem;
   }
-  
+
   h2 {
     font-size: 2rem;
   }
-  
+
   h3 {
     font-size: 1.75rem;
   }
-  
+
   .section {
     padding: var(--spacing-md) 0;
   }

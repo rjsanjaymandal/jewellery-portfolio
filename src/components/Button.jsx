@@ -1,110 +1,131 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button as AntButton } from "antd";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-const ButtonStyles = css`
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 1rem;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border: 2px solid;
-  transition: all 0.3s ease;
-  border-radius: var(--border-radius);
-  
-  ${({ variant }) => {
-    switch (variant) {
-      case 'outline':
-        return css`
-          background-color: transparent;
-          color: var(--color-primary);
-          border-color: var(--color-primary);
-          
-          &:hover {
-            background-color: var(--color-primary);
-            color: white;
-          }
-        `;
-      case 'secondary':
-        return css`
-          background-color: var(--color-secondary);
-          color: white;
-          border-color: var(--color-secondary);
-          
-          &:hover {
-            background-color: transparent;
-            color: var(--color-secondary);
-          }
-        `;
-      default: // primary
-        return css`
-          background-color: var(--color-primary);
-          color: white;
-          border-color: var(--color-primary);
-          
-          &:hover {
-            background-color: transparent;
-            color: var(--color-primary);
-          }
-        `;
+// Custom styled Ant Design Button with improved text visibility
+const StyledButton = styled(AntButton)`
+  &.ant-btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white; /* Ensure white text on primary button */
+    font-weight: 500; /* Slightly bolder text */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for better contrast */
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
     }
-  }}
-  
-  ${({ size }) => {
-    switch (size) {
-      case 'small':
-        return css`
-          padding: 0.5rem 1.5rem;
-          font-size: 0.875rem;
-        `;
-      case 'large':
-        return css`
-          padding: 1rem 2.5rem;
-          font-size: 1.125rem;
-        `;
-      default: // medium
-        return css`
-          padding: 0.8rem 2rem;
-          font-size: 1rem;
-        `;
-    }
-  }}
-`;
-
-const StyledButton = styled.button`
-  ${ButtonStyles}
-`;
-
-const StyledLink = styled(Link)`
-  ${ButtonStyles}
-`;
-
-const StyledAnchor = styled.a`
-  ${ButtonStyles}
-`;
-
-const Button = ({ children, variant = 'primary', size = 'medium', to, href, ...props }) => {
-  if (to) {
-    return (
-      <StyledLink to={to} variant={variant} size={size} {...props}>
-        {children}
-      </StyledLink>
-    );
   }
-  
+
+  &.ant-btn-default {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    border-width: 2px; /* Slightly thicker border for better visibility */
+    font-weight: 500; /* Slightly bolder text */
+
+    &:hover,
+    &:focus {
+      color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+    }
+  }
+
+  &.ant-btn-secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: white;
+    font-weight: 500; /* Slightly bolder text */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for better contrast */
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 21, 41, 0.8);
+      border-color: rgba(0, 21, 41, 0.8);
+    }
+  }
+
+  /* Increase font size slightly for better readability */
+  &.ant-btn-large {
+    font-size: 1.1rem;
+  }
+
+  &.ant-btn-middle {
+    font-size: 1rem;
+  }
+`;
+
+const Button = ({
+  children,
+  variant = "primary",
+  size = "middle",
+  to,
+  href,
+  ...props
+}) => {
+  const navigate = useNavigate();
+
+  // Map our variant names to Ant Design types
+  const getButtonType = () => {
+    switch (variant) {
+      case "outline":
+        return "default";
+      case "primary":
+        return "primary";
+      case "secondary":
+        return "secondary"; // Custom type
+      default:
+        return "primary";
+    }
+  };
+
+  // Map our size names to Ant Design sizes
+  const getButtonSize = () => {
+    switch (size) {
+      case "small":
+        return "small";
+      case "large":
+        return "large";
+      default: // medium
+        return "middle";
+    }
+  };
+
+  const handleClick = (e) => {
+    if (to) {
+      e.preventDefault();
+      navigate(to);
+    }
+
+    if (props.onClick) {
+      props.onClick(e);
+    }
+  };
+
   if (href) {
     return (
-      <StyledAnchor href={href} variant={variant} size={size} {...props}>
+      <StyledButton
+        type={getButtonType()}
+        size={getButtonSize()}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
         {children}
-      </StyledAnchor>
+      </StyledButton>
     );
   }
-  
+
   return (
-    <StyledButton variant={variant} size={size} {...props}>
+    <StyledButton
+      type={getButtonType()}
+      size={getButtonSize()}
+      onClick={handleClick}
+      className={variant === "secondary" ? "ant-btn-secondary" : ""}
+      {...props}
+    >
       {children}
     </StyledButton>
   );

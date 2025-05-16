@@ -1,7 +1,28 @@
 import React, { useState } from "react";
+import {
+  Form,
+  Input,
+  Typography,
+  Row,
+  Col,
+  Card,
+  Alert,
+  Space,
+  Divider,
+} from "antd";
+import {
+  EnvironmentOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  ClockCircleOutlined,
+  SendOutlined,
+} from "@ant-design/icons";
 import styled from "styled-components";
 import SectionTitle from "../components/SectionTitle.jsx";
 import Button from "../components/Button.jsx";
+
+const { Title, Text, Paragraph } = Typography;
+const { TextArea } = Input;
 
 const ContactContainer = styled.div`
   max-width: 1200px;
@@ -35,22 +56,26 @@ const ContactGrid = styled.div`
   }
 `;
 
-const ContactInfo = styled.div`
-  h3 {
-    margin-bottom: var(--spacing-md);
-    color: var(--color-secondary);
-    position: relative;
+const ContactInfoCard = styled(Card)`
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background-color: var(--color-primary);
-    }
+  .ant-card-head {
+    border-bottom: none;
   }
+
+  .ant-card-head-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    padding-bottom: 0;
+  }
+`;
+
+const InfoDivider = styled(Divider)`
+  width: 50px;
+  min-width: 50px;
+  margin: 16px 0 24px !important;
+  border-top: 3px solid var(--color-primary) !important;
 `;
 
 const InfoItem = styled.div`
@@ -59,84 +84,73 @@ const InfoItem = styled.div`
   margin-bottom: var(--spacing-md);
 `;
 
-const InfoIcon = styled.div`
-  width: 50px;
-  height: 50px;
+const IconWrapper = styled.div`
+  width: 40px;
+  height: 40px;
   background-color: var(--color-primary-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: var(--spacing-sm);
-  color: var(--color-primary-dark);
-  font-size: 1.5rem;
-`;
 
-const InfoContent = styled.div`
-  h4 {
-    margin-bottom: 0.25rem;
-  }
-
-  p {
-    color: var(--color-text-light);
+  .anticon {
+    color: var(--color-primary-dark);
+    font-size: 1.2rem;
   }
 `;
 
-const ContactForm = styled.form`
-  background-color: white;
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius);
+const InfoTitle = styled(Text)`
+  display: block;
+  font-weight: 600 !important;
+  margin-bottom: 4px;
+`;
+
+const InfoText = styled(Text)`
+  color: var(--color-text-light) !important;
+  display: block;
+`;
+
+const FormCard = styled(Card)`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  .ant-card-head {
+    border-bottom: none;
+  }
+
+  .ant-card-head-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    padding-bottom: 0;
+  }
 `;
 
-const FormGroup = styled.div`
-  margin-bottom: var(--spacing-sm);
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+const StyledForm = styled(Form)`
+  .ant-form-item-label > label {
     color: var(--color-secondary);
+    font-weight: 500;
+  }
+
+  .ant-input,
+  .ant-input-textarea {
+    &:hover,
+    &:focus {
+      border-color: var(--color-primary);
+    }
+  }
+
+  .ant-form-item-explain-error {
+    font-size: 0.8rem;
   }
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-family: var(--font-body);
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: var(--color-primary);
-  }
+const SubmitButton = styled(Button)`
+  margin-top: var(--spacing-sm);
 `;
 
-const Textarea = styled.textarea`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  font-family: var(--font-body);
-  resize: vertical;
+const StyledTextArea = styled(TextArea)`
   min-height: 150px;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: var(--color-primary);
-  }
-`;
-
-const SuccessMessage = styled.div`
-  background-color: #e6f7e6;
-  color: #2e7d32;
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-sm);
-  text-align: center;
+  resize: vertical;
 `;
 
 const MapSection = styled.section`
@@ -144,63 +158,47 @@ const MapSection = styled.section`
   background-color: var(--color-background-alt);
 `;
 
-const MapContainer = styled.div`
+const MapCard = styled(Card)`
   height: 400px;
-  background-color: #f0f0f0;
-  border-radius: var(--border-radius);
   overflow: hidden;
-  position: relative;
+  border-radius: var(--border-radius);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  .ant-card-body {
+    padding: 0;
+    height: 100%;
+    position: relative;
+  }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+`;
 
-  &::after {
-    content: "Map location: Johari Bazaar, Jaipur";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 0.5rem;
-    text-align: center;
-  }
+const MapOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
 `;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
+  const [form] = Form.useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onFinish = (values) => {
     // In a real application, you would send the form data to a server
-    console.log("Form submitted:", formData);
+    console.log("Form submitted:", values);
     setIsSubmitted(true);
 
-    // Reset form after submission
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    // Reset form
+    form.resetFields();
 
     // Hide success message after 5 seconds
     setTimeout(() => {
@@ -221,103 +219,143 @@ const Contact = () => {
 
       <ContactContainer>
         <ContactSection>
-          <ContactGrid>
-            <ContactInfo>
-              <h3>Get In Touch</h3>
+          <Row gutter={[32, 32]}>
+            <Col xs={24} md={12}>
+              <ContactInfoCard title="Get In Touch" bordered={false}>
+                <InfoDivider />
 
-              <InfoItem>
-                <InfoIcon>📍</InfoIcon>
-                <InfoContent>
-                  <h4>Our Location</h4>
-                  <p>Elegant Jewels, Johari Bazaar, Jaipur, Rajasthan, India</p>
-                </InfoContent>
-              </InfoItem>
+                <Space
+                  direction="vertical"
+                  size="large"
+                  style={{ width: "100%" }}
+                >
+                  <InfoItem>
+                    <IconWrapper>
+                      <EnvironmentOutlined />
+                    </IconWrapper>
+                    <div>
+                      <InfoTitle>Our Location</InfoTitle>
+                      <InfoText>
+                        Ramavatargems, Johari Bazaar, Jaipur, Rajasthan, India
+                      </InfoText>
+                    </div>
+                  </InfoItem>
 
-              <InfoItem>
-                <InfoIcon>📞</InfoIcon>
-                <InfoContent>
-                  <h4>Phone Number</h4>
-                  <p>+91 98765 43210</p>
-                  <p>+91 91234 56789</p>
-                </InfoContent>
-              </InfoItem>
+                  <InfoItem>
+                    <IconWrapper>
+                      <PhoneOutlined />
+                    </IconWrapper>
+                    <div>
+                      <InfoTitle>Phone Number</InfoTitle>
+                      <InfoText>+91 98765 43210</InfoText>
+                      <InfoText>+91 91234 56789</InfoText>
+                    </div>
+                  </InfoItem>
 
-              <InfoItem>
-                <InfoIcon>✉️</InfoIcon>
-                <InfoContent>
-                  <h4>Email Address</h4>
-                  <p>info@elegantjewels.com</p>
-                  <p>sales@elegantjewels.com</p>
-                </InfoContent>
-              </InfoItem>
+                  <InfoItem>
+                    <IconWrapper>
+                      <MailOutlined />
+                    </IconWrapper>
+                    <div>
+                      <InfoTitle>Email Address</InfoTitle>
+                      <InfoText>info@ramavatargems.com</InfoText>
+                      <InfoText>sales@ramavatargems.com</InfoText>
+                    </div>
+                  </InfoItem>
 
-              <InfoItem>
-                <InfoIcon>🕒</InfoIcon>
-                <InfoContent>
-                  <h4>Business Hours</h4>
-                  <p>Monday - Saturday: 10:00 AM - 8:00 PM</p>
-                  <p>Sunday: Closed</p>
-                </InfoContent>
-              </InfoItem>
-            </ContactInfo>
+                  <InfoItem>
+                    <IconWrapper>
+                      <ClockCircleOutlined />
+                    </IconWrapper>
+                    <div>
+                      <InfoTitle>Business Hours</InfoTitle>
+                      <InfoText>Monday - Saturday: 10:00 AM - 8:00 PM</InfoText>
+                      <InfoText>Sunday: Closed</InfoText>
+                    </div>
+                  </InfoItem>
+                </Space>
+              </ContactInfoCard>
+            </Col>
 
-            <ContactForm onSubmit={handleSubmit}>
-              {isSubmitted && (
-                <SuccessMessage>
-                  Thank you for your message! We'll get back to you soon.
-                </SuccessMessage>
-              )}
+            <Col xs={24} md={12}>
+              <FormCard title="Send Us a Message" bordered={false}>
+                <InfoDivider />
 
-              <FormGroup>
-                <label htmlFor="name">Your Name</label>
-                <Input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </FormGroup>
+                {isSubmitted && (
+                  <Alert
+                    message="Message Sent!"
+                    description="Thank you for your message! We'll get back to you soon."
+                    type="success"
+                    showIcon
+                    style={{ marginBottom: 24 }}
+                  />
+                )}
 
-              <FormGroup>
-                <label htmlFor="email">Email Address</label>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </FormGroup>
+                <StyledForm
+                  form={form}
+                  layout="vertical"
+                  onFinish={onFinish}
+                  requiredMark={false}
+                >
+                  <Form.Item
+                    name="name"
+                    label="Your Name"
+                    rules={[
+                      { required: true, message: "Please enter your name" },
+                    ]}
+                  >
+                    <Input size="large" placeholder="Enter your name" />
+                  </Form.Item>
 
-              <FormGroup>
-                <label htmlFor="subject">Subject</label>
-                <Input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </FormGroup>
+                  <Form.Item
+                    name="email"
+                    label="Email Address"
+                    rules={[
+                      { required: true, message: "Please enter your email" },
+                      { type: "email", message: "Please enter a valid email" },
+                    ]}
+                  >
+                    <Input size="large" placeholder="Enter your email" />
+                  </Form.Item>
 
-              <FormGroup>
-                <label htmlFor="message">Your Message</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </FormGroup>
+                  <Form.Item
+                    name="subject"
+                    label="Subject"
+                    rules={[
+                      { required: true, message: "Please enter a subject" },
+                    ]}
+                  >
+                    <Input size="large" placeholder="Enter subject" />
+                  </Form.Item>
 
-              <Button type="submit">Send Message</Button>
-            </ContactForm>
-          </ContactGrid>
+                  <Form.Item
+                    name="message"
+                    label="Your Message"
+                    rules={[
+                      { required: true, message: "Please enter your message" },
+                    ]}
+                  >
+                    <StyledTextArea
+                      size="large"
+                      placeholder="Enter your message here..."
+                      rows={5}
+                    />
+                  </Form.Item>
+
+                  <Form.Item>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      icon={<SendOutlined />}
+                    >
+                      Send Message
+                    </Button>
+                  </Form.Item>
+                </StyledForm>
+              </FormCard>
+            </Col>
+          </Row>
         </ContactSection>
       </ContactContainer>
 
@@ -327,12 +365,13 @@ const Contact = () => {
             title="Visit Our Showroom"
             subtitle="Experience our exquisite collection in person at our Jaipur showroom"
           />
-          <MapContainer>
+          <MapCard bordered={false}>
             <img
               src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
               alt="Jaipur Map"
             />
-          </MapContainer>
+            <MapOverlay>Map location: Johari Bazaar, Jaipur</MapOverlay>
+          </MapCard>
         </ContactContainer>
       </MapSection>
     </>
