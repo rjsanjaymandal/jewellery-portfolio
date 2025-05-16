@@ -13,6 +13,9 @@ import Contact from "./pages/Contact.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 
+// Theme Context
+import { ThemeProvider, useTheme } from "./context/ThemeContext.jsx";
+
 const { Content } = Layout;
 
 const StyledLayout = styled(Layout)`
@@ -23,42 +26,82 @@ const StyledContent = styled(Content)`
   flex: 1;
 `;
 
-// Custom theme for Ant Design with improved contrast
-const theme = {
-  token: {
-    colorPrimary: "#8B4513", // Darker brown for better contrast
-    colorLink: "#8B4513",
-    colorLinkHover: "#5D2906", // Even darker for hover states
-    borderRadius: 2,
-    fontFamily:
-      "'Playfair Display', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
-    fontSize: 16,
-    fontSizeHeading1: 32,
-    fontSizeHeading2: 28,
-    fontSizeHeading3: 24,
-    fontSizeHeading4: 20,
-    fontSizeHeading5: 16,
-    colorTextBase: "#262626", // Darker text for better readability
-    colorTextSecondary: "#4D4D4D", // Darker gray for better contrast
-    colorBgBase: "#ffffff",
-  },
-  components: {
-    Typography: {
-      fontWeightStrong: 700,
-      titleMarginBottom: 16,
+// Theme configuration for Ant Design
+const getAntdTheme = (isDarkMode) => {
+  // Common theme settings
+  const baseTheme = {
+    token: {
+      fontFamily:
+        "'Playfair Display', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
+      fontSize: 16,
+      fontSizeHeading1: 32,
+      fontSizeHeading2: 28,
+      fontSizeHeading3: 24,
+      fontSizeHeading4: 20,
+      fontSizeHeading5: 16,
+      borderRadius: 4,
     },
-    Button: {
-      fontWeight: 500,
+    components: {
+      Typography: {
+        fontWeightStrong: 700,
+        titleMarginBottom: 16,
+      },
+      Button: {
+        fontWeight: 500,
+      },
     },
-    Card: {
-      colorBorderSecondary: "#e8e8e8", // Slightly darker border for better visibility
+  };
+
+  // Light theme
+  const lightTheme = {
+    ...baseTheme,
+    token: {
+      ...baseTheme.token,
+      colorPrimary: "#8B4513", // Darker brown for better contrast
+      colorLink: "#8B4513",
+      colorLinkHover: "#5D2906", // Even darker for hover states
+      colorTextBase: "#262626", // Darker text for better readability
+      colorTextSecondary: "#4D4D4D", // Darker gray for better contrast
+      colorBgBase: "#ffffff",
     },
-  },
+    components: {
+      ...baseTheme.components,
+      Card: {
+        colorBorderSecondary: "#e8e8e8", // Slightly darker border for better visibility
+      },
+    },
+  };
+
+  // Dark theme
+  const darkTheme = {
+    ...baseTheme,
+    token: {
+      ...baseTheme.token,
+      colorPrimary: "#d4b996", // Lighter gold for dark mode
+      colorLink: "#d4b996",
+      colorLinkHover: "#e6d2b8", // Even lighter for hover
+      colorTextBase: "#e6e6e6", // Light text for dark mode
+      colorTextSecondary: "#b3b3b3", // Lighter gray for secondary text
+      colorBgBase: "#121212", // Dark background
+    },
+    components: {
+      ...baseTheme.components,
+      Card: {
+        colorBorderSecondary: "#333333", // Darker border for dark mode
+      },
+    },
+  };
+
+  return isDarkMode ? darkTheme : lightTheme;
 };
 
-function App() {
+// Theme-aware App component
+const ThemedApp = () => {
+  const { isDarkMode } = useTheme();
+  const antdTheme = getAntdTheme(isDarkMode);
+
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={antdTheme}>
       <StyledLayout>
         <Navbar />
         <StyledContent>
@@ -72,6 +115,15 @@ function App() {
         <Footer />
       </StyledLayout>
     </ConfigProvider>
+  );
+};
+
+// Main App component with ThemeProvider
+function App() {
+  return (
+    <ThemeProvider>
+      <ThemedApp />
+    </ThemeProvider>
   );
 }
 

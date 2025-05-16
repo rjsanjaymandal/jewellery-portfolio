@@ -1,130 +1,200 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Layout, Menu, Button, Drawer, Typography } from "antd";
+import {
+  Layout,
+  Menu,
+  Button,
+  Drawer,
+  Typography,
+  Row,
+  Col,
+  Space,
+  Divider,
+} from "antd";
 import {
   MenuOutlined,
   HomeOutlined,
   InfoCircleOutlined,
-  AppstoreOutlined,
+  ShoppingOutlined,
   MailOutlined,
+  GoldOutlined,
+  PhoneOutlined,
 } from "@ant-design/icons";
 import styled from "styled-components";
+import { useTheme } from "../context/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
 
 const { Header } = Layout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
+
+// Simple styled components with reliable styling
+const NavbarWrapper = styled.div`
+  position: relative;
+`;
 
 const StyledHeader = styled(Header)`
-  background-color: var(--color-background);
-  padding: 0 var(--spacing-sm);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0;
+  background-color: ${props => props.isDarkMode ? '#121212' : 'white'};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  height: auto;
+`;
+
+const HeaderContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 70px;
-  line-height: 70px;
+  justify-content: space-between;
+  height: 64px;
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
-const Logo = styled(Title)`
-  margin: 0 !important;
-  font-family: var(--font-heading) !important;
-  font-size: 2rem !important; /* Slightly larger for better visibility */
-  font-weight: 700 !important; /* Bolder for better visibility */
-  letter-spacing: -0.01em !important; /* Slight letter spacing adjustment */
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) !important; /* Subtle text shadow for contrast */
+const LogoIcon = styled(GoldOutlined)`
+  font-size: 24px;
+  color: #8b4513;
+  margin-right: 8px;
+`;
 
-  .primary-text {
-    color: var(--color-primary);
+const LogoText = styled(Title)`
+  margin: 0 !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  color: ${props => props.isDarkMode ? 'white' : '#001529'} !important;
+  
+  .highlight {
+    color: #8b4513;
   }
 `;
 
-const DesktopMenu = styled(Menu)`
+const NavMenu = styled(Menu)`
   border: none;
   background: transparent;
-  font-size: 1.05rem !important; /* Slightly larger menu items */
-  font-weight: 500 !important; /* Slightly bolder menu items */
-
-  .ant-menu-item {
-    padding: 0 20px !important; /* More spacing between menu items */
-
-    &:hover {
-      color: var(
-        --color-primary-dark
-      ) !important; /* Darker color on hover for better visibility */
-    }
-
-    &.ant-menu-item-selected {
-      font-weight: 600 !important; /* Bolder for selected item */
-    }
-  }
-
+  line-height: 64px;
+  
   @media (max-width: 768px) {
     display: none;
   }
 `;
 
+const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
 const MobileMenuButton = styled(Button)`
   display: none;
-
+  
   @media (max-width: 768px) {
     display: block;
   }
 `;
 
+const ContactInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.65)'};
+  
+  .anticon {
+    color: #8b4513;
+  }
+`;
+
 const StyledDrawer = styled(Drawer)`
+  .ant-drawer-header {
+    background-color: ${props => props.isDarkMode ? '#1f1f1f' : '#f5f5f5'};
+    border-bottom: 1px solid ${props => props.isDarkMode ? '#333' : '#e8e8e8'};
+  }
+  
+  .ant-drawer-title {
+    color: ${props => props.isDarkMode ? 'white' : 'rgba(0, 0, 0, 0.85)'};
+  }
+  
   .ant-drawer-body {
     padding: 0;
+    background-color: ${props => props.isDarkMode ? '#121212' : 'white'};
   }
+`;
 
-  .ant-drawer-title {
-    font-family: var(--font-heading) !important;
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    color: var(--color-secondary) !important;
-  }
-
+const DrawerMenu = styled(Menu)`
+  background-color: transparent;
+  border-right: none;
+  
   .ant-menu-item {
-    font-size: 1.1rem !important; /* Larger text in mobile menu */
-    font-weight: 500 !important; /* Slightly bolder for better visibility */
-    padding: 0 24px !important;
-    height: 50px !important; /* Taller menu items for better touch targets */
-    line-height: 50px !important;
-
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    
     .anticon {
-      font-size: 1.2rem !important; /* Larger icons */
-      margin-right: 12px !important; /* More space between icon and text */
-    }
-
-    &.ant-menu-item-selected {
-      font-weight: 600 !important; /* Bolder for selected item */
+      font-size: 18px;
+      margin-right: 10px;
     }
   }
 `;
 
+const DrawerFooter = styled.div`
+  padding: 16px;
+  border-top: 1px solid ${props => props.isDarkMode ? '#333' : '#e8e8e8'};
+`;
+
+const DrawerContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.65)'};
+  
+  .anticon {
+    color: #8b4513;
+  }
+`;
+
+// Spacer to compensate for fixed header
+const HeaderSpacer = styled.div`
+  height: 64px;
+`;
+
 const Navbar = () => {
-  const [visible, setVisible] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { isDarkMode } = useTheme();
 
   const showDrawer = () => {
-    setVisible(true);
+    setDrawerVisible(true);
   };
 
-  const onClose = () => {
-    setVisible(false);
+  const closeDrawer = () => {
+    setDrawerVisible(false);
   };
 
-  const handleMenuClick = (e) => {
-    navigate(e.key);
-    if (visible) {
-      onClose();
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (drawerVisible) {
+      closeDrawer();
     }
   };
 
@@ -133,64 +203,97 @@ const Navbar = () => {
       key: "/",
       icon: <HomeOutlined />,
       label: "Home",
+      onClick: () => handleNavigation("/"),
     },
     {
       key: "/about",
       icon: <InfoCircleOutlined />,
       label: "About",
+      onClick: () => handleNavigation("/about"),
     },
     {
       key: "/collection",
-      icon: <AppstoreOutlined />,
+      icon: <ShoppingOutlined />,
       label: "Collection",
+      onClick: () => handleNavigation("/collection"),
     },
     {
       key: "/contact",
       icon: <MailOutlined />,
       label: "Contact",
+      onClick: () => handleNavigation("/contact"),
     },
   ];
 
   return (
-    <StyledHeader>
-      <LogoContainer
-        onClick={() => navigate("/")}
-        style={{ cursor: "pointer" }}
-      >
-        <Logo level={3}>
-          Ramavatar<span className="primary-text">gems</span>
-        </Logo>
-      </LogoContainer>
+    <NavbarWrapper>
+      <HeaderSpacer />
+      <StyledHeader isDarkMode={isDarkMode}>
+        <HeaderContainer>
+          {/* Logo */}
+          <LogoContainer onClick={() => handleNavigation("/")}>
+            <LogoIcon />
+            <LogoText level={4} isDarkMode={isDarkMode}>
+              Ramavatar<span className="highlight">gems</span>
+            </LogoText>
+          </LogoContainer>
 
-      <DesktopMenu
-        mode="horizontal"
-        selectedKeys={[location.pathname]}
-        onClick={handleMenuClick}
-        items={menuItems}
-      />
+          {/* Desktop Navigation */}
+          <NavMenu
+            mode="horizontal"
+            selectedKeys={[location.pathname]}
+            items={menuItems}
+            theme={isDarkMode ? "dark" : "light"}
+          />
 
-      <MobileMenuButton
-        type="text"
-        icon={<MenuOutlined />}
-        onClick={showDrawer}
-        size="large"
-      />
+          {/* Contact Info & Actions */}
+          <NavActions>
+            <ContactInfo>
+              <ContactItem isDarkMode={isDarkMode}>
+                <PhoneOutlined />
+                <span>+91 98765 43210</span>
+              </ContactItem>
+            </ContactInfo>
+            
+            <ThemeToggle />
+            
+            <MobileMenuButton
+              type="text"
+              icon={<MenuOutlined />}
+              onClick={showDrawer}
+            />
+          </NavActions>
+        </HeaderContainer>
+      </StyledHeader>
 
+      {/* Mobile Drawer */}
       <StyledDrawer
-        title="Ramavatargems"
+        title="Menu"
         placement="right"
-        onClose={onClose}
-        open={visible}
+        onClose={closeDrawer}
+        open={drawerVisible}
+        width={280}
+        isDarkMode={isDarkMode}
       >
-        <Menu
+        <DrawerMenu
           mode="vertical"
           selectedKeys={[location.pathname]}
-          onClick={handleMenuClick}
           items={menuItems}
-          style={{ borderRight: 0 }}
+          theme={isDarkMode ? "dark" : "light"}
         />
+        
+        <DrawerFooter isDarkMode={isDarkMode}>
+          <DrawerContactItem isDarkMode={isDarkMode}>
+            <PhoneOutlined />
+            <span>+91 98765 43210</span>
+          </DrawerContactItem>
+          <DrawerContactItem isDarkMode={isDarkMode}>
+            <MailOutlined />
+            <span>info@ramavatargems.com</span>
+          </DrawerContactItem>
+        </DrawerFooter>
       </StyledDrawer>
-    </StyledHeader>
+    </NavbarWrapper>
   );
 };
 
