@@ -42,22 +42,17 @@ const StyledHeader = styled(Header)`
   background-color: ${(props) => (props.isDarkMode ? "#121212" : "white")};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
-  height: 80px;
-  line-height: 80px;
-
+  height: 70px;
+  line-height: 70px;
+  
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(
-      to right,
-      #c9a063 0%,
-      #d4a76a 50%,
-      #c9a063 100%
-    );
+    background: linear-gradient(to right, #C9A063 0%, #D4A76A 50%, #C9A063 100%);
   }
 `;
 
@@ -68,7 +63,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 70px;
 `;
 
 const LogoContainer = styled.div`
@@ -79,7 +74,7 @@ const LogoContainer = styled.div`
   transition: transform 0.3s ease;
   padding: 0;
   margin: 0;
-  height: 80px;
+  height: 70px;
 
   &:hover {
     transform: translateY(-2px);
@@ -87,21 +82,21 @@ const LogoContainer = styled.div`
 `;
 
 const StyledLogo = styled(RamavatargemsLogo)`
-  height: 65px;
+  height: 58px;
   width: auto;
   margin: 0;
   display: block;
 
   @media (max-width: 768px) {
     width: auto;
-    height: 55px;
+    height: 48px;
   }
 `;
 
 const NavMenu = styled(Menu)`
   border: none;
   background: transparent;
-  line-height: 80px;
+  line-height: 70px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -109,16 +104,16 @@ const NavMenu = styled(Menu)`
   .ant-menu-item {
     padding: 0 24px;
     font-size: 15px;
-
+    
     &:hover {
-      color: #c9a063;
+      color: #C9A063;
     }
-
+    
     &.ant-menu-item-selected {
-      color: #c9a063;
+      color: #C9A063;
       font-weight: 600;
     }
-
+    
     .anticon {
       margin-right: 8px;
       font-size: 16px;
@@ -162,7 +157,7 @@ const ContactItem = styled.div`
     props.isDarkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.65)"};
 
   .anticon {
-    color: #c9a063;
+    color: #C9A063;
   }
 `;
 
@@ -195,11 +190,11 @@ const DrawerMenu = styled(Menu)`
     .anticon {
       font-size: 18px;
       margin-right: 10px;
-      color: #c9a063;
+      color: #C9A063;
     }
-
+    
     &.ant-menu-item-selected {
-      color: #c9a063;
+      color: #C9A063;
     }
   }
 `;
@@ -218,13 +213,13 @@ const DrawerContactItem = styled.div`
     props.isDarkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.65)"};
 
   .anticon {
-    color: #c9a063;
+    color: #C9A063;
   }
 `;
 
 // Spacer to compensate for fixed header
 const HeaderSpacer = styled.div`
-  height: 80px;
+  height: 70px;
 `;
 
 const Navbar = () => {
@@ -304,7 +299,7 @@ const Navbar = () => {
             <ContactInfo>
               <ContactItem isDarkMode={isDarkMode}>
                 <PhoneOutlined />
-                <span>(255) 352-6258</span>
+                <span>+91 98765 43210</span>
               </ContactItem>
             </ContactInfo>
 
@@ -330,7 +325,7 @@ const Navbar = () => {
               padding: "5px 0",
             }}
           >
-            <RamavatargemsLogo width={200} height={70} />
+            <RamavatargemsLogo width={180} height={60} />
           </div>
         }
         placement="right"
@@ -349,11 +344,11 @@ const Navbar = () => {
         <DrawerFooter isDarkMode={isDarkMode}>
           <DrawerContactItem isDarkMode={isDarkMode}>
             <PhoneOutlined />
-            <span>(255) 352-6258</span>
+            <span>+91 98765 43210</span>
           </DrawerContactItem>
           <DrawerContactItem isDarkMode={isDarkMode}>
             <MailOutlined />
-            <span>hello@divi.com</span>
+            <span>info@ramavatargems.com</span>
           </DrawerContactItem>
         </DrawerFooter>
       </StyledDrawer>

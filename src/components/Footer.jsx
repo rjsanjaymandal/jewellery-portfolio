@@ -28,8 +28,11 @@ import {
   TwitterOutlined,
   SendOutlined,
   ClockCircleOutlined,
+  ToolOutlined,
+  ExperimentOutlined,
 } from "@ant-design/icons";
 import styled from "styled-components";
+import RamavatargemsLogo from "./logo/RamavatargemsLogo";
 
 const { Footer: AntFooter } = Layout;
 const { Title, Text, Link: AntLink, Paragraph } = Typography;
@@ -84,6 +87,12 @@ const LogoSection = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: var(--spacing-md);
+
+  svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    width: 160px;
+    height: auto;
+  }
 `;
 
 const LogoIcon = styled(GoldOutlined)`
@@ -225,7 +234,17 @@ const Footer = () => {
   const quickLinks = [
     { icon: <HomeOutlined />, title: "Home", path: "/" },
     { icon: <InfoCircleOutlined />, title: "About Us", path: "/about" },
-    { icon: <ShoppingOutlined />, title: "Collection", path: "/collection" },
+    {
+      icon: <ShoppingOutlined />,
+      title: "Manufacturing",
+      path: "/manufacturing",
+    },
+    { icon: <ToolOutlined />, title: "Workshop", path: "/workshop" },
+    {
+      icon: <ExperimentOutlined />,
+      title: "Craftsmanship",
+      path: "/craftsmanship",
+    },
     { icon: <ContactsOutlined />, title: "Contact Us", path: "/contact" },
   ];
 
@@ -239,12 +258,12 @@ const Footer = () => {
     {
       icon: <PhoneOutlined />,
       title: "Phone Number",
-      description: "+91 98765 43210",
+      description: "(255) 352-6258",
     },
     {
       icon: <MailOutlined />,
       title: "Email Address",
-      description: "info@ramavatargems.com",
+      description: "hello@divi.com",
     },
     {
       icon: <ClockCircleOutlined />,
@@ -267,16 +286,14 @@ const Footer = () => {
             {/* About Section */}
             <Col xs={24} sm={24} md={8} lg={8}>
               <LogoSection>
-                <LogoIcon />
-                <LogoText level={4}>
-                  Ramavatar<span className="primary-text">gems</span>
-                </LogoText>
+                <RamavatargemsLogo width={160} />
               </LogoSection>
 
               <FooterText>
-                Crafting elegance since 1982. Our Jaipur-based legacy continues
-                with premium craftsmanship and timeless designs that celebrate
-                India's rich jewelry heritage.
+                Diamond Manufacturing Excellence since 1982. Our Jaipur-based
+                legacy continues with master craftsmanship and precision
+                techniques that transform rough diamonds into brilliant
+                masterpieces.
               </FooterText>
 
               <SocialIcons>

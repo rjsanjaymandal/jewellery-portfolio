@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SectionTitle from "../components/SectionTitle.jsx";
 import Button from "../components/Button.jsx";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
 
 const AboutContainer = styled.div`
   max-width: 1200px;
@@ -21,6 +22,18 @@ const HeroContent = styled.div`
   padding: 0 var(--spacing-sm);
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  svg {
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+    width: 180px;
+    height: auto;
+  }
+`;
+
 const StorySection = styled.section`
   padding: var(--spacing-xl) 0;
 `;
@@ -38,7 +51,7 @@ const StoryGrid = styled.div`
 
 const StoryImage = styled.div`
   height: 500px;
-  background-image: url("https://images.unsplash.com/photo-1600054800747-be294a6a0d26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80");
+  background-image: url("https://images.unsplash.com/photo-1581974206967-93856b25aa13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80");
   background-size: cover;
   background-position: center;
   border-radius: var(--border-radius);
@@ -188,9 +201,12 @@ const About = () => {
     <>
       <HeroSection>
         <HeroContent>
+          <LogoContainer>
+            <RamavatargemsLogo width={180} />
+          </LogoContainer>
           <SectionTitle
             title="Our Story"
-            subtitle="A legacy of craftsmanship, heritage, and passion for jewelry making since 1982"
+            subtitle="A legacy of diamond manufacturing excellence and precision craftsmanship since 1982"
           />
         </HeroContent>
       </HeroSection>
@@ -200,25 +216,28 @@ const About = () => {
           <StoryGrid>
             <StoryImage />
             <StoryContent>
-              <h3>A Heritage of Excellence</h3>
+              <h3>A Heritage of Diamond Manufacturing Excellence</h3>
               <p>
-                Established in 1982 in the heart of Jaipur, Elegant Jewels began
-                as a small family workshop dedicated to preserving traditional
-                jewelry craftsmanship while embracing innovation.
+                Established in 1982 in the heart of Jaipur, Ramavatargems began
+                as a specialized diamond manufacturing workshop dedicated to the
+                art of transforming rough diamonds into brilliant masterpieces.
               </p>
               <p>
-                For over four decades, we have been creating exquisite pieces
-                that blend timeless designs with contemporary elegance. Our
-                artisans, many of whom have been with us for generations, bring
-                decades of expertise to each creation.
+                For over four decades, we have been perfecting the craft of
+                diamond cutting, polishing, and finishing. Our master craftsmen,
+                many of whom have been with us for generations, bring decades of
+                expertise to each diamond they work on.
               </p>
               <p>
-                Today, we continue to honor our heritage while expanding our
-                collections to meet the evolving tastes of our discerning
-                clientele. Every piece we create carries the legacy of Jaipur's
-                rich jewelry tradition.
+                Today, we continue to honor our heritage while embracing
+                cutting-edge technology that enhances our traditional
+                techniques. Every diamond that passes through our workshop
+                carries the legacy of Jaipur's rich diamond manufacturing
+                tradition.
               </p>
-              <Button to="/collection">Explore Our Collections</Button>
+              <Button to="/manufacturing">
+                Explore Our Manufacturing Process
+              </Button>
             </StoryContent>
           </StoryGrid>
         </StorySection>
@@ -226,7 +245,7 @@ const About = () => {
         <TimelineSection>
           <SectionTitle
             title="Our Journey"
-            subtitle="Key milestones in our four-decade legacy of jewelry craftsmanship"
+            subtitle="Key milestones in our four-decade legacy of diamond manufacturing excellence"
           />
           <Timeline>
             <TimelineItem>
@@ -234,8 +253,9 @@ const About = () => {
                 <TimelineYear>1982</TimelineYear>
                 <TimelineTitle>Our Founding</TimelineTitle>
                 <p>
-                  Established in Jaipur by master craftsman Rajendra Sharma with
-                  a vision to preserve traditional jewelry making techniques.
+                  Established in Jaipur by master diamond craftsman Rajendra
+                  Sharma with a vision to perfect the art of diamond
+                  manufacturing.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -245,11 +265,11 @@ const About = () => {
               <div style={{ width: "45%" }}></div>
               <TimelineContent position="right">
                 <TimelineYear>1995</TimelineYear>
-                <TimelineTitle>Expansion</TimelineTitle>
+                <TimelineTitle>Technological Advancement</TimelineTitle>
                 <p>
-                  Opened our flagship showroom in Johari Bazaar, Jaipur's
-                  renowned jewelry market, expanding our collection to include
-                  gemstone specialties.
+                  Integrated laser cutting technology into our workshop,
+                  enhancing precision while maintaining our commitment to
+                  traditional craftsmanship.
                 </p>
               </TimelineContent>
             </TimelineItem>
@@ -257,10 +277,11 @@ const About = () => {
             <TimelineItem>
               <TimelineContent position="left">
                 <TimelineYear>2005</TimelineYear>
-                <TimelineTitle>International Recognition</TimelineTitle>
+                <TimelineTitle>3D Scanning Innovation</TimelineTitle>
                 <p>
-                  Received national award for excellence in jewelry design and
-                  craftsmanship, establishing our reputation for quality.
+                  Implemented advanced 3D scanning technology to analyze rough
+                  diamonds, optimizing cutting plans and significantly reducing
+                  waste.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -270,10 +291,11 @@ const About = () => {
               <div style={{ width: "45%" }}></div>
               <TimelineContent position="right">
                 <TimelineYear>2018</TimelineYear>
-                <TimelineTitle>Modern Evolution</TimelineTitle>
+                <TimelineTitle>Automated Polishing</TimelineTitle>
                 <p>
-                  Launched our contemporary collection, blending traditional
-                  techniques with modern designs to appeal to a new generation.
+                  Introduced automated polishing systems for consistent quality,
+                  while preserving hand-finishing for critical facets that
+                  require the human touch.
                 </p>
               </TimelineContent>
             </TimelineItem>
@@ -283,8 +305,9 @@ const About = () => {
                 <TimelineYear>Today</TimelineYear>
                 <TimelineTitle>Continuing Legacy</TimelineTitle>
                 <p>
-                  Continuing our commitment to exceptional craftsmanship while
-                  embracing sustainable and ethical practices in jewelry making.
+                  Continuing our commitment to diamond manufacturing excellence
+                  while embracing sustainable practices and ethical sourcing
+                  through the Kimberley Process.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -295,34 +318,36 @@ const About = () => {
         <ValuesSection>
           <SectionTitle
             title="Our Values"
-            subtitle="The principles that guide our craftsmanship and business"
+            subtitle="The principles that guide our diamond manufacturing excellence"
           />
           <ValuesGrid>
             <ValueCard>
               <ValueIcon>💎</ValueIcon>
-              <ValueTitle>Craftsmanship</ValueTitle>
+              <ValueTitle>Precision</ValueTitle>
               <p>
-                We uphold the highest standards of artistry in every piece we
-                create, honoring traditional techniques passed down through
-                generations.
+                We work with tolerances of less than a hundredth of a
+                millimeter, ensuring perfect symmetry and maximum brilliance in
+                every diamond we manufacture.
               </p>
             </ValueCard>
 
             <ValueCard>
               <ValueIcon>✨</ValueIcon>
-              <ValueTitle>Quality</ValueTitle>
+              <ValueTitle>Tradition & Innovation</ValueTitle>
               <p>
-                We use only the finest materials, ensuring each creation meets
-                our exacting standards for beauty and durability.
+                We honor traditional diamond cutting techniques passed down
+                through generations while embracing cutting-edge technology that
+                enhances our craftsmanship.
               </p>
             </ValueCard>
 
             <ValueCard>
               <ValueIcon>🤝</ValueIcon>
-              <ValueTitle>Integrity</ValueTitle>
+              <ValueTitle>Ethical Sourcing</ValueTitle>
               <p>
-                We conduct our business with transparency and honesty, building
-                lasting relationships with our clients based on trust.
+                We only work with conflict-free diamonds sourced through the
+                Kimberley Process, ensuring our manufacturing practices uphold
+                the highest ethical standards.
               </p>
             </ValueCard>
           </ValuesGrid>

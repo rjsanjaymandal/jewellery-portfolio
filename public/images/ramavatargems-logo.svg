@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Diamond shape on left -->
+    <g>
+      <!-- Diamond outline -->
+      <path d="M130,150 L220,220 L130,420 L40,220 Z" fill="none" stroke="#C9A063" stroke-width="6"/>
+
+      <!-- Internal lines -->
+      <path d="M40,220 L220,220" fill="none" stroke="#C9A063" stroke-width="6"/>
+      <path d="M130,150 L130,420" fill="none" stroke="#C9A063" stroke-width="6"/>
+
+      <!-- Internal curved line -->
+      <path d="M40,220 C80,280 100,320 130,420" fill="none" stroke="#C9A063" stroke-width="6" stroke-linecap="round"/>
+
+      <!-- Vertical divider line -->
+      <line x1="260" y1="150" x2="260" y2="450" stroke="#C9A063" stroke-width="8"/>
+    </g>
+
+    <!-- Text - RAM AVATAR GEMS -->
+    <g fill="#C9A063">
+      <text x="300" y="220" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="start">RAM</text>
+      <text x="300" y="320" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="start">AVATAR</text>
+      <text x="300" y="420" font-family="Arial, sans-serif" font-size="80" font-weight="bold" text-anchor="start">GEMS</text>
+    </g>
+  </g>
+</svg>

@@ -160,109 +160,105 @@ const CategoryTitle = styled.h2`
 const products = [
   {
     id: 1,
-    title: "Royal Kundan Necklace",
-    category: "traditional",
-    description: "Exquisite kundan work with pearl detailing",
-    image:
-      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Round Brilliant Cut",
+    category: "cuts",
+    description:
+      "The most popular diamond cut with 58 facets for maximum brilliance",
+    image: "/images/diamonds/round_brilliant.jpg",
   },
   {
     id: 2,
-    title: "Emerald Pendant",
-    category: "gemstones",
-    description: "Vibrant emerald set in 18k gold",
-    image:
-      "https://images.unsplash.com/photo-1608042314453-ae338d80c427?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Princess Cut",
+    category: "cuts",
+    description: "Square shape with pointed corners and exceptional brilliance",
+    image: "/images/diamonds/princess_cut.jpg",
   },
   {
     id: 3,
-    title: "Diamond Eternity Band",
-    category: "diamonds",
-    description: "Brilliant cut diamonds in platinum setting",
-    image:
-      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Emerald Cut",
+    category: "cuts",
+    description:
+      "Rectangular shape with stepped facets and elegant hall-of-mirrors effect",
+    image: "/images/diamonds/emerald_cut.jpg",
   },
   {
     id: 4,
-    title: "Sapphire Statement Ring",
-    category: "gemstones",
-    description: "Blue sapphire surrounded by diamonds",
-    image:
-      "https://images.unsplash.com/photo-1589674781759-c21c37956a44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Cushion Cut",
+    category: "cuts",
+    description:
+      "Square or rectangular shape with rounded corners and larger facets",
+    image: "/images/diamonds/cushion_cut.jpg",
   },
   {
     id: 5,
-    title: "Polki Bridal Set",
-    category: "traditional",
-    description: "Complete bridal set with uncut diamonds",
-    image:
-      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Asscher Cut",
+    category: "cuts",
+    description: "Octagonal shape with stepped facets and high crown for depth",
+    image: "/images/diamonds/asscher_cut.jpg",
   },
   {
     id: 6,
-    title: "Diamond Tennis Bracelet",
-    category: "diamonds",
-    description: "Classic design with 3 carats of diamonds",
-    image:
-      "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "VS1 Clarity",
+    category: "clarity",
+    description:
+      "Very Slightly Included - minor inclusions difficult to see under 10x magnification",
+    image: "/images/diamonds/round_brilliant.jpg",
   },
   {
     id: 7,
-    title: "Ruby Chandelier Earrings",
-    category: "gemstones",
-    description: "Elegant design with Burmese rubies",
-    image:
-      "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "VVS2 Clarity",
+    category: "clarity",
+    description:
+      "Very Very Slightly Included - extremely difficult to see inclusions even under magnification",
+    image: "/images/diamonds/princess_cut.jpg",
   },
   {
     id: 8,
-    title: "Gold Kada Bangle",
-    category: "traditional",
-    description: "Handcrafted solid gold bangle with intricate detailing",
-    image:
-      "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "IF Clarity",
+    category: "clarity",
+    description:
+      "Internally Flawless - no inclusions visible under 10x magnification",
+    image: "/images/diamonds/emerald_cut.jpg",
   },
   {
     id: 9,
-    title: "Diamond Solitaire Necklace",
-    category: "diamonds",
-    description: "Minimalist design with 1 carat diamond",
-    image:
-      "https://images.unsplash.com/photo-1599459182681-c938b7f65344?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "D Color Grade",
+    category: "color",
+    description: "Absolutely colorless - the highest color grade for diamonds",
+    image: "/images/diamonds/oval_cut.jpg",
   },
   {
     id: 10,
-    title: "Emerald Cut Diamond Ring",
-    category: "rolls",
-    description: "Luxury statement piece with emerald cut diamond",
-    image:
-      "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "F Color Grade",
+    category: "color",
+    description:
+      "Colorless with minimal traces of color, detectable only by expert gemologists",
+    image: "/images/diamonds/marquise_cut.jpg",
   },
   {
     id: 11,
-    title: "Pearl and Diamond Necklace",
-    category: "rolls",
-    description: "South sea pearls with diamond accents",
-    image:
-      "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Fancy Yellow Diamonds",
+    category: "specialty",
+    description: "Natural yellow diamonds with intense color saturation",
+    image: "/images/diamonds/pear_cut.jpg",
   },
   {
     id: 12,
-    title: "Platinum Men's Band",
-    category: "rolls",
-    description: "Contemporary design with channel set diamonds",
-    image:
-      "https://images.unsplash.com/photo-1596944924616-7b38e7cfbfc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    title: "Rough Diamonds",
+    category: "specialty",
+    description:
+      "Uncut, natural diamonds ready for our expert cutting and polishing process",
+    image: "/images/diamonds/rough_diamonds.jpg",
   },
 ];
 
 // Categories
 const categories = [
   { id: "all", name: "All Collections" },
-  { id: "traditional", name: "Traditional Jewelry" },
-  { id: "gemstones", name: "Gemstones" },
-  { id: "diamonds", name: "Diamonds" },
-  { id: "rolls", name: "Rolls (Luxury)" },
+  { id: "cuts", name: "Diamond Cuts" },
+  { id: "clarity", name: "Clarity Grades" },
+  { id: "color", name: "Color Grades" },
+  { id: "specialty", name: "Specialty Diamonds" },
 ];
 
 const Collection = () => {
@@ -286,13 +282,48 @@ const Collection = () => {
       <HeroSection>
         <HeroContent>
           <SectionTitle
-            title="Our Collection"
-            subtitle="Discover our exquisite range of handcrafted jewelry pieces"
+            title="Diamond Collection"
+            subtitle="Explore our precision-cut diamonds manufactured with advanced technology and expert craftsmanship"
           />
         </HeroContent>
       </HeroSection>
 
       <CollectionContainer>
+        <section style={{ marginBottom: "40px" }}>
+          <SectionTitle
+            title="Diamond Manufacturing Excellence"
+            subtitle="From rough stones to brilliant masterpieces"
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              marginBottom: "40px",
+            }}
+          >
+            <p>
+              At Ramavatargems, we specialize in the complete diamond
+              manufacturing process. Our expert craftsmen transform rough
+              diamonds into exquisite finished stones using a combination of
+              traditional techniques and cutting-edge technology.
+            </p>
+            <p>
+              Each diamond in our collection undergoes a rigorous manufacturing
+              process that includes planning, cutting, polishing, and quality
+              control. We maintain the highest standards at every stage,
+              ensuring that our diamonds achieve optimal brilliance, fire, and
+              scintillation.
+            </p>
+            <p>
+              Browse our collection below to explore the various diamond cuts,
+              clarity grades, color grades, and specialty diamonds we
+              manufacture. Each category showcases our commitment to excellence
+              and precision in diamond manufacturing.
+            </p>
+          </div>
+        </section>
+
         <section>
           <FilterContainer>
             {categories.map((category) => (
@@ -319,7 +350,7 @@ const Collection = () => {
                   <ProductTitle>{product.title}</ProductTitle>
                   <ProductDescription>{product.description}</ProductDescription>
                   <Button variant="outline" size="small">
-                    View Details
+                    View Specifications
                   </Button>
                 </ProductContent>
               </ProductCard>
@@ -338,7 +369,7 @@ const Collection = () => {
                     size="small"
                     onClick={() => setActiveCategory(category.id)}
                   >
-                    View All {category.name}
+                    View All {category.name} Diamonds
                   </Button>
                 </CategoryHeader>
 
@@ -356,7 +387,7 @@ const Collection = () => {
                             {product.description}
                           </ProductDescription>
                           <Button variant="outline" size="small">
-                            View Details
+                            View Specifications
                           </Button>
                         </ProductContent>
                       </ProductCard>

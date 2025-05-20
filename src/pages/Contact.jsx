@@ -212,7 +212,7 @@ const Contact = () => {
         <HeroContent>
           <SectionTitle
             title="Contact Us"
-            subtitle="We'd love to hear from you. Reach out to us with any questions or inquiries."
+            subtitle="Interested in our diamond manufacturing services? Reach out to schedule a workshop tour or discuss your requirements."
           />
         </HeroContent>
       </HeroSection>
@@ -247,8 +247,7 @@ const Contact = () => {
                     </IconWrapper>
                     <div>
                       <InfoTitle>Phone Number</InfoTitle>
-                      <InfoText>+91 98765 43210</InfoText>
-                      <InfoText>+91 91234 56789</InfoText>
+                      <InfoText>(255) 352-6258</InfoText>
                     </div>
                   </InfoItem>
 
@@ -258,8 +257,7 @@ const Contact = () => {
                     </IconWrapper>
                     <div>
                       <InfoTitle>Email Address</InfoTitle>
-                      <InfoText>info@ramavatargems.com</InfoText>
-                      <InfoText>sales@ramavatargems.com</InfoText>
+                      <InfoText>hello@divi.com</InfoText>
                     </div>
                   </InfoItem>
 
@@ -362,15 +360,17 @@ const Contact = () => {
       <MapSection>
         <ContactContainer>
           <SectionTitle
-            title="Visit Our Showroom"
-            subtitle="Experience our exquisite collection in person at our Jaipur showroom"
+            title="Visit Our Workshop"
+            subtitle="Tour our diamond manufacturing facility and witness our master craftsmen at work"
           />
           <MapCard bordered={false}>
             <img
               src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
               alt="Jaipur Map"
             />
-            <MapOverlay>Map location: Johari Bazaar, Jaipur</MapOverlay>
+            <MapOverlay>
+              Map location: Ramavatargems Diamond Manufacturing Facility, Jaipur
+            </MapOverlay>
           </MapCard>
         </ContactContainer>
       </MapSection>

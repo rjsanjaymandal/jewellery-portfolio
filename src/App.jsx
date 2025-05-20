@@ -6,7 +6,9 @@ import styled from "styled-components";
 // Pages
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
-import Collection from "./pages/Collection.jsx";
+import Manufacturing from "./pages/Manufacturing.jsx";
+import Workshop from "./pages/Workshop.jsx";
+import Craftsmanship from "./pages/Craftsmanship.jsx";
 import Contact from "./pages/Contact.jsx";
 
 // Components
@@ -108,7 +110,9 @@ const ThemedApp = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/collection" element={<Collection />} />
+            <Route path="/manufacturing" element={<Manufacturing />} />
+            <Route path="/workshop" element={<Workshop />} />
+            <Route path="/craftsmanship" element={<Craftsmanship />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </StyledContent>

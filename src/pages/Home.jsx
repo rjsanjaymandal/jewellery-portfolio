@@ -13,7 +13,7 @@ import {
   Tag,
   Tabs,
   Avatar,
-  Rate
+  Rate,
 } from "antd";
 import {
   RightOutlined,
@@ -25,16 +25,16 @@ import {
   ShoppingOutlined,
   StarOutlined,
   HeartOutlined,
-  GoldOutlined,
   TrophyOutlined,
   TeamOutlined,
   GlobalOutlined,
   EnvironmentOutlined,
-  ArrowDownOutlined
+  ArrowDownOutlined,
 } from "@ant-design/icons";
 import styled, { keyframes } from "styled-components";
 import Button from "../components/Button.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
 
 const { Title, Text, Paragraph } = Typography;
 const { TabPane } = Tabs;
@@ -127,8 +127,8 @@ const HeroOverlay = styled.div`
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.7) 0%,
-    rgba(156, 102, 68, 0.6) 50%,
-    rgba(0, 21, 41, 0.7) 100%
+    rgba(72, 85, 99, 0.6) 50%,
+    rgba(41, 64, 82, 0.7) 100%
   );
   z-index: 2;
 `;
@@ -167,10 +167,24 @@ const HeroContent = styled.div`
 `;
 
 const HeroLogo = styled.div`
-  font-size: 4rem;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   animation: ${float} 6s ease-in-out infinite;
+  display: flex;
+  justify-content: center;
+
+  svg {
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+    width: 280px;
+    height: auto;
+
+    @media (max-width: 768px) {
+      width: 220px;
+    }
+
+    @media (max-width: 480px) {
+      width: 180px;
+    }
+  }
 `;
 
 const HeroTitle = styled(Title)`
@@ -178,12 +192,7 @@ const HeroTitle = styled(Title)`
   font-size: 4.5rem !important;
   font-weight: 700 !important;
   margin-bottom: 1rem !important;
-  background: linear-gradient(
-    to right,
-    #ffffff 0%,
-    #d4b996 50%,
-    #ffffff 100%
-  );
+  background: linear-gradient(to right, #ffffff 0%, #d4b996 50%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -258,23 +267,18 @@ const ScrollIndicator = styled.div`
 // Featured Collections Section
 const FeaturedSection = styled.section`
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(
-    135deg,
-    #f9f7f3 0%,
-    #f5f0e5 50%,
-    #f9f7f3 100%
-  );
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 50%, #f5f7fa 100%);
   position: relative;
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM5YzY2NDQiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAtMzR2Nmg2di02aC02em0tMTIgMTJ2Nmg2di02aC02em0xMiAwdjZoNnYtNmgtNnptLTI0IDEydjZoNnYtNmgtNnptMjQgMHY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=');
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM0MTY4OGIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMCAtMzR2Nmg2di02aC02em0tMTIgMTJ2Nmg2di02aC02em0xMiAwdjZoNnYtNmgtNnptLTI0IDEydjZoNnYtNmgtNnptMjQgMHY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=");
     opacity: 0.5;
     z-index: 0;
   }
@@ -310,10 +314,11 @@ const CollectionCard = styled.div`
   cursor: pointer;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.5s ease;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -451,7 +456,8 @@ const CardContent = styled.div`
     letter-spacing: 1px;
     opacity: 0;
     transform: translateY(10px);
-    transition: transform 0.3s ease 0.3s, opacity 0.3s ease 0.3s, background 0.3s ease;
+    transition: transform 0.3s ease 0.3s, opacity 0.3s ease 0.3s,
+      background 0.3s ease;
 
     &:hover {
       background: linear-gradient(
@@ -501,12 +507,7 @@ const CategoryTabs = styled(Tabs)`
 // About Section
 const AboutSection = styled.section`
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(
-    to right,
-    #ffffff 0%,
-    #f5f0e5 50%,
-    #ffffff 100%
-  );
+  background: linear-gradient(to right, #ffffff 0%, #f5f0e5 50%, #ffffff 100%);
   position: relative;
   overflow: hidden;
 `;
@@ -532,7 +533,7 @@ const AboutImageContainer = styled.div`
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -20px;
     left: -20px;
@@ -543,7 +544,7 @@ const AboutImageContainer = styled.div`
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -20px;
     right: -20px;
@@ -575,7 +576,7 @@ const AboutContent = styled.div`
     display: inline-block;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -10px;
       left: 0;
@@ -630,20 +631,20 @@ const TestimonialSection = styled.section`
   padding: var(--spacing-xl) 0;
   background: linear-gradient(
     135deg,
-    rgba(0, 21, 41, 0.95) 0%,
-    rgba(0, 21, 41, 0.85) 100%
+    rgba(41, 64, 82, 0.95) 0%,
+    rgba(28, 42, 56, 0.85) 100%
   );
   position: relative;
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-image: url("/images/manufacturing/diamond_microscope.jpg");
     background-size: cover;
     background-position: center;
     opacity: 0.15;
@@ -664,7 +665,7 @@ const TestimonialTitle = styled(Title)`
   display: inline-block;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -15px;
     left: 50%;
@@ -697,7 +698,8 @@ const TestimonialCarousel = styled(Carousel)`
     }
   }
 
-  .slick-prev, .slick-next {
+  .slick-prev,
+  .slick-next {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.2);
@@ -813,16 +815,12 @@ const TestimonialRating = styled(Rate)`
 // CTA Section
 const CTASection = styled.section`
   padding: var(--spacing-xl) 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-dark) 0%,
-    var(--color-primary) 100%
-  );
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
   position: relative;
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -878,7 +876,7 @@ const Home = () => {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -894,78 +892,87 @@ const Home = () => {
     }
   };
 
-  // Collection data
-  const collections = [
+  // Manufacturing processes data
+  const manufacturingProcesses = [
     {
       id: 1,
-      title: "Traditional Jewelry",
-      description: "Timeless designs inspired by royal heritage",
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "large"
+      title: "Diamond Planning",
+      description:
+        "3D scanning and analysis of rough diamonds to maximize value and minimize waste",
+      image: "/images/manufacturing/diamond_microscope.jpg",
+      size: "large",
     },
     {
       id: 2,
-      title: "Diamond Collection",
-      description: "Brilliant diamonds crafted with precision",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "medium"
+      title: "Cutting & Cleaving",
+      description:
+        "Precision laser cutting and traditional cleaving techniques for perfect proportions",
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
+      size: "medium",
     },
     {
       id: 3,
-      title: "Gemstone Treasures",
-      description: "Vibrant gemstones set in exquisite designs",
-      image: "https://images.unsplash.com/photo-1589674781759-c21c37956a44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "medium"
+      title: "Polishing",
+      description:
+        "Creating the perfect facets for maximum brilliance and fire using advanced techniques",
+      image: "/images/manufacturing/diamond_polishing.jpg",
+      size: "medium",
     },
     {
       id: 4,
-      title: "Bridal Collection",
-      description: "Stunning pieces for your special day",
-      image: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "small"
+      title: "Quality Control",
+      description:
+        "Rigorous inspection and certification of every diamond using advanced equipment",
+      image: "/images/manufacturing/diamond_inspection.jpg",
+      size: "small",
     },
     {
       id: 5,
-      title: "Luxury Rolls",
-      description: "Exclusive pieces for special occasions",
-      image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "small"
+      title: "Advanced Technology",
+      description:
+        "State-of-the-art equipment and technology for precision diamond manufacturing",
+      image: "/images/manufacturing/diamond_cvd_process.jpg",
+      size: "small",
     },
     {
       id: 6,
-      title: "Modern Designs",
-      description: "Contemporary styles with timeless appeal",
-      image: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      size: "small"
-    }
+      title: "Workshop Tour",
+      description:
+        "Explore our state-of-the-art diamond manufacturing facilities in Jaipur",
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
+      size: "small",
+    },
   ];
 
   // Testimonials data
   const testimonials = [
     {
       id: 1,
-      quote: "The craftsmanship and attention to detail in every piece from Ramavatargems is truly exceptional. Their traditional designs with modern touches are exactly what I was looking for.",
-      author: "Priya Sharma",
+      quote:
+        "The diamond manufacturing process at Ramavatargems is truly exceptional. Their attention to detail and precision cutting techniques produce diamonds with extraordinary brilliance and fire.",
+      author: "Vikram Malhotra",
       location: "Delhi",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      rating: 5
+      avatar: "https://randomuser.me/api/portraits/men/44.jpg",
+      rating: 5,
     },
     {
       id: 2,
-      quote: "I've been a loyal customer of Ramavatargems for over a decade. Their jewelry pieces are timeless and the quality is unmatched. Every time I wear their pieces, I receive countless compliments.",
+      quote:
+        "I've been partnering with Ramavatargems for over a decade. Their diamond manufacturing expertise is unmatched in the industry. The quality control standards they maintain ensure every diamond is perfect.",
       author: "Rajat Mehta",
       location: "Mumbai",
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      rating: 5
+      rating: 5,
     },
     {
       id: 3,
-      quote: "The gemstone collection at Ramavatargems is absolutely stunning. Each piece tells a story of Jaipur's rich heritage and craftsmanship. I'm so happy with my purchase!",
-      author: "Ananya Kapoor",
+      quote:
+        "Touring the Ramavatargems manufacturing facility was an eye-opening experience. Seeing the transformation from rough diamond to polished masterpiece showcased their incredible craftsmanship and technology.",
+      author: "Arjun Kapoor",
       location: "Bangalore",
-      avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-      rating: 5
-    }
+      avatar: "https://randomuser.me/api/portraits/men/68.jpg",
+      rating: 5,
+    },
   ];
 
   return (
@@ -973,104 +980,158 @@ const Home = () => {
       {/* Hero Section with Video Background */}
       <HeroSection id="hero">
         <VideoBackground ref={videoRef} autoPlay muted loop playsInline>
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-gold-colored-chain-necklace-with-a-pendant-39877-large.mp4" type="video/mp4" />
+          <source
+            src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-diamond-ring-43573-large.mp4"
+            type="video/mp4"
+          />
         </VideoBackground>
         <HeroOverlay />
         <HeroContent>
           <HeroLogo>
-            <GoldOutlined />
+            <RamavatargemsLogo width={280} />
           </HeroLogo>
-          <HeroTitle level={1}>Ramavatargems</HeroTitle>
           <HeroSubtitle>
-            Crafting Elegance Since 1982 | Premium Jewelry from Jaipur
+            Diamond Manufacturing Excellence Since 1982 | Jaipur's Premier
+            Craftsmen
           </HeroSubtitle>
           <ButtonGroup>
             <Button
-              to="/collection"
+              to="/manufacturing"
               size="large"
-              style={{ fontSize: '1.1rem', height: 'auto', padding: '12px 30px' }}
+              style={{
+                fontSize: "1.1rem",
+                height: "auto",
+                padding: "12px 30px",
+              }}
             >
-              Explore Collection
+              Our Manufacturing Process
             </Button>
             <Button
               onClick={toggleVideo}
               variant="outline"
               size="large"
-              style={{ fontSize: '1.1rem', height: 'auto', padding: '12px 30px' }}
+              style={{
+                fontSize: "1.1rem",
+                height: "auto",
+                padding: "12px 30px",
+              }}
             >
-              {isVideoPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />} {isVideoPlaying ? 'Pause Video' : 'Play Video'}
+              {isVideoPlaying ? (
+                <PauseCircleOutlined />
+              ) : (
+                <PlayCircleOutlined />
+              )}{" "}
+              {isVideoPlaying ? "Pause Video" : "Play Video"}
             </Button>
           </ButtonGroup>
         </HeroContent>
-        <ScrollIndicator onClick={() => scrollToSection('collections')}>
+        <ScrollIndicator onClick={() => scrollToSection("collections")}>
           <ArrowDownOutlined />
           <span>Discover</span>
         </ScrollIndicator>
       </HeroSection>
 
-      {/* Featured Collections Section */}
+      {/* Manufacturing Processes Section */}
       <FeaturedSection id="collections">
         <FeaturedContainer>
           <SectionTitle
-            title="Our Signature Collections"
-            subtitle="Discover our most coveted pieces, each telling a story of heritage and craftsmanship"
+            title="Our Manufacturing Processes"
+            subtitle="Discover the artistry and precision behind our diamond manufacturing excellence"
           />
 
           <CategoryTabs defaultActiveKey="all" centered>
-            <TabPane tab="All Collections" key="all">
+            <TabPane tab="All Processes" key="all">
               <CollectionGrid>
-                {collections.map(collection => (
-                  <CollectionCard key={collection.id} className={collection.size}>
-                    <CollectionImage src={collection.image} alt={collection.title} />
+                {manufacturingProcesses.map((collection) => (
+                  <CollectionCard
+                    key={collection.id}
+                    className={collection.size}
+                  >
+                    <CollectionImage
+                      src={collection.image}
+                      alt={collection.title}
+                    />
                     <CardContent className="card-content">
                       <h3>{collection.title}</h3>
                       <p>{collection.description}</p>
-                      <a href="/collection" className="view-btn">View Collection</a>
+                      <a href="/manufacturing" className="view-btn">
+                        Learn More
+                      </a>
                     </CardContent>
                   </CollectionCard>
                 ))}
               </CollectionGrid>
             </TabPane>
-            <TabPane tab="Traditional" key="traditional">
+            <TabPane tab="Planning" key="planning">
               <CollectionGrid>
-                {collections.filter(c => c.title.includes('Traditional')).map(collection => (
-                  <CollectionCard key={collection.id} className={collection.size}>
-                    <CollectionImage src={collection.image} alt={collection.title} />
-                    <CardContent className="card-content">
-                      <h3>{collection.title}</h3>
-                      <p>{collection.description}</p>
-                      <a href="/collection" className="view-btn">View Collection</a>
-                    </CardContent>
-                  </CollectionCard>
-                ))}
+                {manufacturingProcesses
+                  .filter((c) => c.title.includes("Planning"))
+                  .map((collection) => (
+                    <CollectionCard
+                      key={collection.id}
+                      className={collection.size}
+                    >
+                      <CollectionImage
+                        src={collection.image}
+                        alt={collection.title}
+                      />
+                      <CardContent className="card-content">
+                        <h3>{collection.title}</h3>
+                        <p>{collection.description}</p>
+                        <a href="/manufacturing" className="view-btn">
+                          Learn More
+                        </a>
+                      </CardContent>
+                    </CollectionCard>
+                  ))}
               </CollectionGrid>
             </TabPane>
-            <TabPane tab="Diamonds" key="diamonds">
+            <TabPane tab="Cutting" key="cutting">
               <CollectionGrid>
-                {collections.filter(c => c.title.includes('Diamond')).map(collection => (
-                  <CollectionCard key={collection.id} className={collection.size}>
-                    <CollectionImage src={collection.image} alt={collection.title} />
-                    <CardContent className="card-content">
-                      <h3>{collection.title}</h3>
-                      <p>{collection.description}</p>
-                      <a href="/collection" className="view-btn">View Collection</a>
-                    </CardContent>
-                  </CollectionCard>
-                ))}
+                {manufacturingProcesses
+                  .filter((c) => c.title.includes("Cutting"))
+                  .map((collection) => (
+                    <CollectionCard
+                      key={collection.id}
+                      className={collection.size}
+                    >
+                      <CollectionImage
+                        src={collection.image}
+                        alt={collection.title}
+                      />
+                      <CardContent className="card-content">
+                        <h3>{collection.title}</h3>
+                        <p>{collection.description}</p>
+                        <a href="/manufacturing" className="view-btn">
+                          Learn More
+                        </a>
+                      </CardContent>
+                    </CollectionCard>
+                  ))}
               </CollectionGrid>
             </TabPane>
-            <TabPane tab="Gemstones" key="gemstones">
+            <TabPane tab="Polishing" key="polishing">
               <CollectionGrid>
-                {collections.filter(c => c.title.includes('Gemstone')).map(collection => (
-                  <CollectionCard key={collection.id} className={collection.size}>
-                    <CollectionImage src={collection.image} alt={collection.title} />
-                    <CardContent className="card-content">
-                      <h3>{collection.title}</h3>
-                      <p>{collection.description}</p>
-                      <a href="/collection" className="view-btn">View Collection</a>
-                    </CardContent>
-                  </CollectionCard>
-                ))}
+                {manufacturingProcesses
+                  .filter((c) => c.title.includes("Polishing"))
+                  .map((collection) => (
+                    <CollectionCard
+                      key={collection.id}
+                      className={collection.size}
+                    >
+                      <CollectionImage
+                        src={collection.image}
+                        alt={collection.title}
+                      />
+                      <CardContent className="card-content">
+                        <h3>{collection.title}</h3>
+                        <p>{collection.description}</p>
+                        <a href="/manufacturing" className="view-btn">
+                          Learn More
+                        </a>
+                      </CardContent>
+                    </CollectionCard>
+                  ))}
               </CollectionGrid>
             </TabPane>
           </CategoryTabs>
@@ -1081,45 +1142,58 @@ const Home = () => {
       <AboutSection id="about">
         <AboutContainer>
           <SectionTitle
-            title="Our Legacy"
-            subtitle="A tradition of excellence in jewelry craftsmanship since 1982"
+            title="Our Manufacturing Legacy"
+            subtitle="A tradition of excellence in diamond manufacturing since 1982"
           />
 
           <AboutGrid>
             <AboutImageContainer>
               <img
-                src="https://images.unsplash.com/photo-1600054800747-be294a6a0d26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Ramavatargems workshop"
+                src="/images/manufacturing/diamond_cutting_1.jpg"
+                alt="Ramavatargems diamond manufacturing workshop"
               />
             </AboutImageContainer>
 
             <AboutContent>
-              <h2>Crafting Elegance Since 1982</h2>
+              <h2>Diamond Manufacturing Excellence Since 1982</h2>
               <p>
-                Established in 1982 in the heart of Jaipur, Ramavatargems has been a beacon of exquisite craftsmanship and timeless elegance in the world of fine jewelry.
+                Established in 1982 in the heart of Jaipur, Ramavatargems has
+                been a pioneer in diamond manufacturing, combining traditional
+                craftsmanship with cutting-edge technology.
               </p>
               <p>
-                Our artisans blend traditional techniques with contemporary designs to create pieces that celebrate India's rich heritage while embracing modern aesthetics. Each creation is a testament to our commitment to quality and artistry.
+                Our master craftsmen transform rough diamonds into brilliant
+                masterpieces through a meticulous process that honors both
+                tradition and innovation. Each diamond passes through the
+                skilled hands of our artisans who bring decades of experience to
+                their craft.
               </p>
               <p>
-                From the vibrant gemstones of Rajasthan to the finest diamonds, we source only the most exceptional materials to craft jewelry that becomes a cherished part of your story.
+                From planning and cutting to polishing and quality control, we
+                maintain the highest standards at every stage of the
+                manufacturing process, ensuring that each diamond achieves its
+                maximum potential.
               </p>
 
               <StatsContainer>
                 <StatItem>
-                  <Statistic title="Years of Excellence" value={new Date().getFullYear() - 1982} suffix="+" />
+                  <Statistic
+                    title="Years of Excellence"
+                    value={new Date().getFullYear() - 1982}
+                    suffix="+"
+                  />
                 </StatItem>
                 <StatItem>
-                  <Statistic title="Master Artisans" value={25} suffix="+" />
+                  <Statistic title="Master Craftsmen" value={25} suffix="+" />
                 </StatItem>
                 <StatItem>
-                  <Statistic title="Happy Clients" value="10K" suffix="+" />
+                  <Statistic title="Diamonds Crafted" value="50K" suffix="+" />
                 </StatItem>
               </StatsContainer>
 
-              <div style={{ marginTop: '30px' }}>
-                <Button to="/about" size="large">
-                  Discover Our Story
+              <div style={{ marginTop: "30px" }}>
+                <Button to="/workshop" size="large">
+                  Tour Our Workshop
                 </Button>
               </div>
             </AboutContent>
@@ -1132,23 +1206,21 @@ const Home = () => {
         <TestimonialContainer>
           <TestimonialTitle level={2}>What Our Clients Say</TestimonialTitle>
 
-          <TestimonialCarousel
-            autoplay
-            dots
-            arrows
-          >
-            {testimonials.map(testimonial => (
+          <TestimonialCarousel autoplay dots arrows>
+            {testimonials.map((testimonial) => (
               <div key={testimonial.id}>
                 <TestimonialCard>
                   <QuoteIcon>"</QuoteIcon>
-                  <TestimonialQuote>
-                    {testimonial.quote}
-                  </TestimonialQuote>
+                  <TestimonialQuote>{testimonial.quote}</TestimonialQuote>
                   <TestimonialFooter>
                     <TestimonialAvatar src={testimonial.avatar} />
                     <TestimonialAuthorInfo>
-                      <TestimonialAuthor>{testimonial.author}</TestimonialAuthor>
-                      <TestimonialLocation>{testimonial.location}</TestimonialLocation>
+                      <TestimonialAuthor>
+                        {testimonial.author}
+                      </TestimonialAuthor>
+                      <TestimonialLocation>
+                        {testimonial.location}
+                      </TestimonialLocation>
                       <TestimonialRating value={testimonial.rating} disabled />
                     </TestimonialAuthorInfo>
                   </TestimonialFooter>
@@ -1162,12 +1234,15 @@ const Home = () => {
       {/* CTA Section */}
       <CTASection id="cta">
         <CTAContainer>
-          <CTATitle level={2}>Experience Timeless Elegance</CTATitle>
+          <CTATitle level={2}>
+            Witness Diamond Manufacturing Excellence
+          </CTATitle>
           <CTADescription>
-            Visit our showroom in Jaipur to explore our complete collection and experience the craftsmanship firsthand.
+            Schedule a visit to our workshop in Jaipur to observe our master
+            craftsmen transform rough diamonds into brilliant masterpieces.
           </CTADescription>
           <CTAButton to="/contact" size="large">
-            Contact Us
+            Schedule a Visit
           </CTAButton>
         </CTAContainer>
       </CTASection>
