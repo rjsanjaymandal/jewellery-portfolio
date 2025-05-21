@@ -1,0 +1,324 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Elegant Diamond Theme Colors */
+  --color-primary: #1A1A1A; /* Rich black */
+  --color-primary-light: #333333; /* Dark gray */
+  --color-primary-dark: #000000; /* Pure black */
+  
+  --color-secondary: #D4AF37; /* Classic gold */
+  --color-secondary-light: #E5C76B; /* Light gold */
+  --color-secondary-dark: #9E7C1E; /* Darker gold */
+  
+  --color-accent-1: #8E8E8E; /* Silver/platinum */
+  --color-accent-2: #C0C0C0; /* Lighter silver */
+  --color-accent-3: #505050; /* Charcoal */
+  --color-accent-4: #FFFFFF; /* Pure white */
+  
+  --color-text: #1A1A1A; /* Rich black for main text */
+  --color-text-light: #505050; /* Dark gray for body text */
+  --color-text-lighter: #8E8E8E; /* Medium gray for secondary text */
+  
+  --color-background: #FFFFFF; /* Pure white */
+  --color-background-alt: #F8F8F8; /* Very light gray */
+  --color-background-card: #FFFFFF; /* White for cards */
+  
+  --color-border: #E5E5E5; /* Light gray for borders */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Feedback Colors */
+  --color-success: #4A7C59;
+  --color-warning: #D4AF37;
+  --color-error: #A02C2C;
+  --color-info: #2C5282;
+  
+  /* Gradients */
+  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F7E9B7 50%, #D4AF37 100%);
+  --gradient-silver: linear-gradient(135deg, #8E8E8E 0%, #C0C0C0 50%, #8E8E8E 100%);
+  --gradient-black: linear-gradient(135deg, #000000 0%, #333333 100%);
+  --gradient-white-gold: linear-gradient(135deg, #FFFFFF 0%, #F7E9B7 100%);
+  --gradient-elegant: linear-gradient(to right, #1A1A1A, #505050, #8E8E8E, #C0C0C0, #FFFFFF);
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+  
+  /* Spacing */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem; /* 24px */
+  --spacing-8: 2rem; /* 32px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-12: 3rem; /* 48px */
+  --spacing-16: 4rem; /* 64px */
+  --spacing-20: 5rem; /* 80px */
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.05);
+  --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.15);
+  --shadow-silver: 0 5px 15px rgba(192, 192, 192, 0.15);
+  
+  /* Border Radius */
+  --border-radius-sm: 2px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 6px;
+  --border-radius-xl: 8px;
+  --border-radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-default: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+}
+
+/* Dark Theme Class */
+.dark-theme {
+  --color-primary: #D4AF37; /* Gold becomes primary in dark mode */
+  --color-primary-light: #E5C76B; /* Light gold */
+  --color-primary-dark: #9E7C1E; /* Darker gold */
+  
+  --color-secondary: #C0C0C0; /* Silver becomes secondary */
+  --color-secondary-light: #D9D9D9; /* Lighter silver */
+  --color-secondary-dark: #8E8E8E; /* Darker silver */
+  
+  --color-text: #F8F8F8; /* Off-white for main text */
+  --color-text-light: #D9D9D9; /* Light gray for body text */
+  --color-text-lighter: #A0A0A0; /* Medium gray for secondary text */
+  
+  --color-background: #121212; /* Very dark gray */
+  --color-background-alt: #1E1E1E; /* Dark gray */
+  --color-background-card: #1E1E1E; /* Dark gray for cards */
+  
+  --color-border: #333333; /* Dark gray for borders */
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  
+  /* Gradients for dark mode */
+  --gradient-gold: linear-gradient(135deg, #9E7C1E 0%, #D4AF37 50%, #9E7C1E 100%);
+  --gradient-silver: linear-gradient(135deg, #505050 0%, #8E8E8E 50%, #505050 100%);
+  --gradient-elegant: linear-gradient(to right, #000000, #1A1A1A, #333333, #505050, #8E8E8E);
+  
+  /* Shadows for dark mode */
+  --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.25);
+  --shadow-silver: 0 5px 15px rgba(142, 142, 142, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.5;
+  background-color: var(--color-background);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-default), color var(--transition-default);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: 2.25rem;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: 1.875rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+.section {
+  padding: var(--spacing-16) 0;
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-gold);
+  border-radius: 1px;
+}
+
+.text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.text-gradient-silver {
+  background: var(--gradient-silver);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.card {
+  background-color: var(--color-background-card);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: transform var(--transition-default), box-shadow var(--transition-default);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 768px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+  
+  .section {
+    padding: var(--spacing-12) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: var(--spacing-8) 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    padding: 0 var(--spacing-4);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+}

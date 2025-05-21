@@ -1,46 +1,67 @@
 import React from "react";
-import { Typography, Divider } from "antd";
+import { Typography } from "antd";
 import styled from "styled-components";
+import { useTheme } from "../context/ThemeContext";
 
-const { Title: AntTitle, Paragraph } = Typography;
+const { Title: AntTitle, Text } = Typography;
 
 const TitleContainer = styled.div`
   text-align: center;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-8);
+  position: relative;
 `;
 
 const StyledTitle = styled(AntTitle)`
   font-family: var(--font-heading) !important;
-  color: var(--color-secondary) !important;
-  margin-bottom: 0.5rem !important;
+  color: var(--color-text) !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: var(--spacing-3) !important;
   position: relative;
   display: inline-block;
-  font-weight: 700 !important; /* Bolder for better visibility */
-  letter-spacing: -0.01em !important; /* Slight letter spacing adjustment */
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5) !important; /* Subtle text shadow for contrast */
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-gold-diamond);
+    border-radius: 3px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem !important;
+  }
 `;
 
-const TitleDivider = styled(Divider)`
-  width: 80px;
-  min-width: 80px;
-  margin: 16px auto 24px !important;
-  border-top: 4px solid var(--color-primary) !important; /* Thicker divider for better visibility */
-`;
-
-const StyledSubtitle = styled(Paragraph)`
-  font-size: 1.2rem !important; /* Slightly larger for better readability */
-  color: var(--color-text-light) !important;
+const StyledSubtitle = styled(Text)`
+  display: block;
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  font-family: var(--font-accent);
+  font-weight: 500;
   max-width: 700px;
-  margin: 0 auto !important;
-  line-height: 1.6 !important; /* Improved line height for readability */
-  font-weight: 400 !important; /* Regular weight for better readability */
+  margin: 0 auto;
+  margin-top: var(--spacing-4);
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const SectionTitle = ({ title, subtitle, level = 2 }) => {
+  const { isDarkMode } = useTheme();
+
   return (
     <TitleContainer>
       <StyledTitle level={level}>{title}</StyledTitle>
-      <TitleDivider />
       {subtitle && <StyledSubtitle>{subtitle}</StyledSubtitle>}
     </TitleContainer>
   );

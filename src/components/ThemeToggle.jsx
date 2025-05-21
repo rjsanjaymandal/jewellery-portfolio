@@ -37,10 +37,7 @@ const ThemeToggle = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <Tooltip
-      title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      placement="bottom"
-    >
+    <Tooltip title={isDarkMode ? "Light Mode" : "Dark Mode"} placement="bottom">
       <ToggleButton
         onClick={toggleTheme}
         aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}

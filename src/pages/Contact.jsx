@@ -247,7 +247,7 @@ const Contact = () => {
                     </IconWrapper>
                     <div>
                       <InfoTitle>Phone Number</InfoTitle>
-                      <InfoText>(255) 352-6258</InfoText>
+                      <InfoText>94631 96935</InfoText>
                     </div>
                   </InfoItem>
 
@@ -257,7 +257,7 @@ const Contact = () => {
                     </IconWrapper>
                     <div>
                       <InfoTitle>Email Address</InfoTitle>
-                      <InfoText>hello@divi.com</InfoText>
+                      <InfoText>info@ramavatargems.com</InfoText>
                     </div>
                   </InfoItem>
 

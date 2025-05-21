@@ -1,0 +1,754 @@
+import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Row,
+  Col,
+  Card,
+  Carousel,
+  Statistic,
+  Space,
+  Divider,
+  Image,
+  Badge
+} from "antd";
+import {
+  ArrowRightOutlined,
+  CheckCircleFilled,
+  HistoryOutlined,
+  DollarOutlined,
+  TeamOutlined,
+  GlobalOutlined,
+  ToolOutlined,
+  DashboardOutlined,
+  SafetyCertificateOutlined,
+  StarFilled,
+  HeartFilled,
+  FireFilled,
+  ThunderboltFilled
+} from "@ant-design/icons";
+import styled, { keyframes } from "styled-components";
+import { useTheme } from "../context/ThemeContext";
+import Button from "../components/Button";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
+
+const { Title, Text, Paragraph } = Typography;
+
+// Animations
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
+
+const float = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+// Styled Components - Colorful Design
+const HeroSection = styled.section`
+  position: relative;
+  height: 90vh;
+  max-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 80vh;
+  }
+`;
+
+const HeroBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.2);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(236, 72, 153, 0.8) 50%, rgba(245, 158, 11, 0.8) 100%);
+    mix-blend-mode: multiply;
+  }
+`;
+
+const ColorfulOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.3), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.3), transparent 40%);
+  z-index: 1;
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  > * {
+    animation: ${fadeIn} 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  > *:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+
+  > *:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  > *:nth-child(3) {
+    animation-delay: 0.9s;
+  }
+
+  > *:nth-child(4) {
+    animation-delay: 1.2s;
+  }
+`;
+
+const HeroLogo = styled.div`
+  margin-bottom: var(--spacing-6);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+`;
+
+const HeroTitle = styled(Title)`
+  color: white !important;
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: var(--spacing-4) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+  span {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem !important;
+  }
+`;
+
+const HeroSubtitle = styled(Text)`
+  display: block;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: var(--spacing-8);
+  max-width: 800px;
+  font-family: var(--font-accent);
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: var(--spacing-4);
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+  }
+`;
+
+const Section = styled.section`
+  padding: var(--spacing-16) 0;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-8) 0;
+  }
+`;
+
+const SectionTitle = styled(Title)`
+  text-align: center;
+  margin-bottom: var(--spacing-8) !important;
+  font-weight: 700 !important;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-rainbow);
+    border-radius: 3px;
+  }
+`;
+
+const SectionSubtitle = styled(Text)`
+  display: block;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-8);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-accent);
+  font-weight: 500;
+`;
+
+const AboutSection = styled(Section)`
+  background-color: var(--color-background);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: var(--gradient-accent-1);
+    opacity: 0.1;
+    filter: blur(50px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: var(--gradient-accent-3);
+    opacity: 0.1;
+    filter: blur(50px);
+  }
+`;
+
+const AboutContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+`;
+
+const AboutText = styled.div`
+  flex: 1;
+`;
+
+const AboutImageContainer = styled.div`
+  flex: 1;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-lg);
+    background: var(--gradient-rainbow);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+`;
+
+const FeatureCard = styled(Card)`
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .ant-card-cover {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &:hover .ant-card-cover img {
+    transform: scale(1.1);
+  }
+
+  .ant-card-body {
+    padding: var(--spacing-4);
+  }
+
+  .ant-card-meta-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--color-text);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+  }
+
+  .ant-card-meta-description {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+`;
+
+const Home = () => {
+  const { isDarkMode } = useTheme();
+
+  // Features data with colors
+  const features = [
+    {
+      title: "Diamond Cutting",
+      description: "Precision cutting techniques that maximize brilliance and fire in every diamond",
+      icon: <ToolOutlined style={{ color: "var(--color-accent-1)" }} />,
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
+      color: "var(--color-accent-1)"
+    },
+    {
+      title: "Advanced Technology",
+      description: "Using the latest technology for diamond analysis, planning, and manufacturing",
+      icon: <DashboardOutlined style={{ color: "var(--color-accent-2)" }} />,
+      image: "/images/manufacturing/diamond_microscope.jpg",
+      color: "var(--color-accent-2)"
+    },
+    {
+      title: "Expert Craftsmanship",
+      description: "Our master craftsmen bring decades of experience to every diamond we manufacture",
+      icon: <TeamOutlined style={{ color: "var(--color-accent-3)" }} />,
+      image: "/images/manufacturing/diamond_polishing.jpg",
+      color: "var(--color-accent-3)"
+    },
+    {
+      title: "Quality Assurance",
+      description: "Rigorous quality control ensures every diamond meets our exacting standards",
+      icon: <SafetyCertificateOutlined style={{ color: "var(--color-accent-4)" }} />,
+      image: "/images/manufacturing/diamond_inspection.jpg",
+      color: "var(--color-accent-4)"
+    }
+  ];
+
+  // Stats data with colors
+  const stats = [
+    {
+      title: "Years of Excellence",
+      value: 40,
+      icon: <HistoryOutlined />,
+      color: "var(--color-accent-1)"
+    },
+    {
+      title: "Diamonds Manufactured",
+      value: "50K+",
+      icon: <DollarOutlined />,
+      color: "var(--color-accent-2)"
+    },
+    {
+      title: "Master Craftsmen",
+      value: 25,
+      icon: <TeamOutlined />,
+      color: "var(--color-accent-3)"
+    },
+    {
+      title: "Countries Served",
+      value: 30,
+      icon: <GlobalOutlined />,
+      color: "var(--color-accent-4)"
+    }
+  ];
+
+  // Process steps with colors
+  const processSteps = [
+    {
+      number: 1,
+      title: "Diamond Planning",
+      description: "Using 3D scanning and advanced software to analyze rough diamonds and determine the optimal cutting plan for maximum value and beauty.",
+      icon: <ThunderboltFilled />,
+      color: "var(--color-accent-1)"
+    },
+    {
+      number: 2,
+      title: "Cutting & Cleaving",
+      description: "Precision cutting of the rough diamond according to the planned design, using laser technology and traditional techniques.",
+      icon: <ToolOutlined />,
+      color: "var(--color-accent-2)"
+    },
+    {
+      number: 3,
+      title: "Polishing & Faceting",
+      description: "Creating the perfect facets that give the diamond its brilliance, fire, and scintillation through expert polishing.",
+      icon: <FireFilled />,
+      color: "var(--color-accent-3)"
+    },
+    {
+      number: 4,
+      title: "Quality Control",
+      description: "Rigorous inspection and certification of every diamond to ensure it meets our exacting standards for cut, clarity, color, and carat weight.",
+      icon: <StarFilled />,
+      color: "var(--color-accent-4)"
+    }
+  ];
+
+  return (
+    <div>
+      {/* Hero Section - Colorful */}
+      <HeroSection id="hero">
+        <HeroBackground>
+          <img src="/images/manufacturing/diamond_cutting_1.jpg" alt="Diamond manufacturing" />
+        </HeroBackground>
+
+        <ColorfulOverlay />
+
+        <HeroContent>
+          <HeroLogo>
+            <RamavatargemsLogo width={220} />
+          </HeroLogo>
+
+          <HeroTitle level={1}>
+            Diamond <span>Manufacturing</span> Excellence
+          </HeroTitle>
+
+          <HeroSubtitle>
+            Crafting brilliance since 1982 with precision cutting and unparalleled expertise
+          </HeroSubtitle>
+
+          <ButtonGroup>
+            <Button
+              to="/manufacturing"
+              size="large"
+              style={{
+                background: "var(--gradient-primary)",
+                border: "none",
+                color: "white",
+                padding: "0 var(--spacing-6)",
+                height: "48px",
+                fontSize: "1rem",
+                fontWeight: "500",
+                borderRadius: "var(--border-radius-full)",
+                boxShadow: "var(--shadow-colored-primary)"
+              }}
+            >
+              Our Manufacturing Process <ArrowRightOutlined />
+            </Button>
+
+            <Button
+              to="/collection"
+              variant="outline"
+              size="large"
+              style={{
+                background: "rgba(255, 255, 255, 0.2)",
+                backdropFilter: "blur(5px)",
+                borderColor: "white",
+                color: "white",
+                padding: "0 var(--spacing-6)",
+                height: "48px",
+                fontSize: "1rem",
+                fontWeight: "500",
+                borderWidth: "2px",
+                borderRadius: "var(--border-radius-full)"
+              }}
+            >
+              View Our Collection
+            </Button>
+          </ButtonGroup>
+        </HeroContent>
+      </HeroSection>
+
+      {/* About Section - Colorful */}
+      <AboutSection id="about">
+        <div className="container">
+          <SectionTitle level={2}>About <span className="text-gradient-rainbow">Ramavatargems</span></SectionTitle>
+          <SectionSubtitle>Diamond Manufacturing Excellence Since 1982</SectionSubtitle>
+
+          <AboutContent>
+            <AboutText>
+              <Paragraph style={{ fontSize: "1.1rem", marginBottom: "20px", color: "var(--color-text-light)" }}>
+                Ramavatargems has been at the forefront of diamond manufacturing in Jaipur for over four decades. Our commitment to excellence and precision has made us a trusted name in the industry.
+              </Paragraph>
+              <Paragraph style={{ fontSize: "1.1rem", marginBottom: "20px", color: "var(--color-text-light)" }}>
+                We specialize in the complete diamond manufacturing process, from rough stone assessment to final polishing. Our team of master craftsmen combines traditional techniques with cutting-edge technology to create diamonds of exceptional quality and brilliance.
+              </Paragraph>
+              <Space direction="vertical" size="middle">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-accent-1)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Precision cutting for maximum brilliance</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-accent-2)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Advanced technology for diamond analysis</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-accent-3)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Ethical sourcing and sustainable practices</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-accent-4)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Rigorous quality control standards</Text>
+                </div>
+              </Space>
+              <div style={{ marginTop: "30px" }}>
+                <Button
+                  to="/about"
+                  size="large"
+                  style={{
+                    background: "var(--gradient-accent-2)",
+                    border: "none",
+                    color: "white",
+                    padding: "0 var(--spacing-5)",
+                    height: "44px",
+                    fontSize: "1rem",
+                    fontWeight: "500",
+                    borderRadius: "var(--border-radius-full)",
+                    boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)"
+                  }}
+                >
+                  Learn More About Us <ArrowRightOutlined />
+                </Button>
+              </div>
+            </AboutText>
+            <AboutImageContainer>
+              <img
+                src="/images/manufacturing/diamond_cutting_1.jpg"
+                alt="Ramavatargems diamond manufacturing workshop"
+              />
+            </AboutImageContainer>
+          </AboutContent>
+        </div>
+      </AboutSection>
+
+      {/* Features Section - Colorful */}
+      <Section id="features" style={{ background: "var(--color-background-alt)" }}>
+        <div className="container">
+          <SectionTitle level={2}>Our <span className="text-gradient-primary">Expertise</span></SectionTitle>
+          <SectionSubtitle>What Sets Our Diamond Manufacturing Apart</SectionSubtitle>
+
+          <Row gutter={[24, 24]} style={{ marginTop: "40px" }}>
+            {features.map((feature, index) => (
+              <Col xs={24} sm={12} md={6} key={index}>
+                <FeatureCard
+                  hoverable
+                  cover={
+                    <div style={{ position: "relative" }}>
+                      <img alt={feature.title} src={feature.image} />
+                      <Badge
+                        count={feature.icon}
+                        style={{
+                          background: feature.color,
+                          position: "absolute",
+                          top: "15px",
+                          right: "15px",
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "1.2rem",
+                          zIndex: 2,
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+                        }}
+                      />
+                    </div>
+                  }
+                >
+                  <Card.Meta
+                    title={<span style={{ color: feature.color }}>{feature.title}</span>}
+                    description={feature.description}
+                  />
+                </FeatureCard>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Section>
+
+      {/* Stats Section - Colorful */}
+      <Section id="stats" style={{
+        background: "var(--gradient-primary)",
+        position: "relative",
+        overflow: "hidden"
+      }}>
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "url('/images/manufacturing/diamond_pattern.png')",
+          backgroundSize: "300px",
+          opacity: 0.1
+        }} />
+
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <Title level={2} style={{ textAlign: "center", color: "white", marginBottom: "var(--spacing-8)" }}>
+            Our <span style={{ color: "var(--color-secondary)" }}>Achievements</span>
+          </Title>
+
+          <Row gutter={[24, 24]} style={{ marginTop: "40px" }}>
+            {stats.map((stat, index) => (
+              <Col xs={24} sm={12} md={6} key={index}>
+                <Card
+                  style={{
+                    textAlign: "center",
+                    borderRadius: "var(--border-radius-lg)",
+                    overflow: "hidden",
+                    boxShadow: "var(--shadow-lg)",
+                    height: "100%",
+                    border: "none",
+                    background: "rgba(255, 255, 255, 0.9)",
+                    backdropFilter: "blur(10px)"
+                  }}
+                  hoverable
+                >
+                  <div style={{
+                    fontSize: "2.5rem",
+                    color: stat.color,
+                    marginBottom: "var(--spacing-3)"
+                  }}>
+                    {stat.icon}
+                  </div>
+                  <Statistic
+                    title={<span style={{ fontSize: "1.1rem", color: "var(--color-text-light)" }}>{stat.title}</span>}
+                    value={stat.value}
+                    valueStyle={{
+                      fontSize: "2.5rem",
+                      fontWeight: "700",
+                      color: stat.color,
+                      fontFamily: "var(--font-secondary)"
+                    }}
+                  />
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Section>
+    </div>
+  );
+};
+
+export default Home;

@@ -1,0 +1,500 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import {
+  Layout,
+  Menu,
+  Button,
+  Drawer,
+  Typography,
+  Row,
+  Col,
+  Space,
+  Badge,
+} from "antd";
+import {
+  MenuOutlined,
+  HomeOutlined,
+  InfoCircleOutlined,
+  ShoppingOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  ToolOutlined,
+  FacebookOutlined,
+  InstagramOutlined,
+  TwitterOutlined,
+  CloseOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
+import styled, { keyframes } from "styled-components";
+import { useTheme } from "../context/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
+import RamavatargemsLogo from "./logo/RamavatargemsLogo";
+
+const { Header } = Layout;
+const { Text } = Typography;
+
+// Animations
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+// Styled components
+const NavbarWrapper = styled.div`
+  position: relative;
+  z-index: 1000;
+`;
+
+const HeaderSpacer = styled.div`
+  height: 80px;
+
+  @media (max-width: 768px) {
+    height: 70px;
+  }
+`;
+
+const StyledHeader = styled(Header)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 80px;
+  padding: 0;
+  background: ${props => props.isDarkMode
+    ? 'var(--color-background)'
+    : 'rgba(255, 255, 255, 0.95)'};
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--gradient-gold);
+  }
+
+  @media (max-width: 768px) {
+    height: 70px;
+  }
+`;
+
+const HeaderContainer = styled.div`
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const LogoContainer = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+
+const StyledLogo = styled(RamavatargemsLogo)`
+  height: 50px;
+  width: auto;
+  margin: 0;
+  display: block;
+
+  @media (max-width: 768px) {
+    height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    height: 35px;
+  }
+`;
+
+const NavMenu = styled(Menu)`
+  border: none;
+  background: transparent;
+  line-height: 80px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    line-height: 70px;
+    display: none;
+  }
+
+  .ant-menu-item {
+    padding: 0 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--color-secondary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      opacity: 0;
+    }
+
+    &:hover {
+      color: var(--color-secondary) !important;
+
+      &::after {
+        width: 20px;
+        opacity: 1;
+      }
+    }
+
+    &.ant-menu-item-selected {
+      color: var(--color-secondary) !important;
+
+      &::after {
+        width: 20px;
+        opacity: 1;
+      }
+    }
+
+    .anticon {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+  }
+`;
+
+const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const MobileMenuButton = styled(Button)`
+  display: none;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+
+  &:hover {
+    background: var(--color-background-alt) !important;
+    color: var(--color-secondary) !important;
+    border-color: var(--color-secondary) !important;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const ContactInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+const ContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${props => props.isDarkMode ? 'var(--color-text-light)' : 'var(--color-text-light)'};
+  font-size: 0.9rem;
+
+  .anticon {
+    color: var(--color-secondary);
+    font-size: 1rem;
+  }
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  gap: 12px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+`;
+
+const SocialIcon = styled(Button)`
+  background: transparent !important;
+  color: ${props => props.isDarkMode ? 'var(--color-text-light)' : 'var(--color-text-light)'} !important;
+  border: 1px solid var(--color-border) !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: var(--border-radius-md) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1rem !important;
+  padding: 0 !important;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--color-secondary) !important;
+    border-color: var(--color-secondary) !important;
+  }
+`;
+
+const StyledDrawer = styled(Drawer)`
+  .ant-drawer-header {
+    background: ${props => props.isDarkMode ? 'var(--color-background)' : 'white'};
+    border-bottom: 1px solid ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+
+    .ant-drawer-title {
+      color: ${props => props.isDarkMode ? 'var(--color-text)' : 'var(--color-text)'};
+    }
+
+    .ant-drawer-close {
+      color: ${props => props.isDarkMode ? 'var(--color-text)' : 'var(--color-text)'};
+    }
+  }
+
+  .ant-drawer-body {
+    background: ${props => props.isDarkMode ? 'var(--color-background)' : 'white'};
+    padding: 0;
+  }
+`;
+
+const DrawerMenu = styled(Menu)`
+  background: transparent;
+  border-right: none;
+
+  .ant-menu-item {
+    margin: 0;
+    padding: 0 24px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: var(--color-secondary);
+    }
+
+    &.ant-menu-item-selected {
+      background: ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'};
+      color: var(--color-secondary);
+      font-weight: 600;
+
+      &::after {
+        border-right: 2px solid var(--color-secondary);
+      }
+    }
+
+    .anticon {
+      margin-right: 12px;
+      font-size: 1rem;
+    }
+  }
+`;
+
+const DrawerFooter = styled.div`
+  padding: 20px 24px;
+  border-top: 1px solid ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+  background: ${props => props.isDarkMode ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.02)'};
+`;
+
+const DrawerContactItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: ${props => props.isDarkMode ? 'var(--color-text-light)' : 'var(--color-text-light)'};
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+
+  .anticon {
+    color: var(--color-secondary);
+    font-size: 1rem;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const DrawerSocialIcons = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+`;
+
+const Navbar = () => {
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isDarkMode } = useTheme();
+
+  const showDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const closeDrawer = () => {
+    setDrawerVisible(false);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (drawerVisible) {
+      closeDrawer();
+    }
+  };
+
+  const menuItems = [
+    {
+      key: "/",
+      icon: <HomeOutlined />,
+      label: "Home",
+      onClick: () => handleNavigation("/"),
+    },
+    {
+      key: "/about",
+      icon: <InfoCircleOutlined />,
+      label: "About Us",
+      onClick: () => handleNavigation("/about"),
+    },
+    {
+      key: "/manufacturing",
+      icon: <ToolOutlined />,
+      label: "Manufacturing",
+      onClick: () => handleNavigation("/manufacturing"),
+    },
+    {
+      key: "/collection",
+      icon: <ShoppingOutlined />,
+      label: "Collection",
+      onClick: () => handleNavigation("/collection"),
+    },
+    {
+      key: "/contact",
+      icon: <MailOutlined />,
+      label: "Contact",
+      onClick: () => handleNavigation("/contact"),
+    },
+  ];
+
+  return (
+    <NavbarWrapper>
+      <HeaderSpacer />
+      <StyledHeader isDarkMode={isDarkMode}>
+        <HeaderContainer>
+          {/* Logo */}
+          <LogoContainer onClick={() => handleNavigation("/")}>
+            <StyledLogo />
+          </LogoContainer>
+
+          {/* Desktop Navigation */}
+          <NavMenu
+            mode="horizontal"
+            selectedKeys={[location.pathname]}
+            items={menuItems}
+            theme={isDarkMode ? "dark" : "light"}
+          />
+
+          {/* Contact Info & Actions */}
+          <NavActions>
+            <ContactInfo>
+              <ContactItem isDarkMode={isDarkMode}>
+                <PhoneOutlined />
+                <span>94631 96935</span>
+              </ContactItem>
+            </ContactInfo>
+
+            <SocialIcons>
+              <SocialIcon icon={<FacebookOutlined />} isDarkMode={isDarkMode} />
+              <SocialIcon icon={<InstagramOutlined />} isDarkMode={isDarkMode} />
+              <SocialIcon icon={<TwitterOutlined />} isDarkMode={isDarkMode} />
+            </SocialIcons>
+
+            <ThemeToggle />
+
+            <MobileMenuButton
+              type="default"
+              icon={<MenuOutlined />}
+              onClick={showDrawer}
+            />
+          </NavActions>
+        </HeaderContainer>
+      </StyledHeader>
+
+      {/* Mobile Drawer */}
+      <StyledDrawer
+        title={
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "5px 0",
+            }}
+          >
+            <RamavatargemsLogo width={160} height={50} />
+          </div>
+        }
+        placement="right"
+        onClose={closeDrawer}
+        open={drawerVisible}
+        width={280}
+        isDarkMode={isDarkMode}
+        closeIcon={<CloseOutlined style={{ color: isDarkMode ? 'var(--color-text)' : 'var(--color-text)' }} />}
+      >
+        <DrawerMenu
+          mode="vertical"
+          selectedKeys={[location.pathname]}
+          items={menuItems}
+          theme={isDarkMode ? "dark" : "light"}
+          isDarkMode={isDarkMode}
+        />
+
+        <DrawerFooter isDarkMode={isDarkMode}>
+          <DrawerContactItem isDarkMode={isDarkMode}>
+            <PhoneOutlined />
+            <span>94631 96935</span>
+          </DrawerContactItem>
+          <DrawerContactItem isDarkMode={isDarkMode}>
+            <MailOutlined />
+            <span>info@ramavatargems.com</span>
+          </DrawerContactItem>
+
+          <DrawerSocialIcons>
+            <SocialIcon icon={<FacebookOutlined />} isDarkMode={isDarkMode} />
+            <SocialIcon icon={<InstagramOutlined />} isDarkMode={isDarkMode} />
+            <SocialIcon icon={<TwitterOutlined />} isDarkMode={isDarkMode} />
+          </DrawerSocialIcons>
+        </DrawerFooter>
+      </StyledDrawer>
+    </NavbarWrapper>
+  );
+};
+
+export default Navbar;

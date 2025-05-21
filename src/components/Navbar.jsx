@@ -87,14 +87,14 @@ const LogoContainer = styled.div`
 `;
 
 const StyledLogo = styled(RamavatargemsLogo)`
-  height: 65px;
+  height: 70px;
   width: auto;
   margin: 0;
   display: block;
 
   @media (max-width: 768px) {
     width: auto;
-    height: 55px;
+    height: 60px;
   }
 `;
 
@@ -304,7 +304,7 @@ const Navbar = () => {
             <ContactInfo>
               <ContactItem isDarkMode={isDarkMode}>
                 <PhoneOutlined />
-                <span>(255) 352-6258</span>
+                <span>94631 96935</span>
               </ContactItem>
             </ContactInfo>
 
@@ -349,11 +349,11 @@ const Navbar = () => {
         <DrawerFooter isDarkMode={isDarkMode}>
           <DrawerContactItem isDarkMode={isDarkMode}>
             <PhoneOutlined />
-            <span>(255) 352-6258</span>
+            <span>94631 96935</span>
           </DrawerContactItem>
           <DrawerContactItem isDarkMode={isDarkMode}>
             <MailOutlined />
-            <span>hello@divi.com</span>
+            <span>info@ramavatargems.com</span>
           </DrawerContactItem>
         </DrawerFooter>
       </StyledDrawer>

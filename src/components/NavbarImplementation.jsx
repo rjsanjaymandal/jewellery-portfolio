@@ -142,7 +142,7 @@ const Navbar = () => {
             <Col xs={0} sm={12}>
               <Space size={20}>
                 <TopInfo>
-                  <PhoneOutlined /> (255) 352-6258
+                  <PhoneOutlined /> 94631 96935
                 </TopInfo>
                 <TopInfo>
                   <ClockCircleOutlined /> Mon-Sat: 10:00 AM - 8:00 PM
@@ -152,7 +152,7 @@ const Navbar = () => {
             <Col xs={24} sm={12} style={{ textAlign: "right" }}>
               <Space size={20} style={{ justifyContent: "flex-end" }}>
                 <TopInfo>
-                  <MailOutlined /> hello@divi.com
+                  <MailOutlined /> info@ramavatargems.com
                 </TopInfo>
                 <SocialIcons>
                   <SocialIcon icon={<FacebookOutlined />} />
@@ -262,10 +262,10 @@ const Navbar = () => {
             <div className="contact-info">
               <div className="title">Contact Us</div>
               <div className="info-item">
-                <PhoneOutlined /> (255) 352-6258
+                <PhoneOutlined /> 94631 96935
               </div>
               <div className="info-item">
-                <MailOutlined /> hello@divi.com
+                <MailOutlined /> info@ramavatargems.com
               </div>
               <div className="info-item">
                 <ClockCircleOutlined /> Mon-Sat: 10:00 AM - 8:00 PM

@@ -1,0 +1,660 @@
+import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Row,
+  Col,
+  Button as AntButton,
+  Card,
+  Statistic,
+  Divider,
+  Space,
+  Image,
+  Carousel
+} from "antd";
+import {
+  ArrowRightOutlined,
+  CheckCircleFilled,
+  HistoryOutlined,
+  DollarOutlined,
+  TeamOutlined,
+  GlobalOutlined,
+  StarFilled,
+  ToolOutlined,
+  SafetyCertificateOutlined,
+  DashboardOutlined,
+  RightOutlined
+} from "@ant-design/icons";
+import styled, { keyframes } from "styled-components";
+import { useTheme } from "../context/ThemeContext";
+import Button from "../components/Button";
+import SectionTitle from "../components/SectionTitle";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
+
+const { Title, Text, Paragraph } = Typography;
+
+// Animations
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
+
+const float = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+// Styled Components
+const HeroSection = styled.section`
+  position: relative;
+  height: 90vh;
+  max-height: 800px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-background);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-dark-sapphire);
+    opacity: 0.95;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    height: 80vh;
+  }
+`;
+
+const HeroBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) contrast(1.2);
+  }
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  > * {
+    animation: ${fadeIn} 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  > *:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+
+  > *:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  > *:nth-child(3) {
+    animation-delay: 0.9s;
+  }
+
+  > *:nth-child(4) {
+    animation-delay: 1.2s;
+  }
+`;
+
+const HeroLogo = styled.div`
+  margin-bottom: var(--spacing-6);
+  transform: scale(1.2);
+`;
+
+const HeroTitle = styled(Title)`
+  color: white !important;
+  font-size: 3.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: var(--spacing-4) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+  span {
+    background: var(--gradient-luxury-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem !important;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem !important;
+  }
+`;
+
+const HeroSubtitle = styled(Text)`
+  display: block;
+  font-size: 1.5rem;
+  color: var(--color-secondary-light);
+  margin-bottom: var(--spacing-8);
+  max-width: 800px;
+  font-family: var(--font-accent);
+  font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: var(--spacing-4);
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+  }
+`;
+
+const Section = styled.section`
+  padding: var(--spacing-16) 0;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-8) 0;
+  }
+`;
+
+const AboutSection = styled(Section)`
+  background: var(--color-background-alt);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: var(--color-overlay-gold);
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: var(--color-overlay-blue);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+    z-index: 0;
+  }
+`;
+
+const AboutContent = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+`;
+
+const AboutText = styled.div`
+  flex: 1;
+`;
+
+const AboutImageContainer = styled.div`
+  flex: 1;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid var(--color-secondary-light);
+    border-radius: var(--border-radius-lg);
+    pointer-events: none;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+`;
+
+const FeatureCard = styled(Card)`
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .ant-card-cover {
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &:hover .ant-card-cover img {
+    transform: scale(1.1);
+  }
+
+  .ant-card-body {
+    padding: var(--spacing-4);
+  }
+
+  .ant-card-meta-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+  }
+
+  .ant-card-meta-description {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+`;
+
+const StatsSection = styled(Section)`
+  background: var(--gradient-dark-sapphire);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/manufacturing/diamond_pattern.png');
+    background-size: 300px;
+    opacity: 0.05;
+    z-index: 0;
+  }
+`;
+
+const StatCard = styled.div`
+  padding: var(--spacing-6) var(--spacing-4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .ant-statistic-title {
+    font-size: 1.1rem;
+    color: var(--color-secondary-light);
+    margin-bottom: var(--spacing-2);
+    font-family: var(--font-heading);
+  }
+
+  .ant-statistic-content {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-3);
+    opacity: 0.9;
+  }
+`;
+
+const Home = () => {
+  const { isDarkMode } = useTheme();
+
+  // Scroll to section
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Features data
+  const features = [
+    {
+      title: "Advanced Diamond Cutting",
+      description: "Precision cutting techniques that maximize brilliance and fire in every diamond",
+      icon: <ToolOutlined />,
+      image: "/images/manufacturing/diamond_cutting_1.jpg"
+    },
+    {
+      title: "State-of-the-Art Technology",
+      description: "Using the latest technology for diamond analysis, planning, and manufacturing",
+      icon: <DashboardOutlined />,
+      image: "/images/manufacturing/diamond_microscope.jpg"
+    },
+    {
+      title: "Expert Craftsmanship",
+      description: "Our master craftsmen bring decades of experience to every diamond we manufacture",
+      icon: <TeamOutlined />,
+      image: "/images/manufacturing/diamond_polishing.jpg"
+    },
+    {
+      title: "Quality Assurance",
+      description: "Rigorous quality control ensures every diamond meets our exacting standards",
+      icon: <SafetyCertificateOutlined />,
+      image: "/images/manufacturing/diamond_inspection.jpg"
+    }
+  ];
+
+  // Stats data
+  const stats = [
+    {
+      title: "Years of Excellence",
+      value: 40,
+      icon: <HistoryOutlined />
+    },
+    {
+      title: "Diamonds Manufactured",
+      value: "50K+",
+      icon: <DollarOutlined />
+    },
+    {
+      title: "Master Craftsmen",
+      value: 25,
+      icon: <TeamOutlined />
+    },
+    {
+      title: "Countries Served",
+      value: 30,
+      icon: <GlobalOutlined />
+    }
+  ];
+
+  // Manufacturing process steps
+  const processSteps = [
+    {
+      number: 1,
+      title: "Diamond Planning",
+      description: "Using 3D scanning and advanced software to analyze rough diamonds and determine the optimal cutting plan for maximum value and beauty."
+    },
+    {
+      number: 2,
+      title: "Cutting & Cleaving",
+      description: "Precision cutting of the rough diamond according to the planned design, using laser technology and traditional techniques."
+    },
+    {
+      number: 3,
+      title: "Polishing & Faceting",
+      description: "Creating the perfect facets that give the diamond its brilliance, fire, and scintillation through expert polishing."
+    },
+    {
+      number: 4,
+      title: "Quality Control",
+      description: "Rigorous inspection and certification of every diamond to ensure it meets our exacting standards for cut, clarity, color, and carat weight."
+    }
+  ];
+
+  return (
+    <div>
+      {/* Hero Section */}
+      <HeroSection id="hero">
+        <HeroBackground>
+          <img src="/images/manufacturing/diamond_cutting_1.jpg" alt="Diamond manufacturing" />
+        </HeroBackground>
+
+        <HeroContent>
+          <HeroLogo>
+            <RamavatargemsLogo width={280} />
+          </HeroLogo>
+
+          <HeroTitle level={1}>
+            Diamond <span>Manufacturing</span> Excellence
+          </HeroTitle>
+
+          <HeroSubtitle>
+            Crafting brilliance since 1982 with precision cutting and unparalleled expertise
+          </HeroSubtitle>
+
+          <ButtonGroup>
+            <Button
+              to="/manufacturing"
+              size="large"
+              style={{
+                background: "var(--gradient-blue-sapphire)",
+                border: "none",
+                color: "white",
+                padding: "0 var(--spacing-6)",
+                height: "48px",
+                fontSize: "1rem",
+                fontWeight: "500",
+                boxShadow: "var(--shadow-blue)"
+              }}
+            >
+              Our Manufacturing Process <ArrowRightOutlined />
+            </Button>
+
+            <Button
+              to="/collection"
+              variant="outline"
+              size="large"
+              style={{
+                borderColor: "var(--color-secondary)",
+                color: "var(--color-secondary)",
+                padding: "0 var(--spacing-6)",
+                height: "48px",
+                fontSize: "1rem",
+                fontWeight: "500",
+                borderWidth: "2px"
+              }}
+            >
+              View Our Collection
+            </Button>
+          </ButtonGroup>
+        </HeroContent>
+      </HeroSection>
+
+      {/* About Section */}
+      <AboutSection id="about">
+        <div className="container">
+          <SectionTitle
+            title={<>About <span className="text-gradient-gold">Ramavatargems</span></>}
+            subtitle="Diamond Manufacturing Excellence Since 1982"
+          />
+          <AboutContent>
+            <AboutText>
+              <Paragraph style={{ fontSize: "1.1rem", marginBottom: "20px", color: "var(--color-text-light)" }}>
+                Ramavatargems has been at the forefront of diamond manufacturing in Jaipur for over four decades. Our commitment to excellence and precision has made us a trusted name in the industry.
+              </Paragraph>
+              <Paragraph style={{ fontSize: "1.1rem", marginBottom: "20px", color: "var(--color-text-light)" }}>
+                We specialize in the complete diamond manufacturing process, from rough stone assessment to final polishing. Our team of master craftsmen combines traditional techniques with cutting-edge technology to create diamonds of exceptional quality and brilliance.
+              </Paragraph>
+              <Space direction="vertical" size="middle">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-primary)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Precision cutting for maximum brilliance</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-primary)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Advanced technology for diamond analysis</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-primary)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Ethical sourcing and sustainable practices</Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled style={{ color: "var(--color-primary)", marginRight: "10px", fontSize: "1.2rem" }} />
+                  <Text strong style={{ color: "var(--color-text)" }}>Rigorous quality control standards</Text>
+                </div>
+              </Space>
+              <div style={{ marginTop: "30px" }}>
+                <Button
+                  to="/about"
+                  size="large"
+                  style={{
+                    background: "var(--color-primary)",
+                    border: "none",
+                    color: "white",
+                    padding: "0 var(--spacing-5)",
+                    height: "44px",
+                    fontSize: "1rem",
+                    fontWeight: "500"
+                  }}
+                >
+                  Learn More About Us <RightOutlined />
+                </Button>
+              </div>
+            </AboutText>
+            <AboutImageContainer>
+              <img
+                src="/images/manufacturing/diamond_cutting_1.jpg"
+                alt="Ramavatargems diamond manufacturing workshop"
+              />
+            </AboutImageContainer>
+          </AboutContent>
+        </div>
+      </AboutSection>
+
+      {/* Features Section */}
+      <Section id="features">
+        <div className="container">
+          <SectionTitle
+            title={<>Our <span className="text-gradient-blue">Expertise</span></>}
+            subtitle="What Sets Our Diamond Manufacturing Apart"
+          />
+          <Row gutter={[24, 24]} style={{ marginTop: "40px" }}>
+            {features.map((feature, index) => (
+              <Col xs={24} sm={12} md={6} key={index}>
+                <FeatureCard
+                  cover={<img alt={feature.title} src={feature.image} />}
+                  hoverable
+                >
+                  <Card.Meta
+                    title={
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <span style={{
+                          color: "var(--color-primary)",
+                          marginRight: "10px",
+                          fontSize: "1.5rem"
+                        }}>
+                          {feature.icon}
+                        </span>
+                        {feature.title}
+                      </div>
+                    }
+                    description={feature.description}
+                  />
+                </FeatureCard>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Section>
+
+      {/* Stats Section */}
+      <StatsSection id="stats">
+        <div className="container">
+          <SectionTitle
+            title={<span style={{ color: "white" }}>Our <span style={{ color: "var(--color-secondary)" }}>Achievements</span></span>}
+            subtitle={<span style={{ color: "var(--color-secondary-light)" }}>Four Decades of Diamond Manufacturing Excellence</span>}
+          />
+          <Row gutter={[24, 24]} style={{ marginTop: "40px", position: "relative", zIndex: "1" }}>
+            {stats.map((stat, index) => (
+              <Col xs={24} sm={12} md={6} key={index}>
+                <StatCard>
+                  <div className="icon">{stat.icon}</div>
+                  <Statistic title={stat.title} value={stat.value} />
+                </StatCard>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </StatsSection>
+    </div>
+  );
+};
+
+export default Home;

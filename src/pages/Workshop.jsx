@@ -10,6 +10,7 @@ import {
   Space,
   Tabs,
 } from "antd";
+import EnhancedCarousel from "../components/EnhancedCarousel";
 import {
   ToolOutlined,
   TeamOutlined,
@@ -36,7 +37,7 @@ const HeroSection = styled.div`
   position: relative;
   height: 500px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1615810417181-d6e3f7991ef3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+    url("/images/manufacturing/diamond_cutting_1.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -233,43 +234,47 @@ const Workshop = () => {
       name: "Rajesh Sharma",
       position: "Master Diamond Cutter",
       experience: "30 years",
-      image:
-        "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
     },
     {
       name: "Vikram Patel",
       position: "Senior Polisher",
       experience: "25 years",
-      image:
-        "https://images.unsplash.com/photo-1615810417181-d6e3f7991ef3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: "/images/manufacturing/diamond_polishing.jpg",
     },
     {
       name: "Anita Desai",
       position: "Design Specialist",
       experience: "18 years",
-      image:
-        "https://images.unsplash.com/photo-1573500883495-6c9b16d88d8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: "/images/manufacturing/diamond_microscope.jpg",
     },
   ];
 
   const workshopImages = [
     {
-      image:
-        "https://images.unsplash.com/photo-1615810417181-d6e3f7991ef3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
       caption:
         "Our main workshop floor where rough diamonds are transformed into brilliant gems",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1573500883495-6c9b16d88d8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+      image: "/images/manufacturing/diamond_microscope.jpg",
       caption:
         "Precision planning area with specialized equipment for diamond analysis",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+      image: "/images/manufacturing/diamond_polishing.jpg",
       caption:
         "Quality control department where each diamond is meticulously inspected",
+    },
+    {
+      image: "/images/manufacturing/diamond_inspection.jpg",
+      caption:
+        "Final inspection process ensuring every diamond meets our quality standards",
+    },
+    {
+      image: "/images/manufacturing/diamond_cvd_process.jpg",
+      caption:
+        "Advanced technology lab for diamond growth and enhancement research",
     },
   ];
 
@@ -308,18 +313,20 @@ const Workshop = () => {
           </Col>
 
           <Col span={24}>
-            <StyledCarousel autoplay effect="fade">
-              {workshopImages.map((item, index) => (
-                <div key={index}>
-                  <div className="carousel-item">
-                    <img src={item.image} alt={`Workshop view ${index + 1}`} />
-                    <div className="caption">
-                      <Text strong>{item.caption}</Text>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </StyledCarousel>
+            <EnhancedCarousel
+              items={workshopImages.map((item, index) => ({
+                id: index,
+                image: item.image,
+                title: `Workshop view ${index + 1}`,
+                description: item.caption,
+              }))}
+              autoplay={true}
+              effect="fade"
+              dots={true}
+              arrows={true}
+              isDarkMode={false}
+              cardType="image"
+            />
           </Col>
 
           <Col span={24}>
@@ -375,7 +382,7 @@ const Workshop = () => {
                 <Row gutter={[24, 24]}>
                   <Col xs={24} md={12}>
                     <Image
-                      src="https://images.unsplash.com/photo-1615810417181-d6e3f7991ef3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      src="/images/manufacturing/diamond_cvd_process.jpg"
                       alt="Diamond cutting equipment"
                       style={{ borderRadius: "8px" }}
                     />
@@ -415,7 +422,7 @@ const Workshop = () => {
                   </Col>
                   <Col xs={24} md={12}>
                     <Image
-                      src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      src="/images/manufacturing/diamond_inspection.jpg"
                       alt="Quality control process"
                       style={{ borderRadius: "8px" }}
                     />
