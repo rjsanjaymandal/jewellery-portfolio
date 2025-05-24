@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Typography } from "antd";
-import RamavatargemsLogo from "../assets/RamavatargemsLogo.jsx";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
 
 const CollectionContainer = styled.div`
   max-width: 1200px;

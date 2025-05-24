@@ -4,15 +4,18 @@ import { Layout, ConfigProvider } from "antd";
 import styled from "styled-components";
 
 // Pages
-import Home from "./pages/Home.jsx";
+import Home from "./pages/HomeBasic.jsx";
 import About from "./pages/About.jsx";
 import Manufacturing from "./pages/Manufacturing.jsx";
+import JewelryManufacturing from "./pages/JewelryManufacturing.jsx";
+import Gemstones from "./pages/Gemstones.jsx";
 import Workshop from "./pages/Workshop.jsx";
 import Craftsmanship from "./pages/Craftsmanship.jsx";
 import Contact from "./pages/Contact.jsx";
+import Collection from "./pages/Collection.jsx";
 
 // Components
-import Navbar from "./components/Navbar.jsx";
+import ModernNavbar from "./components/ModernNavbar.jsx";
 import Footer from "./components/Footer.jsx";
 
 // Theme Context
@@ -59,17 +62,23 @@ const getAntdTheme = (isDarkMode) => {
     ...baseTheme,
     token: {
       ...baseTheme.token,
-      colorPrimary: "#8B4513", // Darker brown for better contrast
-      colorLink: "#8B4513",
-      colorLinkHover: "#5D2906", // Even darker for hover states
+      colorPrimary: "#1a237e", // Deep royal blue
+      colorLink: "#1a237e",
+      colorLinkHover: "#0d1642", // Darker blue for hover states
       colorTextBase: "#262626", // Darker text for better readability
       colorTextSecondary: "#4D4D4D", // Darker gray for better contrast
       colorBgBase: "#ffffff",
+      colorSuccess: "#d4af37", // Gold as success color
+      colorInfo: "#e5e4e2", // Silver/platinum tone
     },
     components: {
       ...baseTheme.components,
       Card: {
         colorBorderSecondary: "#e8e8e8", // Slightly darker border for better visibility
+      },
+      Button: {
+        colorPrimary: "#d4af37", // Gold for primary buttons
+        colorPrimaryHover: "#b8971f", // Darker gold for hover
       },
     },
   };
@@ -79,17 +88,23 @@ const getAntdTheme = (isDarkMode) => {
     ...baseTheme,
     token: {
       ...baseTheme.token,
-      colorPrimary: "#d4b996", // Lighter gold for dark mode
-      colorLink: "#d4b996",
-      colorLinkHover: "#e6d2b8", // Even lighter for hover
+      colorPrimary: "#d4af37", // Gold for dark mode
+      colorLink: "#d4af37",
+      colorLinkHover: "#e6c55c", // Lighter gold for hover
       colorTextBase: "#e6e6e6", // Light text for dark mode
       colorTextSecondary: "#b3b3b3", // Lighter gray for secondary text
       colorBgBase: "#121212", // Dark background
+      colorSuccess: "#1a237e", // Deep blue as success color in dark mode
+      colorInfo: "#e5e4e2", // Silver/platinum tone
     },
     components: {
       ...baseTheme.components,
       Card: {
         colorBorderSecondary: "#333333", // Darker border for dark mode
+      },
+      Button: {
+        colorPrimary: "#d4af37", // Gold for primary buttons
+        colorPrimaryHover: "#e6c55c", // Lighter gold for hover in dark mode
       },
     },
   };
@@ -105,15 +120,21 @@ const ThemedApp = () => {
   return (
     <ConfigProvider theme={antdTheme}>
       <StyledLayout>
-        <Navbar />
+        <ModernNavbar />
         <StyledContent>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/manufacturing" element={<Manufacturing />} />
+            <Route
+              path="/jewelry-manufacturing"
+              element={<JewelryManufacturing />}
+            />
+            <Route path="/gemstones" element={<Gemstones />} />
             <Route path="/workshop" element={<Workshop />} />
             <Route path="/craftsmanship" element={<Craftsmanship />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/collection" element={<Collection />} />
           </Routes>
         </StyledContent>
         <Footer />

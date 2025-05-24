@@ -438,6 +438,191 @@ const Craftsmanship = () => {
           </Col>
 
           <Col span={24}>
+            <SectionTitle level={2}>Artisanal Jewelry Traditions</SectionTitle>
+            <Paragraph>
+              Beyond our diamond craftsmanship, we also celebrate traditional
+              artisanal jewelry techniques that have been perfected over
+              centuries. These intricate methods create pieces with cultural
+              significance and unparalleled beauty.
+            </Paragraph>
+
+            <Row gutter={[24, 40]} style={{ marginTop: 32 }}>
+              <Col xs={24} md={8}>
+                <Card
+                  cover={
+                    <img
+                      alt="Meenakari jewelry"
+                      src="/images/artisanal_jewelry/meenakari.jpg"
+                      style={{ height: 250, objectFit: "cover" }}
+                    />
+                  }
+                  hoverable
+                >
+                  <Card.Meta
+                    title="Meenakari"
+                    description="An ancient enameling technique where vibrant colors are applied to the surface of metal. Each piece requires multiple firings to achieve the rich, glossy finish characteristic of this art form."
+                  />
+                  <div style={{ marginTop: 16 }}>
+                    <Text type="secondary">Origin: Rajasthan, India</Text>
+                    <br />
+                    <Text type="secondary">Materials: Gold, enamel colors</Text>
+                  </div>
+                </Card>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <Card
+                  cover={
+                    <img
+                      alt="Kundan jewelry"
+                      src="/images/artisanal_jewelry/kundan.jpg"
+                      style={{ height: 250, objectFit: "cover" }}
+                    />
+                  }
+                  hoverable
+                >
+                  <Card.Meta
+                    title="Kundan"
+                    description="A traditional form of Indian gemstone jewelry involving the setting of precious stones in gold foil. This technique creates a distinctive, luxurious appearance with a smooth, seamless finish."
+                  />
+                  <div style={{ marginTop: 16 }}>
+                    <Text type="secondary">
+                      Origin: Rajasthan and Gujarat, India
+                    </Text>
+                    <br />
+                    <Text type="secondary">
+                      Materials: Gold foil, gemstones, glass
+                    </Text>
+                  </div>
+                </Card>
+              </Col>
+
+              <Col xs={24} md={8}>
+                <Card
+                  cover={
+                    <img
+                      alt="Filigree jewelry"
+                      src="/images/artisanal_jewelry/filigree.jpg"
+                      style={{ height: 250, objectFit: "cover" }}
+                    />
+                  }
+                  hoverable
+                >
+                  <Card.Meta
+                    title="Filigree"
+                    description="An intricate metalworking technique where thin threads of gold or silver are twisted and curled into delicate patterns. The resulting lace-like appearance creates jewelry of extraordinary delicacy and beauty."
+                  />
+                  <div style={{ marginTop: 16 }}>
+                    <Text type="secondary">
+                      Origin: Global tradition with strong roots in
+                      Mediterranean cultures
+                    </Text>
+                    <br />
+                    <Text type="secondary">Materials: Gold or silver wire</Text>
+                  </div>
+                </Card>
+              </Col>
+            </Row>
+
+            <div style={{ marginTop: 40 }}>
+              <Title level={3}>Cultural Significance</Title>
+              <Paragraph>
+                These artisanal techniques are more than just methods of
+                creating beautiful jewelry—they represent cultural heritage and
+                artistic traditions passed down through generations. Each
+                technique tells a story of its region of origin and carries
+                symbolic meanings.
+              </Paragraph>
+              <Paragraph>
+                At Ramavatargems, we work with master artisans who have spent
+                decades perfecting these traditional techniques. By
+                incorporating these methods into our contemporary designs, we
+                create pieces that honor cultural heritage while appealing to
+                modern aesthetics.
+              </Paragraph>
+              <Paragraph>
+                The intricate patterns and motifs used in these techniques often
+                have symbolic significance, representing prosperity, protection,
+                or spiritual beliefs. Understanding these meanings adds another
+                dimension to the appreciation of these exquisite pieces.
+              </Paragraph>
+            </div>
+          </Col>
+
+          <Col span={24}>
+            <Divider />
+          </Col>
+
+          <Col span={24}>
+            <SectionTitle level={2}>Jewelry Design Sketches</SectionTitle>
+            <Paragraph>
+              Every masterpiece begins with a vision captured on paper. Our
+              design process starts with detailed sketches that explore form,
+              proportion, and the interplay of gemstones and metals.
+            </Paragraph>
+
+            <Row gutter={[24, 24]} style={{ marginTop: 32 }}>
+              <Col xs={24} md={12}>
+                <Image
+                  src="/images/sketches/ring_sketch.jpg"
+                  alt="Ring design sketch"
+                  style={{ borderRadius: "8px" }}
+                />
+                <div style={{ marginTop: 16 }}>
+                  <Title level={4}>Diamond Solitaire Ring Design</Title>
+                  <Paragraph>
+                    This sketch explores the classic elegance of a diamond
+                    solitaire ring. The designer has focused on creating a
+                    setting that maximizes the stone's brilliance while
+                    maintaining a timeless silhouette. The proportions are
+                    carefully calculated to ensure comfort and durability.
+                  </Paragraph>
+                  <Paragraph>
+                    <Text strong>Materials:</Text> Platinum band with 18K gold
+                    prongs, 1.5-carat round brilliant diamond
+                  </Paragraph>
+                  <Paragraph>
+                    <Text strong>Manufacturing Technique:</Text> Lost wax
+                    casting with hand-finished prongs and pavé setting
+                  </Paragraph>
+                </div>
+              </Col>
+
+              <Col xs={24} md={12}>
+                <Image
+                  src="/images/sketches/necklace_sketch.jpg"
+                  alt="Necklace design sketch"
+                  style={{ borderRadius: "8px" }}
+                />
+                <div style={{ marginTop: 16 }}>
+                  <Title level={4}>Sapphire and Diamond Necklace</Title>
+                  <Paragraph>
+                    This design concept features a graduated sapphire and
+                    diamond necklace. The sketch explores the rhythm and flow of
+                    the piece, ensuring that it drapes elegantly around the
+                    neck. The alternating pattern of gemstones creates visual
+                    interest and balance.
+                  </Paragraph>
+                  <Paragraph>
+                    <Text strong>Materials:</Text> 18K white gold, blue
+                    sapphires (total 10 carats), round brilliant diamonds (total
+                    5 carats)
+                  </Paragraph>
+                  <Paragraph>
+                    <Text strong>Manufacturing Technique:</Text> Individual link
+                    construction with articulated connections for flexibility
+                    and comfort
+                  </Paragraph>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+
+          <Col span={24}>
+            <Divider />
+          </Col>
+
+          <Col span={24}>
             <SectionTitle level={2}>Craftsmanship FAQ</SectionTitle>
             <StyledCollapse isDarkMode={isDarkMode}>
               {craftFAQs.map((faq, index) => (

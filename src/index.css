@@ -1,50 +1,73 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Elegant Diamond Theme Colors */
-  --color-primary: #1A1A1A; /* Rich black */
-  --color-primary-light: #333333; /* Dark gray */
-  --color-primary-dark: #000000; /* Pure black */
-  
-  --color-secondary: #D4AF37; /* Classic gold */
-  --color-secondary-light: #E5C76B; /* Light gold */
-  --color-secondary-dark: #9E7C1E; /* Darker gold */
-  
-  --color-accent-1: #8E8E8E; /* Silver/platinum */
-  --color-accent-2: #C0C0C0; /* Lighter silver */
-  --color-accent-3: #505050; /* Charcoal */
-  --color-accent-4: #FFFFFF; /* Pure white */
-  
-  --color-text: #1A1A1A; /* Rich black for main text */
-  --color-text-light: #505050; /* Dark gray for body text */
-  --color-text-lighter: #8E8E8E; /* Medium gray for secondary text */
-  
-  --color-background: #FFFFFF; /* Pure white */
-  --color-background-alt: #F8F8F8; /* Very light gray */
-  --color-background-card: #FFFFFF; /* White for cards */
-  
-  --color-border: #E5E5E5; /* Light gray for borders */
+  /* Diamond Manufacturing Theme Colors */
+  --color-primary: #1a237e; /* Deep royal blue */
+  --color-primary-light: #4a51a5; /* Lighter blue */
+  --color-primary-dark: #0d1642; /* Darker blue */
+
+  --color-secondary: #d4af37; /* Classic gold */
+  --color-secondary-light: #e6c55c; /* Light gold */
+  --color-secondary-dark: #b8971f; /* Darker gold */
+
+  --color-accent-1: #e5e4e2; /* Silver/platinum */
+  --color-accent-2: #f5f5f5; /* Lighter silver */
+  --color-accent-3: #303f9f; /* Medium blue */
+  --color-accent-4: #ffffff; /* Pure white */
+
+  --color-text: #262626; /* Rich black for main text */
+  --color-text-light: #4d4d4d; /* Dark gray for body text */
+  --color-text-lighter: #757575; /* Medium gray for secondary text */
+
+  --color-background: #ffffff; /* Pure white */
+  --color-background-alt: #f5f7ff; /* Very light blue */
+  --color-background-card: #ffffff; /* White for cards */
+
+  --color-border: #e5e5e5; /* Light gray for borders */
   --color-shadow: rgba(0, 0, 0, 0.1);
-  
+
   /* Feedback Colors */
-  --color-success: #4A7C59;
-  --color-warning: #D4AF37;
-  --color-error: #A02C2C;
-  --color-info: #2C5282;
-  
+  --color-success: #4a7c59;
+  --color-warning: #d4af37;
+  --color-error: #a02c2c;
+  --color-info: #1a237e;
+
   /* Gradients */
-  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F7E9B7 50%, #D4AF37 100%);
-  --gradient-silver: linear-gradient(135deg, #8E8E8E 0%, #C0C0C0 50%, #8E8E8E 100%);
-  --gradient-black: linear-gradient(135deg, #000000 0%, #333333 100%);
-  --gradient-white-gold: linear-gradient(135deg, #FFFFFF 0%, #F7E9B7 100%);
-  --gradient-elegant: linear-gradient(to right, #1A1A1A, #505050, #8E8E8E, #C0C0C0, #FFFFFF);
-  
+  --gradient-gold: linear-gradient(
+    135deg,
+    #d4af37 0%,
+    #f7e9b7 50%,
+    #d4af37 100%
+  );
+  --gradient-blue: linear-gradient(
+    135deg,
+    #1a237e 0%,
+    #303f9f 50%,
+    #1a237e 100%
+  );
+  --gradient-silver: linear-gradient(
+    135deg,
+    #c0c0c0 0%,
+    #e5e4e2 50%,
+    #c0c0c0 100%
+  );
+  --gradient-blue-gold: linear-gradient(135deg, #1a237e 0%, #d4af37 100%);
+  --gradient-white-gold: linear-gradient(135deg, #ffffff 0%, #f7e9b7 100%);
+  --gradient-elegant: linear-gradient(
+    to right,
+    #0d1642,
+    #1a237e,
+    #303f9f,
+    #4a51a5,
+    #7986cb
+  );
+
   /* Typography */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Montserrat', sans-serif;
-  --font-accent: 'Cormorant Garamond', serif;
-  
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-accent: "Cormorant Garamond", serif;
+
   /* Spacing */
   --spacing-1: 0.25rem; /* 4px */
   --spacing-2: 0.5rem; /* 8px */
@@ -57,7 +80,7 @@
   --spacing-12: 3rem; /* 48px */
   --spacing-16: 4rem; /* 64px */
   --spacing-20: 5rem; /* 80px */
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -65,14 +88,14 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.05);
   --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.15);
   --shadow-silver: 0 5px 15px rgba(192, 192, 192, 0.15);
-  
+
   /* Border Radius */
   --border-radius-sm: 2px;
   --border-radius-md: 4px;
   --border-radius-lg: 6px;
   --border-radius-xl: 8px;
   --border-radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: all 0.2s ease;
   --transition-default: all 0.3s ease;
@@ -81,30 +104,54 @@
 
 /* Dark Theme Class */
 .dark-theme {
-  --color-primary: #D4AF37; /* Gold becomes primary in dark mode */
-  --color-primary-light: #E5C76B; /* Light gold */
-  --color-primary-dark: #9E7C1E; /* Darker gold */
-  
-  --color-secondary: #C0C0C0; /* Silver becomes secondary */
-  --color-secondary-light: #D9D9D9; /* Lighter silver */
-  --color-secondary-dark: #8E8E8E; /* Darker silver */
-  
-  --color-text: #F8F8F8; /* Off-white for main text */
-  --color-text-light: #D9D9D9; /* Light gray for body text */
-  --color-text-lighter: #A0A0A0; /* Medium gray for secondary text */
-  
+  --color-primary: #d4af37; /* Gold becomes primary in dark mode */
+  --color-primary-light: #e6c55c; /* Light gold */
+  --color-primary-dark: #b8971f; /* Darker gold */
+
+  --color-secondary: #303f9f; /* Deep blue becomes secondary */
+  --color-secondary-light: #4a51a5; /* Lighter blue */
+  --color-secondary-dark: #1a237e; /* Darker blue */
+
+  --color-text: #f8f8f8; /* Off-white for main text */
+  --color-text-light: #d9d9d9; /* Light gray for body text */
+  --color-text-lighter: #a0a0a0; /* Medium gray for secondary text */
+
   --color-background: #121212; /* Very dark gray */
-  --color-background-alt: #1E1E1E; /* Dark gray */
-  --color-background-card: #1E1E1E; /* Dark gray for cards */
-  
+  --color-background-alt: #1a1a2e; /* Dark blue-gray */
+  --color-background-card: #1e1e2e; /* Dark blue-gray for cards */
+
   --color-border: #333333; /* Dark gray for borders */
   --color-shadow: rgba(0, 0, 0, 0.3);
-  
+
   /* Gradients for dark mode */
-  --gradient-gold: linear-gradient(135deg, #9E7C1E 0%, #D4AF37 50%, #9E7C1E 100%);
-  --gradient-silver: linear-gradient(135deg, #505050 0%, #8E8E8E 50%, #505050 100%);
-  --gradient-elegant: linear-gradient(to right, #000000, #1A1A1A, #333333, #505050, #8E8E8E);
-  
+  --gradient-gold: linear-gradient(
+    135deg,
+    #b8971f 0%,
+    #d4af37 50%,
+    #b8971f 100%
+  );
+  --gradient-blue: linear-gradient(
+    135deg,
+    #0d1642 0%,
+    #1a237e 50%,
+    #0d1642 100%
+  );
+  --gradient-silver: linear-gradient(
+    135deg,
+    #505050 0%,
+    #8e8e8e 50%,
+    #505050 100%
+  );
+  --gradient-blue-gold: linear-gradient(135deg, #0d1642 0%, #b8971f 100%);
+  --gradient-elegant: linear-gradient(
+    to right,
+    #000000,
+    #0d1642,
+    #1a237e,
+    #303f9f,
+    #4a51a5
+  );
+
   /* Shadows for dark mode */
   --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.25);
   --shadow-silver: 0 5px 15px rgba(142, 142, 142, 0.25);
@@ -129,12 +176,18 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color var(--transition-default), color var(--transition-default);
+  transition: background-color var(--transition-default),
+    color var(--transition-default);
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
@@ -213,7 +266,7 @@ button {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -245,7 +298,8 @@ button {
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: transform var(--transition-default), box-shadow var(--transition-default);
+  transition: transform var(--transition-default),
+    box-shadow var(--transition-default);
 }
 
 .card:hover {
@@ -264,19 +318,19 @@ button {
   .container {
     max-width: 768px;
   }
-  
+
   h1 {
     font-size: 2.5rem;
   }
-  
+
   h2 {
     font-size: 2rem;
   }
-  
+
   h3 {
     font-size: 1.75rem;
   }
-  
+
   .section {
     padding: var(--spacing-12) 0;
   }
@@ -286,19 +340,19 @@ button {
   .container {
     max-width: 640px;
   }
-  
+
   h1 {
     font-size: 2.25rem;
   }
-  
+
   h2 {
     font-size: 1.875rem;
   }
-  
+
   h3 {
     font-size: 1.5rem;
   }
-  
+
   .section {
     padding: var(--spacing-8) 0;
   }
@@ -309,15 +363,15 @@ button {
     max-width: 100%;
     padding: 0 var(--spacing-4);
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.75rem;
   }
-  
+
   h3 {
     font-size: 1.5rem;
   }

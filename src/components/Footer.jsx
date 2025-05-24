@@ -49,8 +49,11 @@ const StyledFooter = styled(AntFooter)`
 
 // Top Footer with main content
 const TopFooter = styled.div`
-  background: var(--color-primary);
-  padding: var(--spacing-16) 0 var(--spacing-12);
+  background: ${(props) =>
+    props.isDarkMode
+      ? "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)"
+      : "linear-gradient(135deg, #1a237e 0%, #26348f 50%, #1a237e 100%)"};
+  padding: 80px 0 60px;
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -62,27 +65,54 @@ const TopFooter = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("/images/manufacturing/diamond_pattern.png");
-    background-size: 300px;
-    opacity: 0.05;
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(212, 175, 55, 0.1) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(212, 175, 55, 0.05) 0%,
+        transparent 60%
+      );
     z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${(props) =>
+      props.isDarkMode ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0.2)"};
+    z-index: 1;
   }
 `;
 
 const FooterContainer = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 var(--spacing-4);
+  padding: 0 24px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
 `;
 
 // Bottom Footer with copyright
 const BottomFooter = styled.div`
-  background-color: black;
-  padding: var(--spacing-4) 0;
-  color: rgba(255, 255, 255, 0.7);
+  background: ${(props) =>
+    props.isDarkMode
+      ? "linear-gradient(135deg, #000000 0%, #1a1a1a 100%)"
+      : "linear-gradient(135deg, #000000 0%, #1a237e 100%)"};
+  padding: 24px 0;
+  color: #ffffff;
   position: relative;
+  border-top: 2px solid var(--color-secondary);
 
   &::before {
     content: "";
@@ -90,30 +120,38 @@ const BottomFooter = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: var(--gradient-gold);
-    opacity: 0.3;
+    height: 100%;
+    background: ${(props) =>
+      props.isDarkMode ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.3)"};
+    z-index: 0;
   }
 `;
 
 // Section Title
 const FooterTitle = styled(Title)`
-  color: white !important;
-  margin-bottom: var(--spacing-6) !important;
+  color: #ffffff !important;
+  margin-bottom: 24px !important;
   position: relative;
   font-weight: 700 !important;
-  font-size: 1.4rem !important;
+  font-size: 1.5rem !important;
   display: inline-block;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   &::after {
     content: "";
     position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: var(--color-secondary);
-    border-radius: 1px;
+    bottom: -12px;
+    left: 20px;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-secondary), #f7e9b7);
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
   }
 `;
 
@@ -134,16 +172,19 @@ const LogoSection = styled.div`
 
 // Footer text
 const FooterText = styled(Paragraph)`
-  color: white !important;
-  margin-bottom: var(--spacing-6) !important;
-  font-size: 1rem !important;
+  color: #ffffff !important;
+  margin-bottom: 24px !important;
+  font-size: 1.1rem !important;
   line-height: 1.8 !important;
-  max-width: 90%;
+  max-width: 100%;
   font-weight: 500 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  border-radius: var(--border-radius-md);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 24px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 `;
 
 // Social icons
@@ -387,7 +428,7 @@ const Footer = () => {
 
   return (
     <StyledFooter>
-      <TopFooter>
+      <TopFooter isDarkMode={isDarkMode}>
         <FooterContainer>
           <Row gutter={[32, 48]}>
             {/* About Section */}
@@ -482,7 +523,7 @@ const Footer = () => {
         </FooterContainer>
       </TopFooter>
 
-      <BottomFooter>
+      <BottomFooter isDarkMode={isDarkMode}>
         <FooterContainer>
           <Row justify="space-between" align="middle">
             <Col

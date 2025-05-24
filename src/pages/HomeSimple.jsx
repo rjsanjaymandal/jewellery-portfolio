@@ -1,0 +1,1669 @@
+import React from "react";
+import {
+  Typography,
+  Row,
+  Col,
+  Card,
+  Carousel,
+  Statistic,
+  Space,
+  Badge,
+  Button as AntButton,
+} from "antd";
+import {
+  ArrowRightOutlined,
+  CheckCircleFilled,
+  HistoryOutlined,
+  DollarOutlined,
+  TeamOutlined,
+  GlobalOutlined,
+  ToolOutlined,
+  DashboardOutlined,
+  SafetyCertificateOutlined,
+  StarFilled,
+  SunOutlined,
+  MoonOutlined,
+} from "@ant-design/icons";
+import styled, { keyframes } from "styled-components";
+import { useTheme } from "../context/ThemeContext";
+import Button from "../components/Button";
+import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
+
+const { Title, Text, Paragraph } = Typography;
+
+// Modern Animations
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
+
+const float = keyframes`
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+`;
+
+// Modern Styled Components with Dark Mode Support
+const PageContainer = styled.div`
+  overflow-x: hidden;
+  background: var(--color-background);
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+`;
+
+const Section = styled.section`
+  padding: 120px 0;
+  position: relative;
+  background: var(--color-background);
+
+  @media (max-width: 768px) {
+    padding: 80px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 0;
+  }
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+`;
+
+// Modern Hero Section
+const HeroSection = styled(Section)`
+  height: calc(100vh - 80px);
+  min-height: 500px;
+  max-height: calc(100vh - 80px);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  margin-top: 80px;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 70px);
+    min-height: 450px;
+    max-height: calc(100vh - 70px);
+    margin-top: 70px;
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 70px);
+    min-height: 400px;
+    max-height: calc(100vh - 70px);
+  }
+`;
+
+const ModernCarousel = styled(Carousel)`
+  width: 100%;
+  height: 100%;
+
+  .slick-dots {
+    bottom: 60px;
+    z-index: 15;
+    display: flex !important;
+    justify-content: center;
+    gap: 20px;
+
+    li {
+      width: auto;
+      height: auto;
+      margin: 0;
+
+      button {
+        width: 60px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      &.slick-active button {
+        background: var(--color-secondary);
+        transform: scaleY(2);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+      }
+    }
+  }
+
+  .slick-arrow {
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 15;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+    &:hover {
+      background: rgba(212, 175, 55, 0.3);
+      border-color: var(--color-secondary);
+      transform: scale(1.2);
+      box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+    }
+
+    &::before {
+      font-size: 24px;
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      width: 60px;
+      height: 60px;
+
+      &::before {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  .slick-prev {
+    left: 60px;
+
+    @media (max-width: 768px) {
+      left: 30px;
+    }
+  }
+
+  .slick-next {
+    right: 60px;
+
+    @media (max-width: 768px) {
+      right: 30px;
+    }
+  }
+
+  .slick-slide {
+    height: calc(100vh - 80px);
+    min-height: 500px;
+    max-height: calc(100vh - 80px);
+
+    > div {
+      height: 100%;
+    }
+
+    @media (max-width: 768px) {
+      height: calc(100vh - 70px);
+      min-height: 450px;
+      max-height: calc(100vh - 70px);
+    }
+
+    @media (max-width: 480px) {
+      height: calc(100vh - 70px);
+      min-height: 400px;
+      max-height: calc(100vh - 70px);
+    }
+  }
+`;
+
+const HeroSlide = styled.div`
+  height: calc(100vh - 80px);
+  min-height: 500px;
+  max-height: calc(100vh - 80px);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(26, 35, 126, 0.75) 30%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(212, 175, 55, 0.2) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(212, 175, 55, 0.15) 0%,
+        transparent 60%
+      ),
+      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 70px);
+    min-height: 450px;
+    max-height: calc(100vh - 70px);
+    background-attachment: scroll;
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 70px);
+    min-height: 400px;
+    max-height: calc(100vh - 70px);
+  }
+`;
+
+const Home = () => {
+  const { isDarkMode } = useTheme();
+
+  return (
+    <PageContainer>
+      {/* Modern Hero Section */}
+      <HeroSection>
+        <ModernCarousel
+          autoplay
+          dots
+          effect="fade"
+          autoplaySpeed={5000}
+          pauseOnHover={false}
+          pauseOnFocus={false}
+        >
+          <div>
+            <HeroSlide
+              style={{
+                backgroundImage:
+                  "url(/images/jewelry_pieces/hero_jewelry_making.jpg)",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  maxWidth: "1000px",
+                  margin: "60px auto",
+                  padding: "40px 35px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <div
+                  style={{
+                    marginBottom: "25px",
+                    filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
+                  }}
+                >
+                  <RamavatargemsLogo width={180} />
+                </div>
+                <Title
+                  level={1}
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "3.2rem",
+                    fontWeight: 900,
+                    marginBottom: "20px",
+                    textShadow:
+                      "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
+                    letterSpacing: "3px",
+                    lineHeight: 1.1,
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  Diamond{" "}
+                  <span style={{ color: "var(--color-secondary)" }}>
+                    Jewelry
+                  </span>{" "}
+                  Manufacturing
+                </Title>
+                <Text
+                  style={{
+                    display: "block",
+                    fontSize: "1.4rem",
+                    color: "#ffffff",
+                    marginBottom: "25px",
+                    maxWidth: "900px",
+                    fontWeight: 400,
+                    textShadow:
+                      "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
+                    lineHeight: 1.7,
+                    letterSpacing: "1px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    padding: "18px 28px",
+                    borderRadius: "15px",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  Crafting exquisite diamond jewelry with precision and artistry
+                  since 1982
+                </Text>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "25px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: "25px",
+                  }}
+                >
+                  <AntButton
+                    type="primary"
+                    size="large"
+                    style={{
+                      padding: "16px 32px",
+                      height: "auto",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      minWidth: "180px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      border: "none",
+                      color: "#000000",
+                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                    }}
+                  >
+                    <ToolOutlined style={{ marginRight: 8 }} />
+                    Our Process
+                  </AntButton>
+                  <AntButton
+                    size="large"
+                    style={{
+                      padding: "16px 32px",
+                      height: "auto",
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      minWidth: "180px",
+                      background: "rgba(255, 255, 255, 0.15)",
+                      border: "2px solid rgba(255, 255, 255, 0.4)",
+                      color: "#ffffff",
+                      backdropFilter: "blur(25px)",
+                      boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
+                    }}
+                  >
+                    <ArrowRightOutlined style={{ marginRight: 8 }} />
+                    Watch Video
+                  </AntButton>
+                </div>
+              </div>
+            </HeroSlide>
+          </div>
+
+          <div>
+            <HeroSlide
+              style={{
+                backgroundImage:
+                  "url(/images/jewelry_pieces/diamond_ring_making.jpg)",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  maxWidth: "1000px",
+                  margin: "60px auto",
+                  padding: "40px 35px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <Title
+                  level={1}
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "3.2rem",
+                    fontWeight: 900,
+                    marginBottom: "20px",
+                    textShadow:
+                      "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
+                    letterSpacing: "3px",
+                    lineHeight: 1.1,
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  Artisanal{" "}
+                  <span style={{ color: "var(--color-secondary)" }}>
+                    Jewelry
+                  </span>{" "}
+                  Creation
+                </Title>
+                <Text
+                  style={{
+                    display: "block",
+                    fontSize: "1.4rem",
+                    color: "#ffffff",
+                    marginBottom: "25px",
+                    maxWidth: "900px",
+                    fontWeight: 400,
+                    textShadow:
+                      "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
+                    lineHeight: 1.7,
+                    letterSpacing: "1px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    padding: "25px 35px",
+                    borderRadius: "15px",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  Transforming precious metals and diamonds into wearable art
+                </Text>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "25px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: "40px",
+                  }}
+                >
+                  <AntButton
+                    type="primary"
+                    size="large"
+                    style={{
+                      padding: "20px 45px",
+                      height: "auto",
+                      fontSize: "1.3rem",
+                      fontWeight: 700,
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1.5px",
+                      minWidth: "220px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      border: "none",
+                      color: "#000000",
+                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                    }}
+                  >
+                    <DashboardOutlined style={{ marginRight: 8 }} />
+                    Manufacturing Process
+                  </AntButton>
+                </div>
+              </div>
+            </HeroSlide>
+          </div>
+
+          <div>
+            <HeroSlide
+              style={{
+                backgroundImage:
+                  "url(/images/jewelry_pieces/diamond_necklace.jpg)",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  maxWidth: "1000px",
+                  margin: "60px auto",
+                  padding: "40px 35px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <Title
+                  level={1}
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "3.2rem",
+                    fontWeight: 900,
+                    marginBottom: "20px",
+                    textShadow:
+                      "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
+                    letterSpacing: "3px",
+                    lineHeight: 1.1,
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  Exquisite{" "}
+                  <span style={{ color: "var(--color-secondary)" }}>
+                    Diamond
+                  </span>{" "}
+                  Collections
+                </Title>
+                <Text
+                  style={{
+                    display: "block",
+                    fontSize: "1.4rem",
+                    color: "#ffffff",
+                    marginBottom: "25px",
+                    maxWidth: "900px",
+                    fontWeight: 400,
+                    textShadow:
+                      "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
+                    lineHeight: 1.7,
+                    letterSpacing: "1px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    padding: "25px 35px",
+                    borderRadius: "15px",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  Discover our premium selection of handcrafted diamond jewelry
+                  pieces
+                </Text>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "25px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: "40px",
+                  }}
+                >
+                  <AntButton
+                    type="primary"
+                    size="large"
+                    style={{
+                      padding: "20px 45px",
+                      height: "auto",
+                      fontSize: "1.3rem",
+                      fontWeight: 700,
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1.5px",
+                      minWidth: "220px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      border: "none",
+                      color: "#000000",
+                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                    }}
+                  >
+                    <StarFilled style={{ marginRight: 8 }} />
+                    Explore Collections
+                  </AntButton>
+                </div>
+              </div>
+            </HeroSlide>
+          </div>
+        </ModernCarousel>
+      </HeroSection>
+
+      {/* About Section */}
+      <Section>
+        <Container>
+          <Row gutter={[48, 48]} align="middle">
+            <Col xs={24} md={12}>
+              <Title
+                level={2}
+                style={{
+                  color: "var(--color-text-primary)",
+                  fontSize: "3rem",
+                  fontWeight: 900,
+                  marginBottom: "24px",
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                About{" "}
+                <span style={{ color: "var(--color-secondary)" }}>
+                  Ramavatargems
+                </span>
+              </Title>
+              <Text
+                style={{
+                  display: "block",
+                  fontSize: "1.2rem",
+                  color: "var(--color-text-secondary)",
+                  marginBottom: "24px",
+                  lineHeight: 1.8,
+                }}
+              >
+                Diamond Jewelry Manufacturing Excellence Since 1982
+              </Text>
+              <Paragraph
+                style={{
+                  fontSize: "1.1rem",
+                  color: "var(--color-text-primary)",
+                  marginBottom: "20px",
+                  lineHeight: 1.7,
+                }}
+              >
+                Ramavatargems has been at the forefront of diamond jewelry
+                manufacturing in Jaipur for over four decades. Our commitment to
+                excellence and artistry has made us a trusted name in the
+                industry.
+              </Paragraph>
+              <Paragraph
+                style={{
+                  fontSize: "1.1rem",
+                  color: "var(--color-text-primary)",
+                  marginBottom: "30px",
+                  lineHeight: 1.7,
+                }}
+              >
+                We specialize in the complete jewelry creation process, from
+                design conceptualization to final finishing. Our team of master
+                jewelers combines traditional craftsmanship with modern
+                techniques.
+              </Paragraph>
+              <Space direction="vertical" size="middle">
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled
+                    style={{
+                      color: "var(--color-secondary)",
+                      marginRight: "12px",
+                      fontSize: "1.3rem",
+                    }}
+                  />
+                  <Text
+                    strong
+                    style={{
+                      color: "var(--color-text-primary)",
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    Bespoke jewelry design and creation
+                  </Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled
+                    style={{
+                      color: "var(--color-secondary)",
+                      marginRight: "12px",
+                      fontSize: "1.3rem",
+                    }}
+                  />
+                  <Text
+                    strong
+                    style={{
+                      color: "var(--color-text-primary)",
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    Expert diamond setting and metalwork
+                  </Text>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CheckCircleFilled
+                    style={{
+                      color: "var(--color-secondary)",
+                      marginRight: "12px",
+                      fontSize: "1.3rem",
+                    }}
+                  />
+                  <Text
+                    strong
+                    style={{
+                      color: "var(--color-text-primary)",
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    Ethical sourcing of diamonds and precious metals
+                  </Text>
+                </div>
+              </Space>
+            </Col>
+            <Col xs={24} md={12}>
+              <div
+                style={{
+                  position: "relative",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <img
+                  src="/images/jewelry_pieces/diamond_ring_making.jpg"
+                  alt="Ramavatargems jewelry manufacturing workshop"
+                  style={{ width: "100%", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "20px",
+                    right: "20px",
+                    background: "var(--color-secondary)",
+                    color: "#000000",
+                    padding: "12px 24px",
+                    borderRadius: "25px",
+                    fontWeight: "600",
+                    fontSize: "1.1rem",
+                    boxShadow: "0 4px 16px rgba(212, 175, 55, 0.4)",
+                  }}
+                >
+                  Since 1982
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
+      {/* Stats Section */}
+      <Section style={{ background: "var(--color-surface)" }}>
+        <Container>
+          <Title
+            level={2}
+            style={{
+              textAlign: "center",
+              color: "var(--color-text-primary)",
+              fontSize: "3rem",
+              fontWeight: 900,
+              marginBottom: "60px",
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            Our{" "}
+            <span style={{ color: "var(--color-secondary)" }}>
+              Achievements
+            </span>
+          </Title>
+          <Row gutter={[32, 32]}>
+            <Col xs={24} sm={12} md={6}>
+              <Card
+                style={{
+                  textAlign: "center",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    color: "var(--color-secondary)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  <HistoryOutlined />
+                </div>
+                <Statistic
+                  title={
+                    <span
+                      style={{
+                        color: "var(--color-text-primary)",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Years of Excellence
+                    </span>
+                  }
+                  value="40+"
+                  valueStyle={{
+                    fontSize: "3rem",
+                    fontWeight: 800,
+                    color: "var(--color-secondary)",
+                  }}
+                />
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} md={6}>
+              <Card
+                style={{
+                  textAlign: "center",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    color: "var(--color-secondary)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  <TeamOutlined />
+                </div>
+                <Statistic
+                  title={
+                    <span
+                      style={{
+                        color: "var(--color-text-primary)",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Master Craftsmen
+                    </span>
+                  }
+                  value="25+"
+                  valueStyle={{
+                    fontSize: "3rem",
+                    fontWeight: 800,
+                    color: "var(--color-secondary)",
+                  }}
+                />
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} md={6}>
+              <Card
+                style={{
+                  textAlign: "center",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    color: "var(--color-secondary)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  <GlobalOutlined />
+                </div>
+                <Statistic
+                  title={
+                    <span
+                      style={{
+                        color: "var(--color-text-primary)",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Countries Served
+                    </span>
+                  }
+                  value="15+"
+                  valueStyle={{
+                    fontSize: "3rem",
+                    fontWeight: 800,
+                    color: "var(--color-secondary)",
+                  }}
+                />
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} md={6}>
+              <Card
+                style={{
+                  textAlign: "center",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "3rem",
+                    color: "var(--color-secondary)",
+                    marginBottom: "16px",
+                  }}
+                >
+                  <StarFilled />
+                </div>
+                <Statistic
+                  title={
+                    <span
+                      style={{
+                        color: "var(--color-text-primary)",
+                        fontSize: "1.2rem",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Pieces Created
+                    </span>
+                  }
+                  value="10000+"
+                  valueStyle={{
+                    fontSize: "3rem",
+                    fontWeight: 800,
+                    color: "var(--color-secondary)",
+                  }}
+                />
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
+      {/* Services Section */}
+      <Section>
+        <Container>
+          <Title
+            level={2}
+            style={{
+              textAlign: "center",
+              color: "var(--color-text-primary)",
+              fontSize: "3rem",
+              fontWeight: 900,
+              marginBottom: "20px",
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            Our{" "}
+            <span style={{ color: "var(--color-secondary)" }}>Services</span>
+          </Title>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: "1.2rem",
+              color: "var(--color-text-secondary)",
+              marginBottom: "60px",
+              display: "block",
+            }}
+          >
+            Comprehensive diamond jewelry manufacturing solutions
+          </Text>
+          <Row gutter={[32, 32]}>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  transition: "all 0.3s ease",
+                }}
+                hoverable
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary), #f7e9b7)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 20px",
+                      fontSize: "2.5rem",
+                      color: "#000000",
+                    }}
+                  >
+                    <ToolOutlined />
+                  </div>
+                  <Title
+                    level={4}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "16px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Custom Design & Manufacturing
+                  </Title>
+                  <Paragraph
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      fontSize: "1rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    From concept to creation, we bring your unique jewelry
+                    designs to life with precision craftsmanship and attention
+                    to detail.
+                  </Paragraph>
+                </div>
+              </Card>
+            </Col>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  transition: "all 0.3s ease",
+                }}
+                hoverable
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary), #f7e9b7)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 20px",
+                      fontSize: "2.5rem",
+                      color: "#000000",
+                    }}
+                  >
+                    <StarFilled />
+                  </div>
+                  <Title
+                    level={4}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "16px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Diamond Setting & Finishing
+                  </Title>
+                  <Paragraph
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      fontSize: "1rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Expert diamond setting techniques and premium finishing
+                    services to ensure every piece meets the highest quality
+                    standards.
+                  </Paragraph>
+                </div>
+              </Card>
+            </Col>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  transition: "all 0.3s ease",
+                }}
+                hoverable
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      width: "80px",
+                      height: "80px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary), #f7e9b7)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 20px",
+                      fontSize: "2.5rem",
+                      color: "#000000",
+                    }}
+                  >
+                    <SafetyCertificateOutlined />
+                  </div>
+                  <Title
+                    level={4}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "16px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Quality Assurance & Certification
+                  </Title>
+                  <Paragraph
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      fontSize: "1rem",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Rigorous quality control processes and professional
+                    certification to guarantee authenticity and excellence in
+                    every piece.
+                  </Paragraph>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
+      {/* Process Section */}
+      <Section style={{ background: "var(--color-surface)" }}>
+        <Container>
+          <Row gutter={[48, 48]} align="middle">
+            <Col xs={24} md={12}>
+              <div
+                style={{
+                  position: "relative",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <img
+                  src="/images/jewelry_pieces/hero_jewelry_making.jpg"
+                  alt="Diamond jewelry manufacturing process"
+                  style={{ width: "100%", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    right: "0",
+                    bottom: "0",
+                    background:
+                      "linear-gradient(45deg, rgba(212, 175, 55, 0.2), transparent)",
+                  }}
+                />
+              </div>
+            </Col>
+            <Col xs={24} md={12}>
+              <Title
+                level={2}
+                style={{
+                  color: "var(--color-text-primary)",
+                  fontSize: "3rem",
+                  fontWeight: 900,
+                  marginBottom: "24px",
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                Our{" "}
+                <span style={{ color: "var(--color-secondary)" }}>
+                  Manufacturing
+                </span>{" "}
+                Process
+              </Title>
+              <Paragraph
+                style={{
+                  fontSize: "1.1rem",
+                  color: "var(--color-text-primary)",
+                  marginBottom: "30px",
+                  lineHeight: 1.7,
+                }}
+              >
+                Our meticulous manufacturing process combines traditional
+                craftsmanship with modern technology to create exceptional
+                diamond jewelry pieces.
+              </Paragraph>
+              <Space
+                direction="vertical"
+                size="large"
+                style={{ width: "100%" }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--color-secondary)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#000000",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    1
+                  </div>
+                  <div>
+                    <Title
+                      level={5}
+                      style={{
+                        color: "var(--color-text-primary)",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Design Consultation
+                    </Title>
+                    <Text style={{ color: "var(--color-text-secondary)" }}>
+                      Understanding your vision and creating detailed design
+                      specifications
+                    </Text>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--color-secondary)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#000000",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    2
+                  </div>
+                  <div>
+                    <Title
+                      level={5}
+                      style={{
+                        color: "var(--color-text-primary)",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Material Selection
+                    </Title>
+                    <Text style={{ color: "var(--color-text-secondary)" }}>
+                      Sourcing premium diamonds and precious metals with
+                      certification
+                    </Text>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--color-secondary)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#000000",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    3
+                  </div>
+                  <div>
+                    <Title
+                      level={5}
+                      style={{
+                        color: "var(--color-text-primary)",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Precision Crafting
+                    </Title>
+                    <Text style={{ color: "var(--color-text-secondary)" }}>
+                      Expert artisans bring the design to life with meticulous
+                      attention to detail
+                    </Text>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      background: "var(--color-secondary)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#000000",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                      flexShrink: 0,
+                    }}
+                  >
+                    4
+                  </div>
+                  <div>
+                    <Title
+                      level={5}
+                      style={{
+                        color: "var(--color-text-primary)",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Quality Inspection
+                    </Title>
+                    <Text style={{ color: "var(--color-text-secondary)" }}>
+                      Rigorous quality control and final inspection before
+                      delivery
+                    </Text>
+                  </div>
+                </div>
+              </Space>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
+      {/* Testimonials Section */}
+      <Section>
+        <Container>
+          <Title
+            level={2}
+            style={{
+              textAlign: "center",
+              color: "var(--color-text-primary)",
+              fontSize: "3rem",
+              fontWeight: 900,
+              marginBottom: "20px",
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            What Our{" "}
+            <span style={{ color: "var(--color-secondary)" }}>Clients</span> Say
+          </Title>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: "1.2rem",
+              color: "var(--color-text-secondary)",
+              marginBottom: "60px",
+              display: "block",
+            }}
+          >
+            Trusted by jewelry retailers and designers worldwide
+          </Text>
+          <Row gutter={[32, 32]}>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  padding: "24px",
+                }}
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      fontSize: "3rem",
+                      color: "var(--color-secondary)",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    ⭐⭐⭐⭐⭐
+                  </div>
+                  <Paragraph
+                    style={{
+                      fontSize: "1.1rem",
+                      color: "var(--color-text-primary)",
+                      fontStyle: "italic",
+                      marginBottom: "20px",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    "Ramavatargems has been our trusted partner for over 5
+                    years. Their attention to detail and quality craftsmanship
+                    is unmatched in the industry."
+                  </Paragraph>
+                  <Title
+                    level={5}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    Sarah Johnson
+                  </Title>
+                  <Text style={{ color: "var(--color-text-secondary)" }}>
+                    Luxury Jewelry Retailer, New York
+                  </Text>
+                </div>
+              </Card>
+            </Col>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  padding: "24px",
+                }}
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      fontSize: "3rem",
+                      color: "var(--color-secondary)",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    ⭐⭐⭐⭐⭐
+                  </div>
+                  <Paragraph
+                    style={{
+                      fontSize: "1.1rem",
+                      color: "var(--color-text-primary)",
+                      fontStyle: "italic",
+                      marginBottom: "20px",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    "The precision and artistry in their work is exceptional.
+                    Every piece they create exceeds our expectations and
+                    delights our customers."
+                  </Paragraph>
+                  <Title
+                    level={5}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    Michael Chen
+                  </Title>
+                  <Text style={{ color: "var(--color-text-secondary)" }}>
+                    Jewelry Designer, California
+                  </Text>
+                </div>
+              </Card>
+            </Col>
+            <Col xs={24} md={8}>
+              <Card
+                style={{
+                  height: "100%",
+                  background: "var(--color-card)",
+                  border: "1px solid var(--color-border-light)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-lg)",
+                  padding: "24px",
+                }}
+              >
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                  <div
+                    style={{
+                      fontSize: "3rem",
+                      color: "var(--color-secondary)",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    ⭐⭐⭐⭐⭐
+                  </div>
+                  <Paragraph
+                    style={{
+                      fontSize: "1.1rem",
+                      color: "var(--color-text-primary)",
+                      fontStyle: "italic",
+                      marginBottom: "20px",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    "Professional service, timely delivery, and outstanding
+                    quality. Ramavatargems is our go-to partner for all custom
+                    jewelry manufacturing."
+                  </Paragraph>
+                  <Title
+                    level={5}
+                    style={{
+                      color: "var(--color-text-primary)",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    Emma Rodriguez
+                  </Title>
+                  <Text style={{ color: "var(--color-text-secondary)" }}>
+                    Boutique Owner, London
+                  </Text>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </Section>
+
+      {/* CTA Section */}
+      <Section
+        style={{
+          background:
+            "linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)",
+        }}
+      >
+        <Container>
+          <div style={{ textAlign: "center", color: "#ffffff" }}>
+            <Title
+              level={2}
+              style={{
+                color: "#ffffff",
+                fontSize: "3rem",
+                fontWeight: 900,
+                marginBottom: "20px",
+                fontFamily: "'Playfair Display', serif",
+                textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              Ready to Create Something{" "}
+              <span style={{ color: "#000000" }}>Extraordinary</span>?
+            </Title>
+            <Paragraph
+              style={{
+                fontSize: "1.3rem",
+                color: "#ffffff",
+                marginBottom: "40px",
+                maxWidth: "600px",
+                margin: "0 auto 40px",
+                textShadow: "0 1px 2px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              Let's discuss your next jewelry project and bring your vision to
+              life with our expert craftsmanship.
+            </Paragraph>
+            <Space size="large">
+              <AntButton
+                size="large"
+                style={{
+                  padding: "16px 40px",
+                  height: "auto",
+                  fontSize: "1.2rem",
+                  fontWeight: 700,
+                  borderRadius: "50px",
+                  background: "#ffffff",
+                  border: "none",
+                  color: "var(--color-primary)",
+                  boxShadow: "0 8px 25px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <MailOutlined style={{ marginRight: 8 }} />
+                Get Quote
+              </AntButton>
+              <AntButton
+                size="large"
+                style={{
+                  padding: "16px 40px",
+                  height: "auto",
+                  fontSize: "1.2rem",
+                  fontWeight: 700,
+                  borderRadius: "50px",
+                  background: "transparent",
+                  border: "2px solid #ffffff",
+                  color: "#ffffff",
+                }}
+              >
+                <PhoneOutlined style={{ marginRight: 8 }} />
+                Call Us
+              </AntButton>
+            </Space>
+          </div>
+        </Container>
+      </Section>
+    </PageContainer>
+  );
+};
+
+export default Home;

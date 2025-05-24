@@ -18,6 +18,11 @@ import {
   MailOutlined,
   PhoneOutlined,
   ToolOutlined,
+  GiftOutlined,
+  CrownOutlined,
+  DollarOutlined,
+  SettingOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 import styled from "styled-components";
 import { useTheme } from "../context/ThemeContext";
@@ -40,8 +45,8 @@ const StyledHeader = styled(Header)`
   z-index: 1000;
   padding: 0;
   background-color: ${(props) => (props.isDarkMode ? "#121212" : "white")};
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   height: 80px;
   line-height: 80px;
 
@@ -51,12 +56,12 @@ const StyledHeader = styled(Header)`
     bottom: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background: linear-gradient(
       to right,
-      #c9a063 0%,
-      #d4a76a 50%,
-      #c9a063 100%
+      var(--color-primary-dark) 0%,
+      var(--color-secondary) 50%,
+      var(--color-primary-dark) 100%
     );
   }
 `;
@@ -64,11 +69,12 @@ const StyledHeader = styled(Header)`
 const HeaderContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 80px;
+  overflow: hidden;
 `;
 
 const LogoContainer = styled.div`
@@ -87,14 +93,15 @@ const LogoContainer = styled.div`
 `;
 
 const StyledLogo = styled(RamavatargemsLogo)`
-  height: 70px;
+  height: 60px;
   width: auto;
   margin: 0;
   display: block;
+  flex-shrink: 0;
 
   @media (max-width: 768px) {
     width: auto;
-    height: 60px;
+    height: 50px;
   }
 `;
 
@@ -105,27 +112,32 @@ const NavMenu = styled(Menu)`
   flex: 1;
   display: flex;
   justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
 
   .ant-menu-item {
-    padding: 0 24px;
-    font-size: 15px;
+    padding: 0 15px;
+    font-size: 14px;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 
     &:hover {
-      color: #c9a063;
+      color: var(--color-secondary);
     }
 
     &.ant-menu-item-selected {
-      color: #c9a063;
+      color: var(--color-secondary);
       font-weight: 600;
     }
 
     .anticon {
-      margin-right: 8px;
-      font-size: 16px;
+      margin-right: 6px;
+      font-size: 14px;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: none;
   }
 `;
@@ -133,13 +145,14 @@ const NavMenu = styled(Menu)`
 const NavActions = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  flex-shrink: 0;
 `;
 
 const MobileMenuButton = styled(Button)`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: block;
   }
 `;
@@ -148,8 +161,9 @@ const ContactInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-right: 10px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;
@@ -157,12 +171,19 @@ const ContactInfo = styled.div`
 const ContactItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: ${(props) =>
     props.isDarkMode ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.65)"};
+  font-size: 14px;
 
   .anticon {
-    color: #c9a063;
+    color: #d4af37;
+    font-size: 14px;
+  }
+
+  span {
+    font-weight: 500;
+    white-space: nowrap;
   }
 `;
 
@@ -262,16 +283,28 @@ const Navbar = () => {
       onClick: () => handleNavigation("/about"),
     },
     {
-      key: "/manufacturing",
-      icon: <ToolOutlined />,
-      label: "Manufacturing",
-      onClick: () => handleNavigation("/manufacturing"),
+      key: "/collection",
+      icon: <CrownOutlined />,
+      label: "Collections",
+      onClick: () => handleNavigation("/collection"),
     },
     {
-      key: "/collection",
-      icon: <ShoppingOutlined />,
-      label: "Collection",
-      onClick: () => handleNavigation("/collection"),
+      key: "/jewelry-manufacturing",
+      icon: <SettingOutlined />,
+      label: "Our Process",
+      onClick: () => handleNavigation("/jewelry-manufacturing"),
+    },
+    {
+      key: "/custom-design",
+      icon: <HeartOutlined />,
+      label: "Custom Design",
+      onClick: () => handleNavigation("/custom-design"),
+    },
+    {
+      key: "/gemstones",
+      icon: <GiftOutlined />,
+      label: "Gemstones",
+      onClick: () => handleNavigation("/gemstones"),
     },
     {
       key: "/contact",
@@ -288,7 +321,7 @@ const Navbar = () => {
         <HeaderContainer>
           {/* Logo */}
           <LogoContainer onClick={() => handleNavigation("/")}>
-            <StyledLogo />
+            <StyledLogo width={180} height={60} />
           </LogoContainer>
 
           {/* Desktop Navigation */}

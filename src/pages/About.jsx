@@ -42,20 +42,26 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-// Hero Section - Matching Home Page
+// Hero Section - Enhanced with proper spacing
 const HeroSection = styled(Section)`
-  height: 70vh;
-  max-height: 600px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 120px var(--spacing-4) var(--spacing-16);
   overflow: hidden;
-  background-color: var(--color-primary);
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #16213e 30%,
+    #0f3460 60%,
+    #1a1a2e 100%
+  );
   position: relative;
 
   @media (max-width: 768px) {
-    height: 60vh;
+    min-height: 100vh;
+    padding: 100px var(--spacing-4) var(--spacing-8);
   }
 `;
 
@@ -71,7 +77,32 @@ const HeroBackground = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7) contrast(1.1) grayscale(0.2);
+    filter: brightness(0.6) contrast(1.2) saturate(1.1);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 20% 80%,
+        rgba(212, 175, 55, 0.3) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(212, 175, 55, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 40%,
+        rgba(212, 175, 55, 0.1) 0%,
+        transparent 60%
+      );
+    z-index: 1;
   }
 
   &::after {
@@ -82,16 +113,18 @@ const HeroBackground = styled.div`
     width: 100%;
     height: 100%;
     background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.7) 0%,
+      135deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
       rgba(0, 0, 0, 0.5) 100%
     );
+    z-index: 2;
   }
 `;
 
 const HeroContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--spacing-4);
@@ -133,10 +166,13 @@ const HeroTitle = styled(Title)`
   font-size: 3.2rem !important;
   font-weight: 700 !important;
   margin-bottom: var(--spacing-4) !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 0, 0, 0.9);
 
   span {
-    color: var(--color-secondary) !important;
+    color: #d4af37 !important;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(212, 175, 55, 0.8);
   }
 
   @media (max-width: 768px) {
@@ -151,23 +187,79 @@ const HeroTitle = styled(Title)`
 const HeroSubtitle = styled(Text)`
   display: block;
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
   margin-bottom: var(--spacing-8);
   max-width: 800px;
   font-family: var(--font-accent);
   font-weight: 500;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
   @media (max-width: 768px) {
     font-size: 1.25rem;
+    padding: 15px 20px;
   }
 `;
 
-// Story Section - Matching Home Page About Section
+// Story Section - Enhanced with vibrant colors
 const StorySection = styled(Section)`
-  background-color: var(--color-background);
+  background: linear-gradient(
+    135deg,
+    #f8f9fa 0%,
+    #e3f2fd 25%,
+    #e8eaf6 50%,
+    #f3e5f5 75%,
+    #fff3e0 100%
+  );
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 15% 85%,
+        rgba(212, 175, 55, 0.15) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 85% 15%,
+        rgba(63, 81, 181, 0.1) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(212, 175, 55, 0.08) 0%,
+        transparent 60%
+      ),
+      linear-gradient(45deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    z-index: 1;
+  }
 `;
 
 const StoryContent = styled.div`
@@ -175,7 +267,7 @@ const StoryContent = styled.div`
   align-items: center;
   gap: var(--spacing-8);
   position: relative;
-  z-index: 1;
+  z-index: 10;
 
   @media (max-width: 992px) {
     flex-direction: column;
@@ -184,32 +276,38 @@ const StoryContent = styled.div`
 
 const StoryText = styled.div`
   flex: 1;
+  position: relative;
+  z-index: 1;
 
   h3 {
     margin-bottom: var(--spacing-md);
-    color: var(--color-secondary);
-    font-size: 1.8rem;
+    color: #d4af37;
+    font-size: 2.2rem;
     font-weight: 700;
     position: relative;
     padding-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--gradient-gold);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #d4af37, #f7e9b7);
       border-radius: 3px;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
     }
   }
 
   p {
     margin-bottom: var(--spacing-md);
     line-height: 1.8;
-    font-size: 1.05rem;
-    color: var(--color-text);
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
 
   button {
@@ -257,9 +355,16 @@ const StoryImageContainer = styled.div`
   }
 `;
 
-// Timeline Section - Elegant Design
+// Timeline Section - Enhanced with beautiful gradients
 const TimelineSection = styled(Section)`
-  background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,
+    #2c1810 25%,
+    #16213e 50%,
+    #1a237e 75%,
+    #0f3460 100%
+  );
   position: relative;
   overflow: hidden;
 
@@ -270,10 +375,23 @@ const TimelineSection = styled(Section)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("/images/high-quality/diamond_inspection_hq.jpg");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
+    background: radial-gradient(
+        circle at 20% 80%,
+        rgba(212, 175, 55, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 193, 7, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(212, 175, 55, 0.1) 0%,
+        transparent 70%
+      ),
+      linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+      linear-gradient(-45deg, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
     z-index: 0;
   }
 
@@ -285,11 +403,12 @@ const TimelineSection = styled(Section)`
     width: 100%;
     height: 100%;
     background: linear-gradient(
-      to bottom,
+      135deg,
       rgba(0, 0, 0, 0.3) 0%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.2) 100%
     );
-    z-index: 0;
+    z-index: 1;
   }
 `;
 
@@ -297,7 +416,7 @@ const Timeline = styled.div`
   max-width: 1000px;
   margin: 60px auto 0;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 
   &::before {
     content: "";
@@ -339,25 +458,36 @@ const TimelineItem = styled.div`
 const TimelineContent = styled.div`
   width: 45%;
   padding: var(--spacing-6);
-  background-color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 249, 250, 0.95) 100%
+  );
   border-radius: var(--border-radius-md);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(212, 175, 55, 0.3);
   transition: all 0.4s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
 
   p {
-    color: var(--color-text);
+    color: #2c3e50;
     line-height: 1.7;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     margin-bottom: 0;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.98);
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(248, 249, 250, 0.98) 100%
+    );
+    border-color: #d4af37;
   }
 
   &::before {
@@ -422,42 +552,96 @@ const TimelineContent = styled.div`
 
 const TimelineYear = styled.div`
   font-family: var(--font-heading);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--color-secondary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #d4af37;
   margin-bottom: 0.75rem;
   display: inline-block;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: relative;
 
   &::after {
     content: "";
     position: absolute;
-    bottom: -5px;
+    bottom: -8px;
     left: 0;
-    width: 40px;
-    height: 3px;
-    background: var(--gradient-gold);
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #d4af37, #f7e9b7);
     border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
   }
 `;
 
 const TimelineTitle = styled.h3`
   margin: 1rem 0;
-  font-size: 1.4rem;
-  color: var(--color-primary);
-  font-weight: 600;
+  font-size: 1.6rem;
+  color: #2c3e50;
+  font-weight: 700;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 `;
 
-// Values Section - Matching Home Page Features Section
+// Values Section - Enhanced with beautiful gradients
 const ValuesSection = styled(Section)`
-  background-color: var(--color-background-alt);
+  background: linear-gradient(
+    135deg,
+    #f1f3f4 0%,
+    #e8f5e8 20%,
+    #e3f2fd 40%,
+    #fce4ec 60%,
+    #fff8e1 80%,
+    #f3e5f5 100%
+  );
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 20% 30%,
+        rgba(212, 175, 55, 0.12) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(76, 175, 80, 0.08) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 50% 20%,
+        rgba(63, 81, 181, 0.06) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 30% 80%,
+        rgba(233, 30, 99, 0.05) 0%,
+        transparent 45%
+      ),
+      linear-gradient(45deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+    z-index: 1;
+  }
 `;
 
 const ValuesGrid = styled.div`
@@ -468,7 +652,7 @@ const ValuesGrid = styled.div`
   margin: 40px auto 0;
   padding: 0 var(--spacing-4);
   position: relative;
-  z-index: 1;
+  z-index: 10;
 
   @media (max-width: 992px) {
     grid-template-columns: 1fr;
@@ -478,22 +662,28 @@ const ValuesGrid = styled.div`
 
 const ValueCard = styled.div`
   height: 100%;
-  border-radius: var(--border-radius-md);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 249, 250, 0.95) 100%
+  );
   padding: var(--spacing-8) var(--spacing-6) var(--spacing-6);
   text-align: center;
   position: relative;
+  z-index: 1;
 
   p {
-    color: var(--color-text);
+    color: #2c3e50;
     line-height: 1.7;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     margin-bottom: 0;
     font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
 
   &::before {
@@ -522,9 +712,14 @@ const ValueCard = styled.div`
   }
 
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    background-color: white;
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(248, 249, 250, 1) 100%
+    );
+    border-color: #d4af37;
 
     &::before {
       opacity: 1;
@@ -536,26 +731,28 @@ const ValueCard = styled.div`
     }
 
     p {
-      color: var(--color-text);
+      color: #2c3e50;
     }
   }
 `;
 
 const ValueIcon = styled.div`
-  font-size: 2.8rem;
-  color: var(--color-primary);
-  background: linear-gradient(135deg, var(--color-secondary) 0%, #e0c088 100%);
-  width: 80px;
-  height: 80px;
+  font-size: 3rem;
+  color: #000000;
+  background: linear-gradient(135deg, #d4af37 0%, #f7e9b7 50%, #d4af37 100%);
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--spacing-6);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4),
+    0 0 20px rgba(212, 175, 55, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 
   &::after {
     content: "";
@@ -579,13 +776,14 @@ const ValueIcon = styled.div`
 
 const ValueTitle = styled.h3`
   margin-bottom: 1.25rem;
-  font-size: 1.4rem;
-  color: var(--color-primary);
+  font-size: 1.6rem;
+  color: #2c3e50;
   font-family: var(--font-heading);
   font-weight: 700;
   position: relative;
   display: inline-block;
   padding-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 
   &::after {
     content: "";
@@ -593,10 +791,11 @@ const ValueTitle = styled.h3`
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 2px;
-    background: var(--gradient-gold);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, #f7e9b7);
     border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
   }
 `;
 
@@ -609,8 +808,8 @@ const About = () => {
       <HeroSection id="about-hero">
         <HeroBackground>
           <img
-            src="/images/high-quality/diamond_cutting_hq.jpg"
-            alt="Diamond manufacturing process"
+            src="/images/jewelry_pieces/diamond_ring_making.jpg"
+            alt="Diamond jewelry manufacturing process"
           />
         </HeroBackground>
 
@@ -624,8 +823,8 @@ const About = () => {
           </HeroTitle>
 
           <HeroSubtitle>
-            A legacy of diamond manufacturing excellence and precision
-            craftsmanship since 1982
+            Premier Diamond Jewelry Manufacturer in Jaipur - Creating Exquisite
+            Diamond Jewelry Since 1982
           </HeroSubtitle>
         </HeroContent>
       </HeroSection>
@@ -639,28 +838,29 @@ const About = () => {
 
           <StoryContent>
             <StoryText>
-              <h3>A Heritage of Diamond Manufacturing Excellence</h3>
+              <h3>Premier Diamond Jewelry Manufacturing Excellence</h3>
               <p>
-                Established in 1982 in the heart of Jaipur, Ramavatargems began
-                as a specialized diamond manufacturing workshop dedicated to the
-                art of transforming rough diamonds into brilliant masterpieces.
+                Established in 1982 in the heart of Jaipur, Ramavatargems has
+                been at the forefront of diamond jewelry manufacturing for over
+                four decades. As the leading wholesale jewelry suppliers in
+                India, we specialize in creating unmatched diamond ornaments
+                that add prestige, royalty & class to your collection.
               </p>
               <p>
-                For over four decades, we have been perfecting the craft of
-                diamond cutting, polishing, and finishing. Our master craftsmen,
-                many of whom have been with us for generations, bring decades of
-                expertise to each diamond they work on.
+                Being the most loved precious stone, diamond jewelry adds
+                elegance and sophistication to any outfit. Our expert craftsmen
+                create exquisite diamond rings, necklaces, earrings, and
+                bracelets using the finest diamonds and precious metals,
+                ensuring each piece meets the highest quality standards.
               </p>
               <p>
-                Today, we continue to honor our heritage while embracing
-                cutting-edge technology that enhances our traditional
-                techniques. Every diamond that passes through our workshop
-                carries the legacy of Jaipur's rich diamond manufacturing
-                tradition.
+                From bespoke jewelry design to precision manufacturing, we bring
+                your unique vision to life. Our comprehensive services include
+                custom design & manufacturing, expert diamond setting, and
+                rigorous quality assurance, making us the best Diamond Jewelry
+                Manufacturer in Jaipur.
               </p>
-              <Button to="/manufacturing">
-                Explore Our Manufacturing Process
-              </Button>
+              <Button to="/collection">Explore Our Jewelry Collection</Button>
             </StoryText>
 
             <StoryImageContainer>
@@ -726,8 +926,8 @@ const About = () => {
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
               }}
             >
-              Key milestones in our four-decade legacy of diamond manufacturing
-              excellence and craftsmanship
+              Key milestones in our four-decade legacy of diamond jewelry
+              manufacturing excellence and craftsmanship
             </Text>
           </div>
 
@@ -737,9 +937,10 @@ const About = () => {
                 <TimelineYear>1982</TimelineYear>
                 <TimelineTitle>Our Founding</TimelineTitle>
                 <p>
-                  Established in Jaipur by master diamond craftsman Rajendra
-                  Sharma with a vision to perfect the art of diamond
-                  manufacturing.
+                  Established in Jaipur as a specialized diamond jewelry
+                  manufacturing workshop, dedicated to creating exquisite
+                  diamond ornaments with traditional craftsmanship and modern
+                  techniques.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -749,11 +950,11 @@ const About = () => {
               <div style={{ width: "45%" }}></div>
               <TimelineContent position="right">
                 <TimelineYear>1995</TimelineYear>
-                <TimelineTitle>Technological Advancement</TimelineTitle>
+                <TimelineTitle>Advanced Jewelry Design</TimelineTitle>
                 <p>
-                  Integrated laser cutting technology into our workshop,
-                  enhancing precision while maintaining our commitment to
-                  traditional craftsmanship.
+                  Introduced CAD technology for jewelry design, enabling us to
+                  create intricate diamond jewelry patterns and custom designs
+                  with unprecedented precision and detail.
                 </p>
               </TimelineContent>
             </TimelineItem>
@@ -761,11 +962,11 @@ const About = () => {
             <TimelineItem>
               <TimelineContent position="left">
                 <TimelineYear>2005</TimelineYear>
-                <TimelineTitle>3D Scanning Innovation</TimelineTitle>
+                <TimelineTitle>3D Jewelry Modeling</TimelineTitle>
                 <p>
-                  Implemented advanced 3D scanning technology to analyze rough
-                  diamonds, optimizing cutting plans and significantly reducing
-                  waste.
+                  Implemented advanced 3D modeling and prototyping for jewelry
+                  design, allowing clients to visualize their custom diamond
+                  jewelry before manufacturing begins.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -775,11 +976,11 @@ const About = () => {
               <div style={{ width: "45%" }}></div>
               <TimelineContent position="right">
                 <TimelineYear>2018</TimelineYear>
-                <TimelineTitle>Automated Polishing</TimelineTitle>
+                <TimelineTitle>Precision Setting Technology</TimelineTitle>
                 <p>
-                  Introduced automated polishing systems for consistent quality,
-                  while preserving hand-finishing for critical facets that
-                  require the human touch.
+                  Introduced precision diamond setting technology and automated
+                  quality control systems, ensuring perfect stone placement and
+                  consistent excellence in every jewelry piece.
                 </p>
               </TimelineContent>
             </TimelineItem>
@@ -787,11 +988,12 @@ const About = () => {
             <TimelineItem>
               <TimelineContent position="left">
                 <TimelineYear>Today</TimelineYear>
-                <TimelineTitle>Continuing Legacy</TimelineTitle>
+                <TimelineTitle>Global Jewelry Excellence</TimelineTitle>
                 <p>
-                  Continuing our commitment to diamond manufacturing excellence
-                  while embracing sustainable practices and ethical sourcing
-                  through the Kimberley Process.
+                  Leading as the premier Diamond Jewelry Manufacturer in Jaipur,
+                  serving clients worldwide with custom jewelry designs,
+                  wholesale supplies, and maintaining our commitment to ethical
+                  sourcing and sustainable practices.
                 </p>
               </TimelineContent>
               <div style={{ width: "45%" }}></div>
@@ -842,7 +1044,8 @@ const About = () => {
               zIndex: 1,
             }}
           >
-            The principles that guide our diamond manufacturing excellence
+            The principles that guide our diamond jewelry manufacturing
+            excellence
           </Text>
 
           <ValuesGrid>
@@ -850,11 +1053,11 @@ const About = () => {
               <ValueIcon>
                 <i className="fas fa-gem"></i>
               </ValueIcon>
-              <ValueTitle>Precision</ValueTitle>
+              <ValueTitle>Exquisite Craftsmanship</ValueTitle>
               <p>
-                We work with tolerances of less than a hundredth of a
-                millimeter, ensuring perfect symmetry and maximum brilliance in
-                every diamond we manufacture.
+                Our master artisans create stunning diamond jewelry with
+                meticulous attention to detail, ensuring perfect stone setting,
+                flawless finishing, and exceptional beauty in every piece.
               </p>
             </ValueCard>
 
@@ -862,11 +1065,11 @@ const About = () => {
               <ValueIcon>
                 <i className="fas fa-history"></i>
               </ValueIcon>
-              <ValueTitle>Tradition & Innovation</ValueTitle>
+              <ValueTitle>Custom Design Excellence</ValueTitle>
               <p>
-                We honor traditional diamond cutting techniques passed down
-                through generations while embracing cutting-edge technology that
-                enhances our craftsmanship.
+                From concept to creation, we specialize in bespoke diamond
+                jewelry design, combining traditional craftsmanship with modern
+                CAD technology to bring your unique vision to life.
               </p>
             </ValueCard>
 
@@ -874,11 +1077,11 @@ const About = () => {
               <ValueIcon>
                 <i className="fas fa-certificate"></i>
               </ValueIcon>
-              <ValueTitle>Ethical Sourcing</ValueTitle>
+              <ValueTitle>Premium Materials</ValueTitle>
               <p>
-                We only work with conflict-free diamonds sourced through the
-                Kimberley Process, ensuring our manufacturing practices uphold
-                the highest ethical standards.
+                We use only the finest diamonds and precious metals, sourced
+                ethically and certified for quality, ensuring every jewelry
+                piece meets international standards of excellence.
               </p>
             </ValueCard>
 
@@ -886,11 +1089,11 @@ const About = () => {
               <ValueIcon>
                 <i className="fas fa-award"></i>
               </ValueIcon>
-              <ValueTitle>Quality Assurance</ValueTitle>
+              <ValueTitle>Wholesale Excellence</ValueTitle>
               <p>
-                Every diamond undergoes rigorous quality control at each stage
-                of manufacturing, ensuring only the finest gems bear the
-                Ramavatargems mark of excellence.
+                As leading wholesale jewelry suppliers in India, we provide bulk
+                orders with consistent quality, competitive pricing, and timely
+                delivery to retailers and designers worldwide.
               </p>
             </ValueCard>
           </ValuesGrid>
