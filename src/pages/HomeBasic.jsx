@@ -285,7 +285,7 @@ const Home = () => {
             <HeroSlide
               style={{
                 backgroundImage:
-                  "url(/images/jewelry_pieces/hero_jewelry_making.jpg)",
+                  "url(/images/jewelry_pieces/diamond_setting.jpg)",
               }}
             >
               <div
@@ -328,11 +328,11 @@ const Home = () => {
                     fontFamily: "'Playfair Display', serif",
                   }}
                 >
-                  Diamond{" "}
+                  Exquisite{" "}
                   <span style={{ color: "var(--color-secondary)" }}>
-                    Jewelry
+                    Diamond Jewelry
                   </span>{" "}
-                  Manufacturing
+                  Artisans
                 </Title>
                 <Text
                   style={{
@@ -353,8 +353,7 @@ const Home = () => {
                     border: "1px solid rgba(255, 255, 255, 0.3)",
                   }}
                 >
-                  Premier Diamond Jewelry Manufacturer in Jaipur - Crafting
-                  Excellence Since 1982
+                  Premier Diamond Jewelry Manufacturer in Jaipur - Crafting Timeless Masterpieces with Precision Stone Setting & Expert Craftsmanship Since 1982
                 </Text>
                 <div
                   style={{
@@ -368,6 +367,7 @@ const Home = () => {
                   <AntButton
                     type="primary"
                     size="large"
+                    href="/manufacturing"
                     style={{
                       padding: "12px 24px",
                       height: "auto",
@@ -376,7 +376,7 @@ const Home = () => {
                       borderRadius: "50px",
                       textTransform: "uppercase",
                       letterSpacing: "1px",
-                      minWidth: "160px",
+                      minWidth: "200px",
                       background:
                         "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
                       border: "none",
@@ -385,10 +385,100 @@ const Home = () => {
                     }}
                   >
                     <ToolOutlined style={{ marginRight: 8 }} />
-                    Our Process
+                    Our Manufacturing Process
                   </AntButton>
+                </div>
+              </div>
+            </HeroSlide>
+          </div>
+
+          <div>
+            <HeroSlide
+              style={{
+                backgroundImage:
+                  "url(/images/jewelry_pieces/diamond_necklace.jpg)",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  maxWidth: "1000px",
+                  margin: "60px auto",
+                  padding: "40px 35px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <div
+                  style={{
+                    marginBottom: "15px",
+                    filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
+                  }}
+                >
+                  <RamavatargemsLogo width={150} />
+                </div>
+                <Title
+                  level={1}
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "2.8rem",
+                    fontWeight: 900,
+                    marginBottom: "15px",
+                    textShadow:
+                      "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
+                    letterSpacing: "2px",
+                    lineHeight: 1.1,
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  Elegant{" "}
+                  <span style={{ color: "var(--color-secondary)" }}>
+                    Diamond Necklaces
+                  </span>{" "}
+                  Collection
+                </Title>
+                <Text
+                  style={{
+                    display: "block",
+                    fontSize: "1.2rem",
+                    color: "#ffffff",
+                    marginBottom: "20px",
+                    maxWidth: "900px",
+                    fontWeight: 400,
+                    textShadow:
+                      "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
+                    lineHeight: 1.7,
+                    letterSpacing: "1px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    padding: "12px 20px",
+                    borderRadius: "15px",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  Stunning Diamond Necklaces Crafted with Precision and Elegance for Every Special Occasion
+                </Text>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "25px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: "15px",
+                  }}
+                >
                   <AntButton
+                    type="primary"
                     size="large"
+                    href="/collection"
                     style={{
                       padding: "12px 24px",
                       height: "auto",
@@ -397,16 +487,127 @@ const Home = () => {
                       borderRadius: "50px",
                       textTransform: "uppercase",
                       letterSpacing: "1px",
-                      minWidth: "160px",
-                      background: "rgba(255, 255, 255, 0.15)",
-                      border: "2px solid rgba(255, 255, 255, 0.4)",
-                      color: "#ffffff",
-                      backdropFilter: "blur(25px)",
-                      boxShadow: "0 8px 25px rgba(0, 0, 0, 0.3)",
+                      minWidth: "200px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      border: "none",
+                      color: "#000000",
+                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
                     }}
                   >
-                    <ArrowRightOutlined style={{ marginRight: 8 }} />
-                    Watch Video
+                    <StarFilled style={{ marginRight: 8 }} />
+                    View Our Collection
+                  </AntButton>
+                </div>
+              </div>
+            </HeroSlide>
+          </div>
+
+          <div>
+            <HeroSlide
+              style={{
+                backgroundImage:
+                  "url(/images/jewelry_pieces/custom_design.jpg)",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 10,
+                  maxWidth: "1000px",
+                  margin: "60px auto",
+                  padding: "40px 35px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  backdropFilter: "blur(20px)",
+                  borderRadius: "24px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                <div
+                  style={{
+                    marginBottom: "15px",
+                    filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
+                  }}
+                >
+                  <RamavatargemsLogo width={150} />
+                </div>
+                <Title
+                  level={1}
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "2.8rem",
+                    fontWeight: 900,
+                    marginBottom: "15px",
+                    textShadow:
+                      "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
+                    letterSpacing: "2px",
+                    lineHeight: 1.1,
+                    fontFamily: "'Playfair Display', serif",
+                  }}
+                >
+                  Custom{" "}
+                  <span style={{ color: "var(--color-secondary)" }}>
+                    Diamond Jewelry
+                  </span>{" "}
+                  Design
+                </Title>
+                <Text
+                  style={{
+                    display: "block",
+                    fontSize: "1.2rem",
+                    color: "#ffffff",
+                    marginBottom: "20px",
+                    maxWidth: "900px",
+                    fontWeight: 400,
+                    textShadow:
+                      "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
+                    lineHeight: 1.7,
+                    letterSpacing: "1px",
+                    background: "rgba(255, 255, 255, 0.15)",
+                    padding: "12px 20px",
+                    borderRadius: "15px",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  Bring Your Vision to Life with Our Bespoke Diamond Jewelry Design and Manufacturing Services
+                </Text>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "25px",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    marginTop: "15px",
+                  }}
+                >
+                  <AntButton
+                    type="primary"
+                    size="large"
+                    href="/contact"
+                    style={{
+                      padding: "12px 24px",
+                      height: "auto",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      borderRadius: "50px",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      minWidth: "200px",
+                      background:
+                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      border: "none",
+                      color: "#000000",
+                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                    }}
+                  >
+                    <MailOutlined style={{ marginRight: 8 }} />
+                    Start Custom Design
                   </AntButton>
                 </div>
               </div>
@@ -529,8 +730,8 @@ const Home = () => {
                 }}
               >
                 <img
-                  src="/images/jewelry_pieces/diamond_ring_making.jpg"
-                  alt="Ramavatargems jewelry manufacturing workshop"
+                  src="/images/jewelry_manufacturing/design.jpg"
+                  alt="Ramavatargems diamond jewelry design and creation process"
                   style={{ width: "100%", display: "block" }}
                 />
                 <div
@@ -806,7 +1007,7 @@ const Home = () => {
                       fontWeight: 700,
                     }}
                   >
-                    Custom Design & Manufacturing
+                    Bespoke Diamond Jewelry Creation
                   </Title>
                   <Paragraph
                     style={{
@@ -860,7 +1061,7 @@ const Home = () => {
                       fontWeight: 700,
                     }}
                   >
-                    Diamond Setting & Finishing
+                    Precision Stone Setting Artistry
                   </Title>
                   <Paragraph
                     style={{
@@ -914,7 +1115,7 @@ const Home = () => {
                       fontWeight: 700,
                     }}
                   >
-                    Quality Assurance & Certification
+                    Premium Quality Certification
                   </Title>
                   <Paragraph
                     style={{
@@ -948,8 +1149,8 @@ const Home = () => {
                 }}
               >
                 <img
-                  src="/images/jewelry_pieces/hero_jewelry_making.jpg"
-                  alt="Diamond jewelry manufacturing process"
+                  src="/images/jewelry_manufacturing/casting.jpg"
+                  alt="Diamond jewelry casting and manufacturing process"
                   style={{ width: "100%", display: "block" }}
                 />
                 <div
@@ -978,9 +1179,9 @@ const Home = () => {
               >
                 Our{" "}
                 <span style={{ color: "var(--color-secondary)" }}>
-                  Manufacturing
+                  Diamond Jewelry
                 </span>{" "}
-                Process
+                Crafting Journey
               </Title>
               <Paragraph
                 style={{
@@ -1557,8 +1758,8 @@ const Home = () => {
                 cover={
                   <div style={{ height: "250px", overflow: "hidden" }}>
                     <img
-                      alt="Diamond Ring"
-                      src="/images/jewelry_pieces/diamond_ring_making.jpg"
+                      alt="Exquisite Diamond Ring Collection"
+                      src="/images/rings/ring1.jpg"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -1641,8 +1842,8 @@ const Home = () => {
                 cover={
                   <div style={{ height: "250px", overflow: "hidden" }}>
                     <img
-                      alt="Diamond Earrings"
-                      src="/images/jewelry_pieces/hero_jewelry_making.jpg"
+                      alt="Elegant Diamond Earrings Collection"
+                      src="/images/rings/ring3.jpg"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -1683,8 +1884,8 @@ const Home = () => {
                 cover={
                   <div style={{ height: "250px", overflow: "hidden" }}>
                     <img
-                      alt="Diamond Bracelets"
-                      src="/images/jewelry_pieces/diamond_ring_making.jpg"
+                      alt="Luxury Diamond Bracelets Collection"
+                      src="/images/rings/ring5.jpg"
                       style={{
                         width: "100%",
                         height: "100%",

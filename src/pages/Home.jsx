@@ -693,7 +693,7 @@ const AboutSection = styled(Section)`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/images/diamond_manufacturing/diamond_pattern.png");
+    background: radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
     background-size: 300px;
     opacity: 0.03;
     z-index: 0;
@@ -912,7 +912,7 @@ const StatsSection = styled(Section)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("/images/diamond_manufacturing/diamond_pattern.png");
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
     background-size: 300px;
     opacity: 0.05;
     z-index: 0;
@@ -1037,36 +1037,37 @@ const StatIcon = styled.div`
 
 const Home = () => {
   const { isDarkMode } = useTheme();
+  // Updated with diamond jewelry and manufacturing images - 2024
 
-  // Features data
+  // Features data - UPDATED DIAMOND MANUFACTURING IMAGES
   const features = [
     {
-      title: "Jewelry Design",
+      title: "DIAMOND CUTTING",
       description:
-        "Creative design process combining traditional aesthetics with contemporary trends",
+        "State-of-the-art diamond cutting technology that maximizes brilliance and fire in every stone",
       icon: <ToolOutlined />,
-      image: "/images/jewelry_pieces/jewelry_design.jpg",
+      image: "/images/manufacturing/diamond_cutting_1.jpg",
     },
     {
-      title: "Diamond Setting",
+      title: "DIAMOND POLISHING",
       description:
-        "Precision setting techniques that showcase the beauty of each diamond",
+        "Expert polishing techniques using precision equipment to achieve perfect diamond surfaces",
       icon: <DashboardOutlined />,
-      image: "/images/jewelry_pieces/diamond_setting.jpg",
+      image: "/images/manufacturing/diamond_polishing.jpg",
     },
     {
-      title: "Metal Crafting",
+      title: "QUALITY CONTROL",
       description:
-        "Expert metalwork using gold, platinum, and silver to create stunning jewelry pieces",
+        "Advanced microscopic inspection and grading ensures every diamond meets international standards",
       icon: <TeamOutlined />,
-      image: "/images/jewelry_pieces/diamond_ring_making.jpg",
+      image: "/images/manufacturing/diamond_microscope.jpg",
     },
     {
-      title: "Quality Assurance",
+      title: "DIAMOND INSPECTION",
       description:
-        "Rigorous quality control ensures every jewelry piece meets our exacting standards",
+        "Professional diamond grading and certification using the latest inspection technology",
       icon: <SafetyCertificateOutlined />,
-      image: "/images/jewelry_pieces/diamond_ring.jpg",
+      image: "/images/manufacturing/diamond_inspection.jpg",
     },
   ];
 
@@ -1096,8 +1097,24 @@ const Home = () => {
 
   return (
     <PageContainer>
+      {/* TEST BANNER - IMAGES UPDATED */}
+      <div style={{
+        background: 'red',
+        color: 'white',
+        padding: '20px',
+        textAlign: 'center',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999
+      }}>
+        🔥 DIAMOND IMAGES UPDATED - NEW MANUFACTURING PHOTOS 🔥
+      </div>
       {/* Modern Hero Section */}
-      <HeroSection>
+      <HeroSection style={{ marginTop: '80px' }}>
         <ModernSwiper
           modules={[Navigation, Pagination, Autoplay, EffectFade, Parallax]}
           spaceBetween={0}
@@ -1118,7 +1135,8 @@ const Home = () => {
             <HeroSlide
               style={{
                 backgroundImage:
-                  "url(/images/jewelry_pieces/hero_jewelry_making.jpg)",
+                  "url(/images/manufacturing/diamond_cutting_1.jpg)",
+                backgroundColor: "#1a1a1a",
               }}
             >
               <HeroContent
@@ -1139,7 +1157,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1 }}
                   data-swiper-parallax="-300"
                 >
-                  Diamond <span>Jewelry</span> Manufacturing
+                  DIAMOND <span>CUTTING</span> MASTERS
                 </HeroTitle>
                 <HeroSubtitle
                   initial={{ opacity: 0, y: 30 }}
@@ -1147,8 +1165,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1.2 }}
                   data-swiper-parallax="-200"
                 >
-                  Crafting exquisite diamond jewelry with precision and artistry
-                  since 1982
+                  Professional diamond cutting and polishing with state-of-the-art technology since 1982
                 </HeroSubtitle>
                 <ModernButtonGroup
                   initial={{ opacity: 0, y: 30 }}
@@ -1180,7 +1197,8 @@ const Home = () => {
             <HeroSlide
               style={{
                 backgroundImage:
-                  "url(/images/jewelry_pieces/diamond_ring_making.jpg)",
+                  "url(/images/manufacturing/diamond_polishing.jpg)",
+                backgroundColor: "#2a2a2a",
               }}
             >
               <HeroContent
@@ -1194,7 +1212,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1 }}
                   data-swiper-parallax="-300"
                 >
-                  Artisanal <span>Jewelry</span> Creation
+                  DIAMOND <span>POLISHING</span> EXPERTS
                 </HeroTitle>
                 <HeroSubtitle
                   initial={{ opacity: 0, y: 30 }}
@@ -1202,7 +1220,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1.2 }}
                   data-swiper-parallax="-200"
                 >
-                  Transforming precious metals and diamonds into wearable art
+                  Expert diamond polishing techniques that bring out maximum brilliance and fire
                 </HeroSubtitle>
                 <ModernButtonGroup
                   initial={{ opacity: 0, y: 30 }}
@@ -1227,7 +1245,8 @@ const Home = () => {
             <HeroSlide
               style={{
                 backgroundImage:
-                  "url(/images/jewelry_pieces/diamond_necklace.jpg)",
+                  "url(/images/manufacturing/diamond_inspection.jpg)",
+                backgroundColor: "#3a3a3a",
               }}
             >
               <HeroContent
@@ -1241,7 +1260,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1 }}
                   data-swiper-parallax="-300"
                 >
-                  Exquisite <span>Diamond</span> Collections
+                  DIAMOND <span>QUALITY</span> CONTROL
                 </HeroTitle>
                 <HeroSubtitle
                   initial={{ opacity: 0, y: 30 }}
@@ -1249,8 +1268,7 @@ const Home = () => {
                   transition={{ duration: 0.8, delay: 1.2 }}
                   data-swiper-parallax="-200"
                 >
-                  Discover our premium selection of handcrafted diamond jewelry
-                  pieces
+                  Rigorous quality inspection ensures every diamond meets our exacting standards
                 </HeroSubtitle>
                 <ModernButtonGroup
                   initial={{ opacity: 0, y: 30 }}
@@ -1264,7 +1282,7 @@ const Home = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <StarFilled style={{ marginRight: 8 }} />
-                    Explore Collections
+                    Quality Standards
                   </ModernButton>
                 </ModernButtonGroup>
               </HeroContent>
@@ -1382,8 +1400,9 @@ const Home = () => {
             </AboutText>
             <AboutImageContainer>
               <img
-                src="/images/jewelry_pieces/diamond_ring_making.jpg"
-                alt="Ramavatargems jewelry manufacturing workshop"
+                src="/images/manufacturing/diamond_microscope.jpg"
+                alt="Ramavatargems diamond manufacturing and inspection"
+                style={{ filter: "brightness(1.1) contrast(1.2)" }}
               />
             </AboutImageContainer>
           </AboutContent>
@@ -1512,8 +1531,8 @@ const Home = () => {
                 }}
               >
                 <img
-                  src="/images/jewelry_pieces/custom_design.jpg"
-                  alt="Custom Jewelry Design"
+                  src="/images/jewelry_pieces/diamond_ring_making.jpg"
+                  alt="Custom Diamond Jewelry Manufacturing Process"
                   style={{ width: "100%", display: "block" }}
                 />
                 <div
@@ -2003,7 +2022,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/images/jewelry_categories/rings.jpg"
+                      src="/images/jewelry_pieces/diamond_ring.jpg"
                       alt="Diamond Rings"
                       style={{
                         width: "100%",
@@ -2061,7 +2080,7 @@ const Home = () => {
                     }}
                   >
                     <img
-                      src="/images/jewelry_categories/necklaces.jpg"
+                      src="/images/jewelry_pieces/diamond_necklace.jpg"
                       alt="Diamond Necklaces"
                       style={{
                         width: "100%",
@@ -2262,9 +2281,8 @@ const Home = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            background: "url('/images/manufacturing/diamond_pattern.png')",
-            backgroundSize: "300px",
-            opacity: 0.05,
+            background: "radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+            opacity: 0.3,
           }}
         />
 
