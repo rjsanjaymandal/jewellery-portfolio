@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Button, Row, Col, Card } from "antd";
-import { Carousel } from "antd";
 import {
   ToolOutlined,
   StarFilled,
@@ -22,62 +21,221 @@ const HomeBasic = () => {
       {/* Hero Section */}
       <div style={{
         height: "100vh",
-        background: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(/images/jewelry_pieces/diamond_setting.jpg)",
+        position: "relative",
+        background: "url(/images/jewelry_pieces/diamond_setting.jpg)",
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center 20%",
+        backgroundAttachment: "fixed",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        overflow: "hidden",
+        marginBottom: "0",
+        borderRadius: "0"
       }}>
+        {/* Dynamic Background Overlay - Adapts to Theme */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: isDarkMode
+            ? `linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(10, 10, 10, 0.7) 25%,
+                rgba(212, 175, 55, 0.15) 50%,
+                rgba(10, 10, 10, 0.7) 75%,
+                rgba(0, 0, 0, 0.9) 100%
+              )`
+            : `linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(26, 26, 26, 0.6) 25%,
+                rgba(212, 175, 55, 0.1) 50%,
+                rgba(26, 26, 26, 0.6) 75%,
+                rgba(0, 0, 0, 0.8) 100%
+              )`,
+          zIndex: 1
+        }} />
+
+        {/* Animated Sparkle Effects */}
+        <div style={{
+          position: "absolute",
+          top: "20%",
+          left: "10%",
+          width: "4px",
+          height: "4px",
+          background: "#d4af37",
+          borderRadius: "50%",
+          boxShadow: "0 0 20px #d4af37",
+          animation: "sparkle 3s ease-in-out infinite",
+          zIndex: 2
+        }} />
+        <div style={{
+          position: "absolute",
+          top: "30%",
+          right: "15%",
+          width: "3px",
+          height: "3px",
+          background: "#f7e9b7",
+          borderRadius: "50%",
+          boxShadow: "0 0 15px #f7e9b7",
+          animation: "sparkle 4s ease-in-out infinite 1s",
+          zIndex: 2
+        }} />
+        <div style={{
+          position: "absolute",
+          bottom: "25%",
+          left: "20%",
+          width: "5px",
+          height: "5px",
+          background: "#d4af37",
+          borderRadius: "50%",
+          boxShadow: "0 0 25px #d4af37",
+          animation: "sparkle 2.5s ease-in-out infinite 0.5s",
+          zIndex: 2
+        }} />
+
+        {/* Main Content */}
         <div style={{
           textAlign: "center",
           color: "white",
-          maxWidth: "800px",
-          padding: "40px",
-          background: "rgba(0, 0, 0, 0.4)",
-          borderRadius: "20px",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          margin: "0 20px"
+          maxWidth: "900px",
+          padding: "60px 40px",
+          margin: "0 20px",
+          position: "relative",
+          zIndex: 3
         }}>
+          {/* Enhanced Title with Multiple Text Effects */}
           <Title level={1} style={{
-            color: "white",
-            fontSize: "3rem",
-            marginBottom: "20px",
-            textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)",
-            fontWeight: "700"
+            color: "#ffffff",
+            fontSize: "clamp(2.5rem, 5vw, 4rem)",
+            marginBottom: "30px",
+            textShadow: `
+              3px 3px 0px rgba(0, 0, 0, 1),
+              6px 6px 20px rgba(0, 0, 0, 0.9),
+              0 0 40px rgba(0, 0, 0, 0.8),
+              0 0 80px rgba(212, 175, 55, 0.3)
+            `,
+            fontWeight: "800",
+            letterSpacing: "2px",
+            lineHeight: "1.2",
+            WebkitTextStroke: "1px rgba(0, 0, 0, 0.5)",
+            filter: "drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.9))"
           }}>
             ✨ Exquisite Diamond Jewelry Artisans ✨
           </Title>
+
+          {/* Enhanced Description */}
           <Text style={{
-            fontSize: "1.2rem",
-            color: "white",
+            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
+            color: "#ffffff",
             display: "block",
-            marginBottom: "30px",
-            textShadow: "1px 1px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5)",
-            lineHeight: "1.6",
-            fontWeight: "500"
+            marginBottom: "50px",
+            textShadow: `
+              2px 2px 4px rgba(0, 0, 0, 1),
+              4px 4px 12px rgba(0, 0, 0, 0.9),
+              0 0 20px rgba(0, 0, 0, 0.8)
+            `,
+            lineHeight: "1.8",
+            fontWeight: "600",
+            maxWidth: "800px",
+            margin: "0 auto 50px auto",
+            WebkitTextStroke: "0.5px rgba(0, 0, 0, 0.3)",
+            filter: "drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.9))"
           }}>
             Premier Diamond Jewelry Manufacturer in Jaipur - Crafting Timeless Masterpieces with Precision Stone Setting & Expert Craftsmanship Since 1982
           </Text>
+
+          {/* Enhanced Button with Glow Effect */}
           <Button
             type="primary"
             size="large"
             style={{
               background: "linear-gradient(135deg, #d4af37 0%, #f7e9b7 50%, #d4af37 100%)",
-              border: "none",
-              color: "#000",
-              padding: "12px 30px",
+              border: "2px solid rgba(255, 255, 255, 0.3)",
+              color: "#000000",
+              padding: "15px 40px",
               height: "auto",
-              fontSize: "1rem",
+              fontSize: "1.1rem",
               fontWeight: "bold",
-              borderRadius: "25px"
+              borderRadius: "50px",
+              boxShadow: `
+                0 8px 25px rgba(212, 175, 55, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3)
+              `,
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              transform: "translateY(0)",
+              position: "relative",
+              overflow: "hidden",
+              textShadow: "none"
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-3px)";
+              e.target.style.color = "#000000";
+              e.target.style.boxShadow = `
+                0 12px 35px rgba(212, 175, 55, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4)
+              `;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.color = "#000000";
+              e.target.style.boxShadow = `
+                0 8px 25px rgba(212, 175, 55, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3)
+              `;
             }}
           >
-            <ToolOutlined style={{ marginRight: 8 }} />
+            <ToolOutlined style={{ marginRight: 10, fontSize: "1.2rem" }} />
             Our Manufacturing Process
           </Button>
         </div>
+
+        {/* CSS Animations */}
+        <style>
+          {`
+            @keyframes sparkle {
+              0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+              }
+              50% {
+                opacity: 1;
+                transform: scale(1.5);
+              }
+            }
+
+            @media (max-width: 768px) {
+              .hero-title {
+                font-size: 2.5rem !important;
+                letter-spacing: 1px !important;
+              }
+              .hero-description {
+                font-size: 1.1rem !important;
+                margin-bottom: 40px !important;
+              }
+              .hero-button {
+                padding: 12px 30px !important;
+                font-size: 1rem !important;
+              }
+            }
+
+            @media (max-width: 480px) {
+              .hero-title {
+                font-size: 2rem !important;
+              }
+              .hero-description {
+                font-size: 1rem !important;
+              }
+            }
+          `}
+        </style>
       </div>
 
       {/* Services Section */}
