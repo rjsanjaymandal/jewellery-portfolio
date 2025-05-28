@@ -4,7 +4,7 @@ import { Layout, ConfigProvider } from "antd";
 import styled from "styled-components";
 
 // Pages
-import Home from "./pages/HomeBasic.jsx";
+import Home from "./pages/HomeBasicSimple.jsx";
 import About from "./pages/About.jsx";
 import Manufacturing from "./pages/Manufacturing.jsx";
 import JewelryManufacturing from "./pages/JewelryManufacturing.jsx";

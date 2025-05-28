@@ -33,6 +33,251 @@ import RamavatargemsLogo from "../components/logo/RamavatargemsLogo";
 
 const { Title, Text, Paragraph } = Typography;
 
+// Creative Animations
+const sparkle = keyframes`
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+`;
+
+const diamondFloat = keyframes`
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+`;
+
+const shimmer = keyframes`
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+`;
+
+const glow = keyframes`
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+  }
+`;
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const rotateGlow = keyframes`
+  0% {
+    transform: rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+`;
+
+// Creative Floating Elements
+const FloatingDiamond = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #fff, #d4af37);
+  clip-path: polygon(50% 0%, 0% 50%, 50% 100%, 100% 50%);
+  animation: ${diamondFloat} 3s ease-in-out infinite;
+  z-index: 5;
+
+  &:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+  &:nth-child(2) { top: 60%; right: 15%; animation-delay: 1s; }
+  &:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+  &:nth-child(4) { top: 40%; right: 25%; animation-delay: 1.5s; }
+`;
+
+const SparkleEffect = styled.div`
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff, #d4af37);
+  border-radius: 50%;
+  animation: ${sparkle} 2s ease-in-out infinite;
+  z-index: 6;
+
+  &:nth-child(1) { top: 15%; left: 15%; animation-delay: 0.5s; }
+  &:nth-child(2) { top: 25%; right: 20%; animation-delay: 1.2s; }
+  &:nth-child(3) { bottom: 40%; left: 30%; animation-delay: 0.8s; }
+  &:nth-child(4) { top: 70%; right: 10%; animation-delay: 2s; }
+  &:nth-child(5) { bottom: 20%; right: 30%; animation-delay: 1.5s; }
+`;
+
+// Enhanced Interactive Button
+const CreativeButton = styled(AntButton)`
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%) !important;
+  border: none !important;
+  color: #000000 !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  animation: ${glow} 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: ${shimmer} 2s infinite;
+  }
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6) !important;
+
+    &::before {
+      animation-duration: 0.5s;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+`;
+
+// Animated Background Overlay
+const AnimatedOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  animation: ${rotateGlow} 20s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+`;
+
+// Creative Interactive Card
+const CreativeCard = styled(Card)`
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--color-secondary) !important;
+    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3) !important;
+
+    &::before {
+      left: 100%;
+    }
+
+    .ant-card-body {
+      background: rgba(212, 175, 55, 0.05);
+    }
+  }
+
+  .ant-card-body {
+    padding: 30px !important;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+`;
+
+// Animated Icon Container
+const AnimatedIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--color-secondary), #f7e9b7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #000;
+  animation: ${glow} 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent);
+    animation: ${rotateGlow} 2s linear infinite;
+  }
+
+  &:hover {
+    transform: scale(1.1) rotate(10deg);
+    animation-duration: 1s;
+  }
+`;
+
+// Enhanced Statistics Counter
+const CreativeStatistic = styled(Statistic)`
+  .ant-statistic-title {
+    color: var(--color-text-secondary) !important;
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ant-statistic-content {
+    color: var(--color-secondary) !important;
+    font-weight: 900 !important;
+    font-size: 2.5rem !important;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    animation: ${glow} 2s ease-in-out infinite;
+  }
+`;
+
 // Modern Styled Components with Dark Mode Support
 const PageContainer = styled.div`
   overflow-x: hidden;
@@ -64,6 +309,10 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     padding: 0 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 12px;
   }
 `;
 
@@ -102,6 +351,16 @@ const ModernCarousel = styled(Carousel)`
     justify-content: center;
     gap: 20px;
 
+    @media (max-width: 768px) {
+      bottom: 40px;
+      gap: 15px;
+    }
+
+    @media (max-width: 480px) {
+      bottom: 30px;
+      gap: 10px;
+    }
+
     li {
       width: auto;
       height: auto;
@@ -113,6 +372,16 @@ const ModernCarousel = styled(Carousel)`
         border-radius: 2px;
         background: rgba(255, 255, 255, 0.3);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        @media (max-width: 768px) {
+          width: 40px;
+          height: 3px;
+        }
+
+        @media (max-width: 480px) {
+          width: 30px;
+          height: 3px;
+        }
       }
 
       &.slick-active button {
@@ -288,22 +557,40 @@ const Home = () => {
                   "url(/images/jewelry_pieces/diamond_setting.jpg)",
               }}
             >
+              {/* Floating Diamond Elements */}
+              <FloatingDiamond />
+              <FloatingDiamond />
+              <FloatingDiamond />
+              <FloatingDiamond />
+
+              {/* Sparkle Effects */}
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+
+              {/* Animated Background Overlay */}
+              <AnimatedOverlay />
               <div
                 style={{
                   position: "relative",
                   zIndex: 10,
-                  maxWidth: "1000px",
-                  margin: "60px auto",
-                  padding: "40px 35px",
+                  maxWidth: "min(1000px, 90vw)",
+                  width: "100%",
+                  margin: "clamp(20px, 8vh, 60px) auto clamp(10px, 3vh, 20px)",
+                  padding: "clamp(20px, 5vh, 40px) clamp(20px, 4vw, 35px)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
                   background: "rgba(0, 0, 0, 0.4)",
                   backdropFilter: "blur(20px)",
-                  borderRadius: "24px",
+                  borderRadius: "clamp(12px, 3vw, 24px)",
                   border: "1px solid rgba(255, 255, 255, 0.3)",
                   boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                  maxHeight: "calc(100vh - 160px)",
+                  overflow: "hidden",
                 }}
               >
                 <div
@@ -312,32 +599,44 @@ const Home = () => {
                     filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
                   }}
                 >
-                  <RamavatargemsLogo width={150} />
+                  <RamavatargemsLogo width="clamp(120, 20vw, 150)" />
                 </div>
                 <Title
                   level={1}
                   style={{
                     color: "#ffffff",
-                    fontSize: "2.8rem",
+                    fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
                     fontWeight: 900,
                     marginBottom: "15px",
                     textShadow:
                       "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
-                    letterSpacing: "2px",
+                    letterSpacing: "clamp(1px, 0.2vw, 2px)",
                     lineHeight: 1.1,
                     fontFamily: "'Playfair Display', serif",
+                    animation: `${fadeInUp} 1s ease-out`,
+                    background: "linear-gradient(45deg, #ffffff, #d4af37, #ffffff)",
+                    backgroundSize: "200% 200%",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    filter: "drop-shadow(0 0 10px rgba(212, 175, 55, 0.5))",
                   }}
                 >
-                  Exquisite{" "}
-                  <span style={{ color: "var(--color-secondary)" }}>
+                  ✨ Exquisite{" "}
+                  <span style={{
+                    color: "var(--color-secondary)",
+                    textShadow: "0 0 20px rgba(212, 175, 55, 0.8)",
+                    animation: `${sparkle} 2s ease-in-out infinite`,
+                    display: "inline-block"
+                  }}>
                     Diamond Jewelry
                   </span>{" "}
-                  Artisans
+                  Artisans ✨
                 </Title>
                 <Text
                   style={{
                     display: "block",
-                    fontSize: "1.2rem",
+                    fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
                     color: "#ffffff",
                     marginBottom: "20px",
                     maxWidth: "900px",
@@ -345,9 +644,9 @@ const Home = () => {
                     textShadow:
                       "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
                     lineHeight: 1.7,
-                    letterSpacing: "1px",
+                    letterSpacing: "clamp(0.5px, 0.1vw, 1px)",
                     background: "rgba(255, 255, 255, 0.15)",
-                    padding: "12px 20px",
+                    padding: "clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px)",
                     borderRadius: "15px",
                     backdropFilter: "blur(10px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -369,19 +668,17 @@ const Home = () => {
                     size="large"
                     href="/manufacturing"
                     style={{
-                      padding: "12px 24px",
+                      padding: "clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px)",
                       height: "auto",
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      borderRadius: "50px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      minWidth: "200px",
-                      background:
-                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      fontSize: "clamp(0.9rem, 2vw, 1rem)",
+                      minWidth: "clamp(180px, 30vw, 200px)",
+                      background: "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
                       border: "none",
                       color: "#000000",
-                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                      borderRadius: "50px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
                     }}
                   >
                     <ToolOutlined style={{ marginRight: 8 }} />
@@ -399,22 +696,37 @@ const Home = () => {
                   "url(/images/jewelry_pieces/diamond_necklace.jpg)",
               }}
             >
+              {/* Floating Diamond Elements */}
+              <FloatingDiamond />
+              <FloatingDiamond />
+              <FloatingDiamond />
+
+              {/* Sparkle Effects */}
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+
+              {/* Animated Background Overlay */}
+              <AnimatedOverlay />
               <div
                 style={{
                   position: "relative",
                   zIndex: 10,
-                  maxWidth: "1000px",
-                  margin: "60px auto",
-                  padding: "40px 35px",
+                  maxWidth: "min(1000px, 90vw)",
+                  width: "100%",
+                  margin: "clamp(20px, 8vh, 60px) auto clamp(10px, 3vh, 20px)",
+                  padding: "clamp(20px, 5vh, 40px) clamp(20px, 4vw, 35px)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
                   background: "rgba(0, 0, 0, 0.4)",
                   backdropFilter: "blur(20px)",
-                  borderRadius: "24px",
+                  borderRadius: "clamp(12px, 3vw, 24px)",
                   border: "1px solid rgba(255, 255, 255, 0.3)",
                   boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                  maxHeight: "calc(100vh - 160px)",
+                  overflow: "hidden",
                 }}
               >
                 <div
@@ -423,18 +735,18 @@ const Home = () => {
                     filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
                   }}
                 >
-                  <RamavatargemsLogo width={150} />
+                  <RamavatargemsLogo width="clamp(120, 20vw, 150)" />
                 </div>
                 <Title
                   level={1}
                   style={{
                     color: "#ffffff",
-                    fontSize: "2.8rem",
+                    fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
                     fontWeight: 900,
                     marginBottom: "15px",
                     textShadow:
                       "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
-                    letterSpacing: "2px",
+                    letterSpacing: "clamp(1px, 0.2vw, 2px)",
                     lineHeight: 1.1,
                     fontFamily: "'Playfair Display', serif",
                   }}
@@ -448,7 +760,7 @@ const Home = () => {
                 <Text
                   style={{
                     display: "block",
-                    fontSize: "1.2rem",
+                    fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
                     color: "#ffffff",
                     marginBottom: "20px",
                     maxWidth: "900px",
@@ -456,9 +768,9 @@ const Home = () => {
                     textShadow:
                       "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
                     lineHeight: 1.7,
-                    letterSpacing: "1px",
+                    letterSpacing: "clamp(0.5px, 0.1vw, 1px)",
                     background: "rgba(255, 255, 255, 0.15)",
-                    padding: "12px 20px",
+                    padding: "clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px)",
                     borderRadius: "15px",
                     backdropFilter: "blur(10px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -480,19 +792,17 @@ const Home = () => {
                     size="large"
                     href="/collection"
                     style={{
-                      padding: "12px 24px",
+                      padding: "clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px)",
                       height: "auto",
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      borderRadius: "50px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      minWidth: "200px",
-                      background:
-                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      fontSize: "clamp(0.9rem, 2vw, 1rem)",
+                      minWidth: "clamp(180px, 30vw, 200px)",
+                      background: "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
                       border: "none",
                       color: "#000000",
-                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                      borderRadius: "50px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
                     }}
                   >
                     <StarFilled style={{ marginRight: 8 }} />
@@ -510,22 +820,39 @@ const Home = () => {
                   "url(/images/jewelry_pieces/custom_design.jpg)",
               }}
             >
+              {/* Floating Diamond Elements */}
+              <FloatingDiamond />
+              <FloatingDiamond />
+              <FloatingDiamond />
+              <FloatingDiamond />
+
+              {/* Sparkle Effects */}
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+              <SparkleEffect />
+
+              {/* Animated Background Overlay */}
+              <AnimatedOverlay />
               <div
                 style={{
                   position: "relative",
                   zIndex: 10,
-                  maxWidth: "1000px",
-                  margin: "60px auto",
-                  padding: "40px 35px",
+                  maxWidth: "min(1000px, 90vw)",
+                  width: "100%",
+                  margin: "clamp(20px, 8vh, 60px) auto clamp(10px, 3vh, 20px)",
+                  padding: "clamp(20px, 5vh, 40px) clamp(20px, 4vw, 35px)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
                   background: "rgba(0, 0, 0, 0.4)",
                   backdropFilter: "blur(20px)",
-                  borderRadius: "24px",
+                  borderRadius: "clamp(12px, 3vw, 24px)",
                   border: "1px solid rgba(255, 255, 255, 0.3)",
                   boxShadow: "0 25px 50px rgba(0, 0, 0, 0.6)",
+                  maxHeight: "calc(100vh - 160px)",
+                  overflow: "hidden",
                 }}
               >
                 <div
@@ -534,18 +861,18 @@ const Home = () => {
                     filter: "drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))",
                   }}
                 >
-                  <RamavatargemsLogo width={150} />
+                  <RamavatargemsLogo width="clamp(120, 20vw, 150)" />
                 </div>
                 <Title
                   level={1}
                   style={{
                     color: "#ffffff",
-                    fontSize: "2.8rem",
+                    fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
                     fontWeight: 900,
                     marginBottom: "15px",
                     textShadow:
                       "0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.8)",
-                    letterSpacing: "2px",
+                    letterSpacing: "clamp(1px, 0.2vw, 2px)",
                     lineHeight: 1.1,
                     fontFamily: "'Playfair Display', serif",
                   }}
@@ -559,7 +886,7 @@ const Home = () => {
                 <Text
                   style={{
                     display: "block",
-                    fontSize: "1.2rem",
+                    fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
                     color: "#ffffff",
                     marginBottom: "20px",
                     maxWidth: "900px",
@@ -567,9 +894,9 @@ const Home = () => {
                     textShadow:
                       "0 0 15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.8)",
                     lineHeight: 1.7,
-                    letterSpacing: "1px",
+                    letterSpacing: "clamp(0.5px, 0.1vw, 1px)",
                     background: "rgba(255, 255, 255, 0.15)",
-                    padding: "12px 20px",
+                    padding: "clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px)",
                     borderRadius: "15px",
                     backdropFilter: "blur(10px)",
                     border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -591,19 +918,17 @@ const Home = () => {
                     size="large"
                     href="/contact"
                     style={{
-                      padding: "12px 24px",
+                      padding: "clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px)",
                       height: "auto",
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      borderRadius: "50px",
-                      textTransform: "uppercase",
-                      letterSpacing: "1px",
-                      minWidth: "200px",
-                      background:
-                        "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
+                      fontSize: "clamp(0.9rem, 2vw, 1rem)",
+                      minWidth: "clamp(180px, 30vw, 200px)",
+                      background: "linear-gradient(135deg, var(--color-secondary) 0%, #f7e9b7 50%, var(--color-secondary) 100%)",
                       border: "none",
                       color: "#000000",
-                      boxShadow: "0 10px 30px rgba(212, 175, 55, 0.5)",
+                      borderRadius: "50px",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
                     }}
                   >
                     <MailOutlined style={{ marginRight: 8 }} />
@@ -948,7 +1273,7 @@ const Home = () => {
             style={{
               textAlign: "center",
               color: "var(--color-text-primary)",
-              fontSize: "3rem",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
               fontWeight: 900,
               marginBottom: "20px",
               fontFamily: "'Playfair Display', serif",
@@ -960,9 +1285,9 @@ const Home = () => {
           <Text
             style={{
               textAlign: "center",
-              fontSize: "1.2rem",
+              fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
               color: "var(--color-text-secondary)",
-              marginBottom: "60px",
+              marginBottom: "clamp(40px, 8vw, 60px)",
               display: "block",
             }}
           >
@@ -1171,9 +1496,9 @@ const Home = () => {
                 level={2}
                 style={{
                   color: "var(--color-text-primary)",
-                  fontSize: "3rem",
+                  fontSize: "clamp(2rem, 5vw, 3rem)",
                   fontWeight: 900,
-                  marginBottom: "24px",
+                  marginBottom: "clamp(16px, 4vw, 24px)",
                   fontFamily: "'Playfair Display', serif",
                 }}
               >
@@ -1185,9 +1510,9 @@ const Home = () => {
               </Title>
               <Paragraph
                 style={{
-                  fontSize: "1.1rem",
+                  fontSize: "clamp(1rem, 2vw, 1.1rem)",
                   color: "var(--color-text-primary)",
-                  marginBottom: "30px",
+                  marginBottom: "clamp(20px, 5vw, 30px)",
                   lineHeight: 1.7,
                 }}
               >
