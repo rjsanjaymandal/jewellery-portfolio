@@ -10,7 +10,7 @@ import {
 
 const { Title, Text } = Typography;
 
-const Home = () => {
+const LuxuryHome = () => {
   return (
     <div style={{
       minHeight: "100vh",
@@ -28,7 +28,6 @@ const Home = () => {
         justifyContent: "center",
         overflow: "hidden"
       }}>
-        {/* Main Content */}
         <div style={{
           textAlign: "center",
           color: "#ffffff",
@@ -43,7 +42,6 @@ const Home = () => {
           backdropFilter: "blur(15px)",
           boxShadow: "0 8px 32px 0 rgba(212, 165, 116, 0.25)"
         }}>
-          {/* Crown Icon */}
           <div style={{
             fontSize: "3rem",
             color: "#d4a574",
@@ -53,7 +51,6 @@ const Home = () => {
             <CrownOutlined />
           </div>
 
-          {/* Title */}
           <Title level={1} style={{
             color: "#ffffff",
             fontSize: "clamp(2.8rem, 6vw, 5rem)",
@@ -67,7 +64,6 @@ const Home = () => {
             Exquisite Diamond Jewelry Artisans
           </Title>
 
-          {/* Description */}
           <Text style={{
             fontSize: "clamp(1.2rem, 2.8vw, 1.6rem)",
             color: "#ffffff",
@@ -84,7 +80,6 @@ const Home = () => {
             Premier Diamond Jewelry Manufacturer in Jaipur - Crafting Timeless Masterpieces with Precision Stone Setting & Expert Craftsmanship Since 1982
           </Text>
 
-          {/* CTA Button */}
           <Button
             type="primary"
             size="large"
@@ -284,228 +279,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* About Section */}
-      <div style={{
-        padding: "120px 20px",
-        backgroundColor: "#fefefe",
-        position: "relative"
-      }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-          <Row gutter={[60, 60]} align="middle">
-            <Col xs={24} md={12}>
-              <div style={{ position: "relative" }}>
-                <img
-                  src="/images/jewelry_manufacturing/design.jpg"
-                  alt="Diamond Jewelry Design Process"
-                  style={{
-                    width: "100%",
-                    borderRadius: "20px",
-                    boxShadow: "0 12px 40px 0 rgba(26, 35, 50, 0.18)",
-                    position: "relative",
-                    zIndex: 1
-                  }}
-                />
-                <div style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  width: "40px",
-                  height: "40px",
-                  background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "20px",
-                  color: "#1a2332",
-                  zIndex: 2
-                }}>
-                  <DiamondOutlined />
-                </div>
-              </div>
-            </Col>
-            <Col xs={24} md={12}>
-              <div style={{ paddingLeft: "40px" }}>
-                <div style={{
-                  fontSize: "1rem",
-                  color: "#d4a574",
-                  fontWeight: "600",
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  marginBottom: "20px",
-                  fontFamily: "'Poppins', sans-serif"
-                }}>
-                  Since 1982
-                </div>
-
-                <Title level={2} style={{
-                  fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
-                  fontFamily: "'Playfair Display', serif",
-                  fontWeight: "700",
-                  color: "#1a2332",
-                  marginBottom: "30px",
-                  lineHeight: "1.2"
-                }}>
-                  About Ramavatargems
-                </Title>
-
-                <div style={{
-                  width: "80px",
-                  height: "3px",
-                  background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
-                  marginBottom: "40px",
-                  borderRadius: "3px"
-                }} />
-
-                <Text style={{
-                  fontSize: "1.2rem",
-                  lineHeight: "1.9",
-                  display: "block",
-                  marginBottom: "25px",
-                  color: "#4a5568",
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: "400"
-                }}>
-                  Since 1982, Ramavatargems has been at the forefront of diamond jewelry manufacturing in Jaipur.
-                  Our master craftsmen combine traditional techniques with modern technology to create exquisite
-                  diamond jewelry pieces that capture the essence of luxury and elegance.
-                </Text>
-                <Text style={{
-                  fontSize: "1.2rem",
-                  lineHeight: "1.9",
-                  display: "block",
-                  marginBottom: "40px",
-                  color: "#4a5568",
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: "400"
-                }}>
-                  We specialize in custom diamond jewelry design, precision stone setting, and premium quality
-                  manufacturing that meets the highest international standards.
-                </Text>
-
-                <Button
-                  type="primary"
-                  size="large"
-                  style={{
-                    background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
-                    border: "2px solid #d4a574",
-                    color: "#1a2332",
-                    padding: "15px 35px",
-                    height: "auto",
-                    fontSize: "1.1rem",
-                    fontWeight: "600",
-                    fontFamily: "'Poppins', sans-serif",
-                    borderRadius: "50px",
-                    boxShadow: "0 8px 32px 0 rgba(212, 165, 116, 0.25)",
-                    transition: "all 0.3s ease",
-                    letterSpacing: "0.5px"
-                  }}
-                >
-                  <GiftOutlined style={{ marginRight: 10, fontSize: "1.2rem" }} />
-                  Discover Our Legacy
-                </Button>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </div>
-
-      {/* Showcase Section */}
-      <div style={{
-        padding: "120px 20px",
-        background: "linear-gradient(135deg, #1a2332 0%, #2c3e50 100%)",
-        position: "relative"
-      }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "80px" }}>
-            <Title level={2} style={{
-              fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: "700",
-              color: "#ffffff",
-              marginBottom: "20px",
-              letterSpacing: "2px",
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"
-            }}>
-              Our Diamond Jewelry Collection
-            </Title>
-            <Text style={{
-              fontSize: "1.3rem",
-              color: "#f4e4d1",
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: "400",
-              maxWidth: "700px",
-              margin: "0 auto",
-              display: "block",
-              lineHeight: "1.6",
-              opacity: 0.9
-            }}>
-              Discover our exquisite collection of handcrafted diamond jewelry pieces
-            </Text>
-          </div>
-
-          <Row gutter={[40, 40]}>
-            {[
-              { title: "Diamond Rings", image: "/images/rings/ring1.jpg", desc: "Exquisite diamond ring collection crafted with precision" },
-              { title: "Diamond Necklaces", image: "/images/jewelry_pieces/diamond_necklace.jpg", desc: "Elegant diamond necklace designs with timeless appeal" },
-              { title: "Diamond Earrings", image: "/images/rings/ring3.jpg", desc: "Stunning diamond earring collection for every occasion" },
-              { title: "Diamond Bracelets", image: "/images/rings/ring5.jpg", desc: "Luxury diamond bracelet designs with exquisite detail" }
-            ].map((item, index) => (
-              <Col xs={24} sm={12} md={6} key={index}>
-                <Card
-                  cover={
-                    <div style={{ position: "relative", overflow: "hidden" }}>
-                      <img
-                        alt={item.title}
-                        src={item.image}
-                        style={{
-                          height: "280px",
-                          objectFit: "cover",
-                          width: "100%",
-                          transition: "transform 0.4s ease"
-                        }}
-                      />
-                    </div>
-                  }
-                  style={{
-                    backgroundColor: "#ffffff",
-                    borderColor: "#d4a574",
-                    borderWidth: "2px",
-                    borderRadius: "15px",
-                    boxShadow: "0 8px 25px 0 rgba(26, 35, 50, 0.15)",
-                    overflow: "hidden",
-                    transition: "all 0.4s ease"
-                  }}
-                >
-                  <Card.Meta
-                    title={
-                      <span style={{
-                        color: "#1a2332",
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "1.3rem",
-                        fontWeight: "600"
-                      }}>
-                        {item.title}
-                      </span>
-                    }
-                    description={
-                      <span style={{
-                        color: "#4a5568",
-                        fontSize: "1rem",
-                        fontFamily: "'Poppins', sans-serif",
-                        lineHeight: "1.5"
-                      }}>
-                        {item.desc}
-                      </span>
-                    }
-                  />
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </div>
-
       {/* Contact CTA Section */}
       <div style={{
         padding: "120px 20px",
@@ -532,7 +305,7 @@ const Home = () => {
           }}>
             <DiamondOutlined />
           </div>
-
+          
           <Title level={2} style={{
             color: "#1a2332",
             marginBottom: "25px",
@@ -544,7 +317,7 @@ const Home = () => {
           }}>
             Ready to Create Your Dream Diamond Jewelry?
           </Title>
-
+          
           <div style={{
             width: "150px",
             height: "3px",
@@ -552,7 +325,7 @@ const Home = () => {
             margin: "0 auto 35px auto",
             borderRadius: "3px"
           }} />
-
+          
           <Text style={{
             color: "#4a5568",
             fontSize: "1.3rem",
@@ -566,7 +339,7 @@ const Home = () => {
           }}>
             Contact us today to start your custom diamond jewelry journey with our master craftsmen
           </Text>
-
+          
           <Button
             type="primary"
             size="large"
@@ -596,4 +369,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LuxuryHome;

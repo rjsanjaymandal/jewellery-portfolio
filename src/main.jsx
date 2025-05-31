@@ -1,14 +1,650 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
-// Ant Design v5 doesn't require separate CSS import
-import "./index.css";
+import AboutUsPage from "./components/AboutUsPage.jsx";
+import { ServicesSection, CollectionSection, ContactSection } from "./components/HomeSections.jsx";
+import UniversalFooter from "./components/UniversalFooter.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+// Router implementation for navigation
+const Router = ({ children }) => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigate = (path) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+  };
+
+  return React.cloneElement(children, { currentPath, navigate });
+};
+
+// Enhanced luxury jewelry website with real images and professional design
+const LuxuryJewelryWebsite = ({ navigate }) => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Handle scroll effects and intersection observer for active sections
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    // Intersection Observer for active section tracking
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
+  // Auto-rotate hero images
+  useEffect(() => {
+    const heroImages = [
+      '/images/jewelry_pieces/hero_jewelry_making.jpg',
+      '/images/diamond_manufacturing/hero_bg.jpg',
+      '/images/jewelry_pieces/diamond_setting.jpg'
+    ];
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+      setIsMenuOpen(false);
+    }
+  };
+
+  // Image lazy loading component
+  const LazyImage = ({ src, alt, className, style, ...props }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      const imgElement = document.querySelector(`[data-src="${src}"]`);
+      if (imgElement) observer.observe(imgElement);
+
+      return () => observer.disconnect();
+    }, [src]);
+
+    return (
+      <div
+        data-src={src}
+        style={{
+          ...style,
+          background: isLoaded ? 'transparent' : 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
+          transition: 'all 0.3s ease'
+        }}
+        {...props}
+      >
+        {isInView && (
+          <img
+            src={src}
+            alt={alt}
+            className={className}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: isLoaded ? 1 : 0,
+              transition: 'opacity 0.3s ease'
+            }}
+            onLoad={() => setIsLoaded(true)}
+            loading="lazy"
+          />
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+      {/* Navigation */}
+      <nav style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 255, 255, 0.95)",
+        backdropFilter: "blur(20px)",
+        borderBottom: isScrolled ? "1px solid #d4a574" : "1px solid rgba(212, 165, 116, 0.3)",
+        boxShadow: isScrolled ? "0 8px 32px rgba(26, 35, 50, 0.15)" : "0 4px 20px rgba(26, 35, 50, 0.1)",
+        padding: "0 20px",
+        transition: "all 0.3s ease"
+      }}>
+        <div style={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: "80px"
+        }}>
+          {/* Logo */}
+          <div
+            style={{ display: "flex", alignItems: "center", gap: "16px", cursor: "pointer" }}
+            onClick={() => scrollToSection('home')}
+          >
+            <div style={{
+              width: "60px",
+              height: "60px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.3s ease"
+            }}>
+              <img
+                src="/images/ramavatargems-logo.png"
+                alt="Ramavatargems - Premium Diamond Jewelry Manufacturer"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  filter: "drop-shadow(0 4px 8px rgba(212, 165, 116, 0.3))"
+                }}
+                onError={(e) => {
+                  e.target.src = "/images/ramavatargems-logo.svg";
+                }}
+              />
+            </div>
+            <div>
+              <div style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                color: "#1a2332",
+                letterSpacing: "0.5px",
+                fontFamily: "'Playfair Display', serif",
+                lineHeight: "1.2"
+              }}>
+                Ramavatargems
+              </div>
+              <div style={{
+                fontSize: "11px",
+                color: "#c19660",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                fontWeight: "600",
+                marginTop: "2px"
+              }}>
+                Since 1982
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div style={{ display: window.innerWidth > 768 ? "flex" : "none", gap: "32px", alignItems: "center" }}>
+            {[
+              { label: "Home", id: "home" },
+              { label: "Services", id: "services" },
+              { label: "Collection", id: "collection" },
+              { label: "Contact", id: "contact" }
+            ].map((item) => (
+              <span
+                key={item.id}
+                style={{
+                  color: activeSection === item.id ? "#d4a574" : "#334e68",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  borderBottom: activeSection === item.id ? "2px solid #d4a574" : "none",
+                  paddingBottom: "4px"
+                }}
+                onClick={() => scrollToSection(item.id)}
+                onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+                onMouseLeave={(e) => e.target.style.color = activeSection === item.id ? "#d4a574" : "#334e68"}
+              >
+                {item.label}
+              </span>
+            ))}
+            <span
+              style={{
+                color: "#334e68",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.3s ease"
+              }}
+              onClick={() => navigate('/about')}
+              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseLeave={(e) => e.target.style.color = "#334e68"}
+            >
+              About Us
+            </span>
+          </div>
+
+          <button
+            style={{
+              background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
+              color: "#1a2332",
+              fontWeight: "600",
+              padding: "10px 20px",
+              borderRadius: "25px",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "14px",
+              boxShadow: "0 4px 15px rgba(212, 165, 116, 0.3)",
+              transition: "all 0.3s ease"
+            }}
+            onClick={() => scrollToSection('contact')}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-2px) scale(1.05)";
+              e.target.style.boxShadow = "0 8px 25px rgba(212, 165, 116, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0) scale(1)";
+              e.target.style.boxShadow = "0 4px 15px rgba(212, 165, 116, 0.3)";
+            }}
+          >
+            📞 Get Quote
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        style={{
+          minHeight: "100vh",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingTop: "80px",
+          textAlign: "center",
+          color: "white",
+          overflow: "hidden"
+        }}
+      >
+        {/* Background Image Carousel */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: -2
+        }}>
+          {[
+            '/images/jewelry_pieces/hero_jewelry_making.jpg',
+            '/images/diamond_manufacturing/hero_bg.jpg',
+            '/images/jewelry_pieces/diamond_setting.jpg'
+          ].map((image, index) => (
+            <div
+              key={index}
+              style={{
+                position: "absolute",
+                inset: 0,
+                opacity: currentImageIndex === index ? 1 : 0,
+                transition: "opacity 2s ease-in-out"
+              }}
+            >
+              <LazyImage
+                src={image}
+                alt={`Diamond jewelry craftsmanship ${index + 1}`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Gradient Overlay */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(36, 59, 83, 0.75) 50%, rgba(193, 150, 96, 0.65) 100%)",
+          zIndex: -1
+        }} />
+
+        {/* Floating Animation Elements */}
+        <div style={{
+          position: "absolute",
+          top: "15%",
+          left: "8%",
+          width: "120px",
+          height: "120px",
+          background: "rgba(212, 165, 116, 0.15)",
+          borderRadius: "50%",
+          filter: "blur(40px)",
+          animation: "float 8s ease-in-out infinite"
+        }} />
+        <div style={{
+          position: "absolute",
+          bottom: "15%",
+          right: "12%",
+          width: "180px",
+          height: "180px",
+          background: "rgba(212, 165, 116, 0.1)",
+          borderRadius: "50%",
+          filter: "blur(60px)",
+          animation: "float 10s ease-in-out infinite reverse"
+        }} />
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "85%",
+          width: "80px",
+          height: "80px",
+          background: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "50%",
+          filter: "blur(30px)",
+          animation: "float 6s ease-in-out infinite"
+        }} />
+
+        {/* Hero Content */}
+        <div style={{ maxWidth: "1200px", padding: "0 20px", zIndex: 1 }}>
+          {/* Logo Icon */}
+          <div style={{
+            width: "100px",
+            height: "100px",
+            margin: "0 auto 40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(255, 255, 255, 0.1)",
+            borderRadius: "50%",
+            backdropFilter: "blur(20px)",
+            border: "2px solid rgba(212, 165, 116, 0.3)",
+            boxShadow: "0 8px 32px rgba(212, 165, 116, 0.2)"
+          }}>
+            <img
+              src="/images/ramavatargems-logo.png"
+              alt="Ramavatargems Logo"
+              style={{
+                width: "60px",
+                height: "60px",
+                objectFit: "contain",
+                filter: "brightness(0) invert(1)"
+              }}
+              onError={(e) => {
+                e.target.src = "/images/ramavatargems-logo.svg";
+              }}
+            />
+          </div>
+
+          {/* Main Heading */}
+          <h1 style={{
+            fontSize: "clamp(3.5rem, 8vw, 7rem)",
+            fontWeight: "bold",
+            marginBottom: "32px",
+            lineHeight: "1.1",
+            textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+            fontFamily: "'Playfair Display', serif"
+          }}>
+            Exquisite Diamond<br />
+            <span style={{
+              background: "linear-gradient(135deg, #e6b887 0%, #d4a574 50%, #c19660 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "none"
+            }}>
+              Jewelry Artisans
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p style={{
+            fontSize: "clamp(1.3rem, 3vw, 1.8rem)",
+            marginBottom: "24px",
+            lineHeight: "1.7",
+            opacity: "0.95",
+            maxWidth: "900px",
+            margin: "0 auto 24px auto",
+            textShadow: "1px 1px 3px rgba(0,0,0,0.3)"
+          }}>
+            Premier Diamond Jewelry Manufacturer in Jaipur
+          </p>
+
+          <p style={{
+            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
+            marginBottom: "48px",
+            lineHeight: "1.6",
+            opacity: "0.9",
+            maxWidth: "800px",
+            margin: "0 auto 48px auto",
+            textShadow: "1px 1px 3px rgba(0,0,0,0.3)"
+          }}>
+            Crafting Timeless Diamond Masterpieces in Silver & Platinum with Precision Stone Setting Since 1982
+          </p>
+
+          {/* CTA Buttons */}
+          <div style={{ display: "flex", gap: "24px", justifyContent: "center", flexWrap: "wrap" }}>
+            <button
+              style={{
+                background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
+                color: "#1a2332",
+                fontWeight: "bold",
+                padding: "20px 40px",
+                borderRadius: "35px",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "18px",
+                boxShadow: "0 8px 32px rgba(212, 165, 116, 0.3)",
+                transition: "all 0.3s ease",
+                textTransform: "uppercase",
+                letterSpacing: "1px"
+              }}
+              onClick={() => scrollToSection('services')}
+              onMouseEnter={(e) => {
+                e.target.style.transform = "translateY(-3px) scale(1.05)";
+                e.target.style.boxShadow = "0 15px 40px rgba(212, 165, 116, 0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = "translateY(0) scale(1)";
+                e.target.style.boxShadow = "0 8px 32px rgba(212, 165, 116, 0.3)";
+              }}
+            >
+              💎 Discover Our Craftsmanship
+            </button>
+            <button
+              style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                color: "white",
+                fontWeight: "600",
+                padding: "20px 40px",
+                borderRadius: "35px",
+                border: "2px solid rgba(255, 255, 255, 0.3)",
+                cursor: "pointer",
+                fontSize: "18px",
+                transition: "all 0.3s ease",
+                backdropFilter: "blur(20px)",
+                textTransform: "uppercase",
+                letterSpacing: "1px"
+              }}
+              onClick={() => scrollToSection('collection')}
+              onMouseEnter={(e) => {
+                e.target.style.background = "rgba(255, 255, 255, 0.2)";
+                e.target.style.borderColor = "#d4a574";
+                e.target.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = "rgba(255, 255, 255, 0.1)";
+                e.target.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                e.target.style.transform = "translateY(0)";
+              }}
+            >
+              ✨ View Collection
+            </button>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div style={{
+            position: "absolute",
+            bottom: "40px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
+            opacity: "0.7",
+            animation: "float 3s ease-in-out infinite"
+          }}>
+            <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "2px" }}>Scroll Down</span>
+            <div style={{
+              width: "2px",
+              height: "30px",
+              background: "linear-gradient(to bottom, transparent, white, transparent)",
+              borderRadius: "1px"
+            }} />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <ServicesSection LazyImage={LazyImage} scrollToSection={scrollToSection} />
+
+      {/* Collection Section */}
+      <CollectionSection LazyImage={LazyImage} />
+
+      {/* Contact Section */}
+      <ContactSection LazyImage={LazyImage} />
+
+      {/* Universal Footer */}
+      <UniversalFooter navigate={navigate} scrollToSection={scrollToSection} />
+
+      {/* Enhanced CSS Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          25% { transform: translateY(-10px) rotate(1deg); }
+          50% { transform: translateY(-20px) rotate(0deg); }
+          75% { transform: translateY(-10px) rotate(-1deg); }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Smooth transitions for all interactive elements */
+        button, a, [role="button"] {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Image loading animation */
+        img {
+          transition: opacity 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(135deg, #d4a574, #e6b887);
+          border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(135deg, #c19660, #d4a574);
+        }
+
+        /* Focus styles for accessibility */
+        button:focus, a:focus {
+          outline: 2px solid #d4a574;
+          outline-offset: 2px;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+// Main App Component with Routing
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+};
+
+// App Content with Route Handling
+const AppContent = ({ currentPath, navigate }) => {
+  // Route to appropriate component based on current path
+  if (currentPath === '/about') {
+    return <AboutUsPage navigate={navigate} />;
+  }
+
+  // Default to home page
+  return <LuxuryJewelryWebsite navigate={navigate} />;
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);

@@ -1,155 +1,52 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { Layout, ConfigProvider } from "antd";
-import styled from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ConfigProvider } from "antd";
+import Home from "./pages/Home.jsx";
+import LuxuryHome from "./pages/LuxuryHome.jsx";
+import ModernApp from "./ModernApp.jsx";
+import SimpleTest from "./pages/SimpleTest.jsx";
 
-// Pages
-import Home from "./pages/HomeBasicSimple.jsx";
-import About from "./pages/About.jsx";
-import Manufacturing from "./pages/Manufacturing.jsx";
-import JewelryManufacturing from "./pages/JewelryManufacturing.jsx";
-import Gemstones from "./pages/Gemstones.jsx";
-import Workshop from "./pages/Workshop.jsx";
-import Craftsmanship from "./pages/Craftsmanship.jsx";
-import Contact from "./pages/Contact.jsx";
-import Collection from "./pages/Collection.jsx";
-
-// Components
-import ModernNavbar from "./components/ModernNavbar.jsx";
-import Footer from "./components/Footer.jsx";
-
-// Theme Context
-import { ThemeProvider, useTheme } from "./context/ThemeContext.jsx";
-
-const { Content } = Layout;
-
-const StyledLayout = styled(Layout)`
-  min-height: 100vh;
-`;
-
-const StyledContent = styled(Content)`
-  flex: 1;
-`;
-
-// Theme configuration for Ant Design
-const getAntdTheme = (isDarkMode) => {
-  // Common theme settings
-  const baseTheme = {
-    token: {
-      fontFamily:
-        "'Playfair Display', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto",
-      fontSize: 16,
-      fontSizeHeading1: 32,
-      fontSizeHeading2: 28,
-      fontSizeHeading3: 24,
-      fontSizeHeading4: 20,
-      fontSizeHeading5: 16,
-      borderRadius: 4,
+// Simple Ant Design theme
+const antdTheme = {
+  token: {
+    fontFamily: "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    fontSize: 16,
+    colorPrimary: "#1a2332",
+    colorLink: "#d4a574",
+    colorLinkHover: "#e6b887",
+    colorTextBase: "#1a2332",
+    colorBgBase: "#fefefe",
+  },
+  components: {
+    Typography: {
+      fontWeightStrong: 600,
     },
-    components: {
-      Typography: {
-        fontWeightStrong: 700,
-        titleMarginBottom: 16,
-      },
-      Button: {
-        fontWeight: 500,
-      },
+    Button: {
+      fontWeight: 600,
+      colorPrimary: "#d4a574",
+      colorPrimaryHover: "#e6b887",
     },
-  };
-
-  // Light theme
-  const lightTheme = {
-    ...baseTheme,
-    token: {
-      ...baseTheme.token,
-      colorPrimary: "#1a237e", // Deep royal blue
-      colorLink: "#1a237e",
-      colorLinkHover: "#0d1642", // Darker blue for hover states
-      colorTextBase: "#262626", // Darker text for better readability
-      colorTextSecondary: "#4D4D4D", // Darker gray for better contrast
-      colorBgBase: "#ffffff",
-      colorSuccess: "#d4af37", // Gold as success color
-      colorInfo: "#e5e4e2", // Silver/platinum tone
+    Card: {
+      borderRadius: 15,
     },
-    components: {
-      ...baseTheme.components,
-      Card: {
-        colorBorderSecondary: "#e8e8e8", // Slightly darker border for better visibility
-      },
-      Button: {
-        colorPrimary: "#d4af37", // Gold for primary buttons
-        colorPrimaryHover: "#b8971f", // Darker gold for hover
-      },
-    },
-  };
-
-  // Dark theme
-  const darkTheme = {
-    ...baseTheme,
-    token: {
-      ...baseTheme.token,
-      colorPrimary: "#d4af37", // Gold for dark mode
-      colorLink: "#d4af37",
-      colorLinkHover: "#e6c55c", // Lighter gold for hover
-      colorTextBase: "#e6e6e6", // Light text for dark mode
-      colorTextSecondary: "#b3b3b3", // Lighter gray for secondary text
-      colorBgBase: "#121212", // Dark background
-      colorSuccess: "#1a237e", // Deep blue as success color in dark mode
-      colorInfo: "#e5e4e2", // Silver/platinum tone
-    },
-    components: {
-      ...baseTheme.components,
-      Card: {
-        colorBorderSecondary: "#333333", // Darker border for dark mode
-      },
-      Button: {
-        colorPrimary: "#d4af37", // Gold for primary buttons
-        colorPrimaryHover: "#e6c55c", // Lighter gold for hover in dark mode
-      },
-    },
-  };
-
-  return isDarkMode ? darkTheme : lightTheme;
+  },
 };
 
-// Theme-aware App component
-const ThemedApp = () => {
-  const { isDarkMode } = useTheme();
-  const antdTheme = getAntdTheme(isDarkMode);
-
+const App = () => {
   return (
     <ConfigProvider theme={antdTheme}>
-      <StyledLayout>
-        <ModernNavbar />
-        <StyledContent>
+      <Router>
+        <div style={{ minHeight: "100vh" }}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/manufacturing" element={<Manufacturing />} />
-            <Route
-              path="/jewelry-manufacturing"
-              element={<JewelryManufacturing />}
-            />
-            <Route path="/gemstones" element={<Gemstones />} />
-            <Route path="/workshop" element={<Workshop />} />
-            <Route path="/craftsmanship" element={<Craftsmanship />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/collection" element={<Collection />} />
+            <Route path="/" element={<ModernApp />} />
+            <Route path="/luxury" element={<LuxuryHome />} />
+            <Route path="/test" element={<SimpleTest />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
-        </StyledContent>
-        <Footer />
-      </StyledLayout>
+        </div>
+      </Router>
     </ConfigProvider>
   );
 };
-
-// Main App component with ThemeProvider
-function App() {
-  return (
-    <ThemeProvider>
-      <ThemedApp />
-    </ThemeProvider>
-  );
-}
 
 export default App;

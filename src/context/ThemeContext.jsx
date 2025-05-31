@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { lightTheme, darkTheme } from "../theme/modernTheme";
+import React, { createContext, useContext, useEffect } from "react";
+import { luxuryTheme } from "../theme/modernTheme";
 
 const ThemeContext = createContext();
 
@@ -12,22 +12,13 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem("darkMode");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    return saved ? JSON.parse(saved) : prefersDark;
-  });
-
-  const currentTheme = isDarkMode ? darkTheme : lightTheme;
+  // Single luxury theme - no dark mode
+  const currentTheme = luxuryTheme;
 
   useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
-
-    // Update CSS custom properties with modern theme
+    // Update CSS custom properties with luxury theme
     const root = document.documentElement;
-    const theme = isDarkMode ? darkTheme : lightTheme;
+    const theme = currentTheme;
 
     // Colors
     root.style.setProperty("--color-primary", theme.colors.primary);
@@ -40,58 +31,39 @@ export const ThemeProvider = ({ children }) => {
 
     // Text Colors
     root.style.setProperty("--color-text-primary", theme.colors.text.primary);
-    root.style.setProperty(
-      "--color-text-secondary",
-      theme.colors.text.secondary
-    );
+    root.style.setProperty("--color-text-secondary", theme.colors.text.secondary);
     root.style.setProperty("--color-text-muted", theme.colors.text.muted);
     root.style.setProperty("--color-text-inverse", theme.colors.text.inverse);
+    root.style.setProperty("--color-text-luxury", theme.colors.text.luxury);
 
     // Border Colors
     root.style.setProperty("--color-border-light", theme.colors.border.light);
     root.style.setProperty("--color-border-medium", theme.colors.border.medium);
     root.style.setProperty("--color-border-dark", theme.colors.border.dark);
+    root.style.setProperty("--color-border-luxury", theme.colors.border.luxury);
 
     // Shadows
     root.style.setProperty("--shadow-sm", theme.shadows.sm);
     root.style.setProperty("--shadow-md", theme.shadows.md);
     root.style.setProperty("--shadow-lg", theme.shadows.lg);
     root.style.setProperty("--shadow-xl", theme.shadows.xl);
+    root.style.setProperty("--shadow-luxury", theme.shadows.luxury);
     root.style.setProperty("--shadow-glow", theme.shadows.glow);
 
     // Update body background
     document.body.style.backgroundColor = theme.colors.background;
     document.body.style.color = theme.colors.text.primary;
-    document.body.style.transition =
-      "background-color 0.3s ease, color 0.3s ease";
+    document.body.style.fontFamily = "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    document.body.style.transition = "all 0.3s ease";
 
     // Update meta theme color for mobile browsers
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute("content", theme.colors.background);
     }
-  }, [isDarkMode]);
-
-  // Listen for system theme changes
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => {
-      if (localStorage.getItem("darkMode") === null) {
-        setIsDarkMode(e.matches);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-  };
-
   const value = {
-    isDarkMode,
-    toggleDarkMode,
     theme: currentTheme,
     colors: currentTheme.colors,
     shadows: currentTheme.shadows,

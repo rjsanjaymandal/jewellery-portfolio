@@ -426,11 +426,14 @@ const MobileNavLink = styled.div`
 `;
 
 const ModernNavbar = () => {
-  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Since we removed dark mode, we'll use false for all isDarkMode checks
+  const isDarkMode = false;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -498,9 +501,7 @@ const ModernNavbar = () => {
               </ContactItem>
             </ContactInfo>
 
-            <ThemeToggle isDarkMode={isDarkMode} onClick={toggleDarkMode}>
-              {isDarkMode ? <SunOutlined /> : <MoonOutlined />}
-            </ThemeToggle>
+
 
             <MobileMenuButton
               isDarkMode={isDarkMode}
