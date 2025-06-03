@@ -70,9 +70,9 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
   // Auto-rotate hero images
   useEffect(() => {
     const heroImages = [
-      '/images/jewelry_pieces/hero_jewelry_making.jpg',
-      '/images/diamond_manufacturing/hero_bg.jpg',
-      '/images/jewelry_pieces/diamond_setting.jpg'
+      '/images/jewelry_manufacturing/stone_setting.jpg',
+      '/images/jewelry_manufacturing/workshop_overview.jpg',
+      '/images/jewelry_manufacturing/polishing.jpg'
     ];
 
     const interval = setInterval(() => {
@@ -96,6 +96,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
   const LazyImage = ({ src, alt, className, style, ...props }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isInView, setIsInView] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -120,11 +121,14 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         style={{
           ...style,
           background: isLoaded ? 'transparent' : 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
-          transition: 'all 0.3s ease'
+          transition: 'all 0.3s ease',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
         {...props}
       >
-        {isInView && (
+        {isInView && !hasError && (
           <img
             src={src}
             alt={alt}
@@ -137,8 +141,27 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               transition: 'opacity 0.3s ease'
             }}
             onLoad={() => setIsLoaded(true)}
+            onError={() => {
+              setHasError(true);
+              setIsLoaded(true);
+            }}
             loading="lazy"
           />
+        )}
+        {hasError && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+            color: '#6c757d',
+            fontSize: '14px',
+            textAlign: 'center'
+          }}>
+            💎 Image Loading...
+          </div>
         )}
       </div>
     );
@@ -220,7 +243,13 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
           </div>
 
           {/* Desktop Navigation */}
-          <div style={{ display: window.innerWidth > 768 ? "flex" : "none", gap: "32px", alignItems: "center" }}>
+          <div
+            className="desktop-nav"
+            style={{
+              display: "flex",
+              gap: "32px",
+              alignItems: "center"
+            }}>
             {[
               { label: "Home", id: "home" },
               { label: "Services", id: "services" },
@@ -291,12 +320,13 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
       <section
         id="home"
         style={{
-          minHeight: "100vh",
+          height: "100vh",
           position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          paddingTop: "80px",
+          paddingTop: "100px",
+          paddingBottom: "100px",
           textAlign: "center",
           color: "white",
           overflow: "hidden"
@@ -309,9 +339,9 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
           zIndex: -2
         }}>
           {[
-            '/images/jewelry_pieces/hero_jewelry_making.jpg',
-            '/images/diamond_manufacturing/hero_bg.jpg',
-            '/images/jewelry_pieces/diamond_setting.jpg'
+            '/images/jewelry_manufacturing/stone_setting.jpg',
+            '/images/jewelry_manufacturing/workshop_overview.jpg',
+            '/images/jewelry_manufacturing/polishing.jpg'
           ].map((image, index) => (
             <div
               key={index}
@@ -324,7 +354,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
             >
               <LazyImage
                 src={image}
-                alt={`Diamond jewelry craftsmanship ${index + 1}`}
+                alt={`Diamond jewelry in silver & platinum craftsmanship ${index + 1}`}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -339,7 +369,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         <div style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(36, 59, 83, 0.75) 50%, rgba(193, 150, 96, 0.65) 100%)",
+          background: "linear-gradient(135deg, rgba(26, 35, 50, 0.85) 0%, rgba(36, 59, 83, 0.75) 50%, rgba(169, 169, 169, 0.65) 100%)",
           zIndex: -1
         }} />
 
@@ -350,7 +380,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
           left: "8%",
           width: "120px",
           height: "120px",
-          background: "rgba(212, 165, 116, 0.15)",
+          background: "rgba(192, 192, 192, 0.15)",
           borderRadius: "50%",
           filter: "blur(40px)",
           animation: "float 8s ease-in-out infinite"
@@ -361,7 +391,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
           right: "12%",
           width: "180px",
           height: "180px",
-          background: "rgba(212, 165, 116, 0.1)",
+          background: "rgba(229, 228, 226, 0.1)",
           borderRadius: "50%",
           filter: "blur(60px)",
           animation: "float 10s ease-in-out infinite reverse"
@@ -379,27 +409,27 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         }} />
 
         {/* Hero Content */}
-        <div style={{ maxWidth: "1200px", padding: "0 20px", zIndex: 1 }}>
+        <div style={{ maxWidth: "1000px", padding: "0 20px", zIndex: 1 }}>
           {/* Logo Icon */}
           <div style={{
-            width: "100px",
-            height: "100px",
-            margin: "0 auto 40px",
+            width: "80px",
+            height: "80px",
+            margin: "0 auto 30px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             background: "rgba(255, 255, 255, 0.1)",
             borderRadius: "50%",
             backdropFilter: "blur(20px)",
-            border: "2px solid rgba(212, 165, 116, 0.3)",
-            boxShadow: "0 8px 32px rgba(212, 165, 116, 0.2)"
+            border: "2px solid rgba(192, 192, 192, 0.3)",
+            boxShadow: "0 8px 32px rgba(192, 192, 192, 0.2)"
           }}>
             <img
               src="/images/ramavatargems-logo.png"
               alt="Ramavatargems Logo"
               style={{
-                width: "60px",
-                height: "60px",
+                width: "50px",
+                height: "50px",
                 objectFit: "contain",
                 filter: "brightness(0) invert(1)"
               }}
@@ -411,63 +441,63 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
 
           {/* Main Heading */}
           <h1 style={{
-            fontSize: "clamp(3.5rem, 8vw, 7rem)",
+            fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
             fontWeight: "bold",
-            marginBottom: "32px",
+            marginBottom: "20px",
             lineHeight: "1.1",
             textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
             fontFamily: "'Playfair Display', serif"
           }}>
             Exquisite Diamond<br />
             <span style={{
-              background: "linear-gradient(135deg, #e6b887 0%, #d4a574 50%, #c19660 100%)",
+              background: "linear-gradient(135deg, #e5e4e2 0%, #c0c0c0 50%, #a8a8a8 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               textShadow: "none"
             }}>
-              Jewelry Artisans
+              Silver & Platinum
             </span>
           </h1>
 
           {/* Subtitle */}
           <p style={{
-            fontSize: "clamp(1.3rem, 3vw, 1.8rem)",
-            marginBottom: "24px",
-            lineHeight: "1.7",
+            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
+            marginBottom: "16px",
+            lineHeight: "1.6",
             opacity: "0.95",
-            maxWidth: "900px",
-            margin: "0 auto 24px auto",
+            maxWidth: "700px",
+            margin: "0 auto 16px auto",
             textShadow: "1px 1px 3px rgba(0,0,0,0.3)"
           }}>
-            Premier Diamond Jewelry Manufacturer in Jaipur
+            Premier Diamond Jewelry Manufacturer in Silver & Platinum
           </p>
 
           <p style={{
-            fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
-            marginBottom: "48px",
-            lineHeight: "1.6",
+            fontSize: "clamp(1rem, 2vw, 1.2rem)",
+            marginBottom: "30px",
+            lineHeight: "1.5",
             opacity: "0.9",
-            maxWidth: "800px",
-            margin: "0 auto 48px auto",
+            maxWidth: "600px",
+            margin: "0 auto 30px auto",
             textShadow: "1px 1px 3px rgba(0,0,0,0.3)"
           }}>
-            Crafting Timeless Diamond Masterpieces in Silver & Platinum with Precision Stone Setting Since 1982
+            Crafting Timeless Diamond Masterpieces with Precision Stone Setting Since 1982
           </p>
 
           {/* CTA Buttons */}
-          <div style={{ display: "flex", gap: "24px", justifyContent: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
             <button
               style={{
-                background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
+                background: "linear-gradient(135deg, #c0c0c0 0%, #e5e4e2 50%, #c0c0c0 100%)",
                 color: "#1a2332",
                 fontWeight: "bold",
-                padding: "20px 40px",
-                borderRadius: "35px",
+                padding: "14px 28px",
+                borderRadius: "25px",
                 border: "none",
                 cursor: "pointer",
-                fontSize: "18px",
-                boxShadow: "0 8px 32px rgba(212, 165, 116, 0.3)",
+                fontSize: "16px",
+                boxShadow: "0 6px 24px rgba(192, 192, 192, 0.3)",
                 transition: "all 0.3s ease",
                 textTransform: "uppercase",
                 letterSpacing: "1px"
@@ -475,25 +505,25 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               onClick={() => scrollToSection('services')}
               onMouseEnter={(e) => {
                 e.target.style.transform = "translateY(-3px) scale(1.05)";
-                e.target.style.boxShadow = "0 15px 40px rgba(212, 165, 116, 0.4)";
+                e.target.style.boxShadow = "0 15px 40px rgba(192, 192, 192, 0.4)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "translateY(0) scale(1)";
-                e.target.style.boxShadow = "0 8px 32px rgba(212, 165, 116, 0.3)";
+                e.target.style.boxShadow = "0 8px 32px rgba(192, 192, 192, 0.3)";
               }}
             >
-              💎 Discover Our Craftsmanship
+              💎 Our Craftsmanship
             </button>
             <button
               style={{
                 background: "rgba(255, 255, 255, 0.1)",
                 color: "white",
                 fontWeight: "600",
-                padding: "20px 40px",
-                borderRadius: "35px",
+                padding: "14px 28px",
+                borderRadius: "25px",
                 border: "2px solid rgba(255, 255, 255, 0.3)",
                 cursor: "pointer",
-                fontSize: "18px",
+                fontSize: "16px",
                 transition: "all 0.3s ease",
                 backdropFilter: "blur(20px)",
                 textTransform: "uppercase",
@@ -502,7 +532,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               onClick={() => scrollToSection('collection')}
               onMouseEnter={(e) => {
                 e.target.style.background = "rgba(255, 255, 255, 0.2)";
-                e.target.style.borderColor = "#d4a574";
+                e.target.style.borderColor = "#c0c0c0";
                 e.target.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
@@ -515,27 +545,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
             </button>
           </div>
 
-          {/* Scroll Indicator */}
-          <div style={{
-            position: "absolute",
-            bottom: "40px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
-            opacity: "0.7",
-            animation: "float 3s ease-in-out infinite"
-          }}>
-            <span style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "2px" }}>Scroll Down</span>
-            <div style={{
-              width: "2px",
-              height: "30px",
-              background: "linear-gradient(to bottom, transparent, white, transparent)",
-              borderRadius: "1px"
-            }} />
-          </div>
+
         </div>
       </section>
 
@@ -589,6 +599,20 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
           box-sizing: border-box;
         }
 
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Arial', sans-serif;
+          overflow-x: hidden;
+        }
+
+        /* Responsive navigation */
+        @media (max-width: 768px) {
+          .desktop-nav {
+            display: none !important;
+          }
+        }
+
         /* Smooth transitions for all interactive elements */
         button, a, [role="button"] {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -597,6 +621,22 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         /* Image loading animation */
         img {
           transition: opacity 0.3s ease;
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Responsive grid fixes */
+        .responsive-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+          .responsive-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
         }
 
         /* Custom scrollbar */
@@ -621,6 +661,23 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         button:focus, a:focus {
           outline: 2px solid #d4a574;
           outline-offset: 2px;
+        }
+
+        /* Prevent horizontal scroll */
+        .container {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        /* Fix for mobile viewport */
+        @media (max-width: 768px) {
+          .hero-content {
+            padding: 0 1rem;
+          }
+
+          .section-padding {
+            padding: 4rem 1rem;
+          }
         }
       `}</style>
     </div>
