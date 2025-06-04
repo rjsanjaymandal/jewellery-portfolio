@@ -51,7 +51,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                 </div>
                 <div style={{
                   fontSize: "11px",
-                  color: "#d4a574",
+                  color: "#c0c0c0",
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   fontWeight: "600",
@@ -90,7 +90,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                   style={{
                     width: "40px",
                     height: "40px",
-                    background: "rgba(212, 165, 116, 0.2)",
+                    background: "rgba(192, 192, 192, 0.2)",
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
@@ -98,15 +98,15 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                     fontSize: "18px",
                     textDecoration: "none",
                     transition: "all 0.3s ease",
-                    border: "1px solid rgba(212, 165, 116, 0.3)"
+                    border: "1px solid rgba(192, 192, 192, 0.3)"
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.background = "#d4a574";
+                    e.target.style.background = "#c0c0c0";
                     e.target.style.transform = "translateY(-2px) scale(1.1)";
-                    e.target.style.boxShadow = "0 8px 20px rgba(212, 165, 116, 0.4)";
+                    e.target.style.boxShadow = "0 8px 20px rgba(192, 192, 192, 0.4)";
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.background = "rgba(212, 165, 116, 0.2)";
+                    e.target.style.background = "rgba(192, 192, 192, 0.2)";
                     e.target.style.transform = "translateY(0) scale(1)";
                     e.target.style.boxShadow = "none";
                   }}
@@ -124,7 +124,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
               fontSize: "20px",
               fontWeight: "bold",
               marginBottom: "24px",
-              color: "#d4a574",
+              color: "#c0c0c0",
               fontFamily: "'Playfair Display', serif"
             }}>
               Quick Links
@@ -154,8 +154,8 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                   }}
                   onClick={link.action}
                   onMouseEnter={(e) => {
-                    e.target.style.color = "#d4a574";
-                    e.target.style.borderBottomColor = "#d4a574";
+                    e.target.style.color = "#c0c0c0";
+                    e.target.style.borderBottomColor = "#c0c0c0";
                     e.target.style.paddingLeft = "8px";
                   }}
                   onMouseLeave={(e) => {
@@ -176,7 +176,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
               fontSize: "20px",
               fontWeight: "bold",
               marginBottom: "24px",
-              color: "#d4a574",
+              color: "#c0c0c0",
               fontFamily: "'Playfair Display', serif"
             }}>
               Contact Information
@@ -223,7 +223,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                     <div style={{
                       fontSize: "14px",
                       fontWeight: "600",
-                      color: "#d4a574",
+                      color: "#c0c0c0",
                       marginBottom: "4px"
                     }}>
                       {contact.title}
@@ -247,7 +247,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
               fontSize: "20px",
               fontWeight: "bold",
               marginBottom: "24px",
-              color: "#d4a574",
+              color: "#c0c0c0",
               fontFamily: "'Playfair Display', serif"
             }}>
               Our Expertise
@@ -273,7 +273,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                   fontSize: "14px"
                 }}>
                   <span style={{
-                    color: "#d4a574",
+                    color: "#c0c0c0",
                     fontSize: "12px"
                   }}>
                     ✓
@@ -322,7 +322,7 @@ const UniversalFooter = ({ navigate, scrollToSection }) => {
                   transition: "all 0.3s ease"
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = "#d4a574";
+                  e.target.style.color = "#c0c0c0";
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.color = "rgba(255, 255, 255, 0.7)";

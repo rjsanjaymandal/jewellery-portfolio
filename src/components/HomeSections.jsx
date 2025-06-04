@@ -13,7 +13,7 @@ export const ServicesSection = ({ LazyImage, scrollToSection }) => (
       <div style={{ textAlign: "center", marginBottom: "80px" }}>
         <div style={{
           fontSize: "14px",
-          color: "#d4a574",
+          color: "#c0c0c0",
           fontWeight: "600",
           letterSpacing: "3px",
           textTransform: "uppercase",
@@ -124,7 +124,7 @@ export const ServicesSection = ({ LazyImage, scrollToSection }) => (
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "8px",
-                  color: "#d4a574",
+                  color: "#c0c0c0",
                   fontSize: "14px",
                   fontWeight: "600"
                 }}>
@@ -146,7 +146,7 @@ export const CollectionSection = ({ LazyImage }) => (
     id="collection"
     style={{
       padding: "120px 20px",
-      background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #d4a574 100%)",
+      background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #c0c0c0 100%)",
       color: "white"
     }}
   >
@@ -154,7 +154,7 @@ export const CollectionSection = ({ LazyImage }) => (
       <div style={{ textAlign: "center", marginBottom: "80px" }}>
         <div style={{
           fontSize: "14px",
-          color: "#e6b887",
+          color: "#e5e4e2",
           fontWeight: "600",
           letterSpacing: "3px",
           textTransform: "uppercase",
@@ -229,7 +229,7 @@ export const CollectionSection = ({ LazyImage }) => (
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-12px) scale(1.02)";
             e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-            e.currentTarget.style.borderColor = "#d4a574";
+            e.currentTarget.style.borderColor = "#c0c0c0";
             e.currentTarget.style.boxShadow = "0 25px 50px rgba(0, 0, 0, 0.3)";
           }}
           onMouseLeave={(e) => {
@@ -258,7 +258,7 @@ export const CollectionSection = ({ LazyImage }) => (
               <div style={{
                 position: "absolute",
                 inset: 0,
-                background: "linear-gradient(135deg, rgba(212, 165, 116, 0.2) 0%, rgba(26, 35, 50, 0.3) 100%)",
+                background: "linear-gradient(135deg, rgba(192, 192, 192, 0.2) 0%, rgba(26, 35, 50, 0.3) 100%)",
                 opacity: 0.7
               }} />
 
@@ -267,7 +267,7 @@ export const CollectionSection = ({ LazyImage }) => (
                 position: "absolute",
                 top: "16px",
                 right: "16px",
-                background: "rgba(212, 165, 116, 0.9)",
+                background: "rgba(192, 192, 192, 0.9)",
                 color: "white",
                 padding: "6px 12px",
                 borderRadius: "20px",
@@ -304,7 +304,7 @@ export const CollectionSection = ({ LazyImage }) => (
 
               {/* View More Button */}
               <button style={{
-                background: "linear-gradient(135deg, #d4a574 0%, #e6b887 100%)",
+                background: "linear-gradient(135deg, #c0c0c0 0%, #e5e4e2 100%)",
                 color: "white",
                 border: "none",
                 padding: "10px 20px",
@@ -318,7 +318,7 @@ export const CollectionSection = ({ LazyImage }) => (
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = "scale(1.05)";
-                e.target.style.boxShadow = "0 8px 20px rgba(212, 165, 116, 0.4)";
+                e.target.style.boxShadow = "0 8px 20px rgba(192, 192, 192, 0.4)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = "scale(1)";
@@ -346,7 +346,7 @@ export const ContactSection = ({ LazyImage }) => (
   >
     <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
       <div style={{
-        background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #d4a574 100%)",
+        background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #c0c0c0 100%)",
         borderRadius: "24px",
         padding: "80px 60px",
         textAlign: "center",
@@ -361,7 +361,7 @@ export const ContactSection = ({ LazyImage }) => (
           left: "-50%",
           width: "200%",
           height: "200%",
-          background: "radial-gradient(circle, rgba(212, 165, 116, 0.1) 1px, transparent 1px)",
+          background: "radial-gradient(circle, rgba(192, 192, 192, 0.1) 1px, transparent 1px)",
           backgroundSize: "30px 30px",
           opacity: 0.3,
           animation: "float 20s ease-in-out infinite"
@@ -370,7 +370,7 @@ export const ContactSection = ({ LazyImage }) => (
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{
             fontSize: "14px",
-            color: "#e6b887",
+            color: "#e5e4e2",
             fontWeight: "600",
             letterSpacing: "3px",
             textTransform: "uppercase",

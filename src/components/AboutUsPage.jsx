@@ -121,7 +121,7 @@ const AboutUsPage = ({ navigate }) => {
         zIndex: 1000,
         backgroundColor: "rgba(255, 255, 255, 0.98)",
         backdropFilter: "blur(20px)",
-        borderBottom: "1px solid #d4a574",
+        borderBottom: "1px solid #c0c0c0",
         boxShadow: "0 8px 32px rgba(26, 35, 50, 0.15)",
         padding: "0 20px",
         transition: "all 0.3s ease"
@@ -174,7 +174,7 @@ const AboutUsPage = ({ navigate }) => {
               </div>
               <div style={{
                 fontSize: "11px",
-                color: "#c19660",
+                color: "#a8a8a8",
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 fontWeight: "600",
@@ -195,17 +195,17 @@ const AboutUsPage = ({ navigate }) => {
                 transition: "all 0.3s ease"
               }}
               onClick={() => navigate('/')}
-              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
               onMouseLeave={(e) => e.target.style.color = "#334e68"}
             >
               Home
             </span>
             <span
               style={{
-                color: "#d4a574",
+                color: "#c0c0c0",
                 fontWeight: "600",
                 cursor: "pointer",
-                borderBottom: "2px solid #d4a574",
+                borderBottom: "2px solid #c0c0c0",
                 paddingBottom: "4px"
               }}
             >
@@ -225,7 +225,7 @@ const AboutUsPage = ({ navigate }) => {
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }}
-              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
               onMouseLeave={(e) => e.target.style.color = "#334e68"}
             >
               Services
@@ -244,7 +244,7 @@ const AboutUsPage = ({ navigate }) => {
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }}
-              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
               onMouseLeave={(e) => e.target.style.color = "#334e68"}
             >
               Collection
@@ -263,7 +263,7 @@ const AboutUsPage = ({ navigate }) => {
                   if (element) element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
               }}
-              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
               onMouseLeave={(e) => e.target.style.color = "#334e68"}
             >
               Contact
@@ -272,7 +272,7 @@ const AboutUsPage = ({ navigate }) => {
 
           <button
             style={{
-              background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
+              background: "linear-gradient(135deg, #c0c0c0 0%, #e5e4e2 50%, #c0c0c0 100%)",
               color: "#1a2332",
               fontWeight: "600",
               padding: "10px 20px",
@@ -307,7 +307,7 @@ const AboutUsPage = ({ navigate }) => {
       {/* Hero Section */}
       <section style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #d4a574 100%)",
+        background: "linear-gradient(135deg, #1a2332 0%, #243b53 50%, #c0c0c0 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -420,8 +420,8 @@ const AboutUsPage = ({ navigate }) => {
                 }}
                 onClick={() => scrollToSection(item.id)}
                 onMouseEnter={(e) => {
-                  e.target.style.background = "rgba(212, 165, 116, 0.8)";
-                  e.target.style.borderColor = "#d4a574";
+                  e.target.style.background = "rgba(192, 192, 192, 0.8)";
+                  e.target.style.borderColor = "#c0c0c0";
                   e.target.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
@@ -459,7 +459,7 @@ const AboutUsPage = ({ navigate }) => {
           <div style={{ textAlign: "center", marginBottom: "80px" }}>
             <div style={{
               fontSize: "14px",
-              color: "#d4a574",
+              color: "#c0c0c0",
               fontWeight: "600",
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -562,7 +562,7 @@ const AboutUsPage = ({ navigate }) => {
                     position: "absolute",
                     top: "20px",
                     right: "20px",
-                    background: "linear-gradient(135deg, #d4a574 0%, #e6b887 100%)",
+                    background: "linear-gradient(135deg, #c0c0c0 0%, #e5e4e2 100%)",
                     color: "white",
                     padding: "8px 16px",
                     borderRadius: "20px",
@@ -584,7 +584,7 @@ const AboutUsPage = ({ navigate }) => {
                   </h3>
                   <div style={{
                     fontSize: "16px",
-                    color: "#d4a574",
+                    color: "#c0c0c0",
                     fontWeight: "600",
                     marginBottom: "8px"
                   }}>
@@ -624,7 +624,7 @@ const AboutUsPage = ({ navigate }) => {
           <div style={{ textAlign: "center", marginBottom: "80px" }}>
             <div style={{
               fontSize: "14px",
-              color: "#d4a574",
+              color: "#c0c0c0",
               fontWeight: "600",
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -783,17 +783,17 @@ const AboutUsPage = ({ navigate }) => {
         }
 
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #d4a574, #e6b887);
+          background: linear-gradient(135deg, #c0c0c0, #e5e4e2);
           border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(135deg, #c19660, #d4a574);
+          background: linear-gradient(135deg, #a8a8a8, #c0c0c0);
         }
 
         /* Focus styles for accessibility */
         button:focus, a:focus {
-          outline: 2px solid #d4a574;
+          outline: 2px solid #c0c0c0;
           outline-offset: 2px;
         }
       `}</style>

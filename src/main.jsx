@@ -178,7 +178,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         zIndex: 1000,
         backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 255, 255, 0.95)",
         backdropFilter: "blur(20px)",
-        borderBottom: isScrolled ? "1px solid #d4a574" : "1px solid rgba(212, 165, 116, 0.3)",
+        borderBottom: isScrolled ? "1px solid #c0c0c0" : "1px solid rgba(192, 192, 192, 0.3)",
         boxShadow: isScrolled ? "0 8px 32px rgba(26, 35, 50, 0.15)" : "0 4px 20px rgba(26, 35, 50, 0.1)",
         padding: "0 20px",
         transition: "all 0.3s ease"
@@ -211,7 +211,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
                   width: "100%",
                   height: "100%",
                   objectFit: "contain",
-                  filter: "drop-shadow(0 4px 8px rgba(212, 165, 116, 0.3))"
+                  filter: "drop-shadow(0 4px 8px rgba(192, 192, 192, 0.3))"
                 }}
                 onError={(e) => {
                   e.target.src = "/images/ramavatargems-logo.svg";
@@ -231,7 +231,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               </div>
               <div style={{
                 fontSize: "11px",
-                color: "#c19660",
+                color: "#a8a8a8",
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 fontWeight: "600",
@@ -259,16 +259,16 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               <span
                 key={item.id}
                 style={{
-                  color: activeSection === item.id ? "#d4a574" : "#334e68",
+                  color: activeSection === item.id ? "#c0c0c0" : "#334e68",
                   fontWeight: "600",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  borderBottom: activeSection === item.id ? "2px solid #d4a574" : "none",
+                  borderBottom: activeSection === item.id ? "2px solid #c0c0c0" : "none",
                   paddingBottom: "4px"
                 }}
                 onClick={() => scrollToSection(item.id)}
-                onMouseEnter={(e) => e.target.style.color = "#d4a574"}
-                onMouseLeave={(e) => e.target.style.color = activeSection === item.id ? "#d4a574" : "#334e68"}
+                onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
+                onMouseLeave={(e) => e.target.style.color = activeSection === item.id ? "#c0c0c0" : "#334e68"}
               >
                 {item.label}
               </span>
@@ -281,7 +281,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
                 transition: "all 0.3s ease"
               }}
               onClick={() => navigate('/about')}
-              onMouseEnter={(e) => e.target.style.color = "#d4a574"}
+              onMouseEnter={(e) => e.target.style.color = "#c0c0c0"}
               onMouseLeave={(e) => e.target.style.color = "#334e68"}
             >
               About Us
@@ -290,7 +290,7 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
 
           <button
             style={{
-              background: "linear-gradient(135deg, #d4a574 0%, #e6b887 50%, #d4a574 100%)",
+              background: "linear-gradient(135deg, #c0c0c0 0%, #e5e4e2 50%, #c0c0c0 100%)",
               color: "#1a2332",
               fontWeight: "600",
               padding: "10px 20px",
@@ -298,17 +298,17 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
               border: "none",
               cursor: "pointer",
               fontSize: "14px",
-              boxShadow: "0 4px 15px rgba(212, 165, 116, 0.3)",
+              boxShadow: "0 4px 15px rgba(192, 192, 192, 0.3)",
               transition: "all 0.3s ease"
             }}
             onClick={() => scrollToSection('contact')}
             onMouseEnter={(e) => {
               e.target.style.transform = "translateY(-2px) scale(1.05)";
-              e.target.style.boxShadow = "0 8px 25px rgba(212, 165, 116, 0.4)";
+              e.target.style.boxShadow = "0 8px 25px rgba(192, 192, 192, 0.4)";
             }}
             onMouseLeave={(e) => {
               e.target.style.transform = "translateY(0) scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(212, 165, 116, 0.3)";
+              e.target.style.boxShadow = "0 4px 15px rgba(192, 192, 192, 0.3)";
             }}
           >
             📞 Get Quote
@@ -649,17 +649,17 @@ const LuxuryJewelryWebsite = ({ navigate }) => {
         }
 
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #d4a574, #e6b887);
+          background: linear-gradient(135deg, #c0c0c0, #e5e4e2);
           border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(135deg, #c19660, #d4a574);
+          background: linear-gradient(135deg, #a8a8a8, #c0c0c0);
         }
 
         /* Focus styles for accessibility */
         button:focus, a:focus {
-          outline: 2px solid #d4a574;
+          outline: 2px solid #c0c0c0;
           outline-offset: 2px;
         }
 
